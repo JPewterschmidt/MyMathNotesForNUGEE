@@ -1,0 +1,44 @@
+# LaTeX-specific ignores
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.toc
+*.lot
+*.lof
+*.xdv
+*.msp
+*.ind
+*.ilg
+*.mst
+
+# Build output
+*.pdf
+
+# Editor-specific ignores
+.vscode/
+.idea/
+
+# Compiled LaTeX documents
+*.dvi
+*.ps
+
+# Temporary files
+*~
+
+# LaTeX distribution files
+*.gz
+*.zip
+
+# LaTeX auto-generated files
+latexmkrc
+*.upa
+*.upb
+*.upm
+*.fdb_latexmk

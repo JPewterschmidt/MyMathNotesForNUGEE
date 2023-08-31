@@ -1,0 +1,467 @@
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass{beaulivre}
+
+%\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{makeidx}
+\usepackage{geometry}
+\usepackage{sidenotes}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{cuted}
+\usepackage{amsthm}
+\usepackage{ulem}
+\geometry{a4paper}
+
+\bibliographystyle{alpha}
+
+\title{我的考研数学笔记}
+\author{王世鑫\thanks{E-mail:w2683107566@live.com}}
+\date{\today}
+
+\begin{document}
+
+%\maketitle
+
+\include{preface}
+\tableofcontents
+
+\mainmatter
+\twocolumn
+\include{general_technics}
+
+\cleardoublepage
+\include{limits}
+
+\cleardoublepage
+\include{single-variable-differentiation}
+
+\cleardoublepage
+\chapter{一元函数积分学}
+
+本章考察的重点是
+\textbf{定积分}\ref{finite-integral}和
+\textbf{定积分的应用}\ref{app-finite-integral}.
+
+\section{不定积分} \label{infinite-integral}
+
+主要内容有：
+\begin{itemize}
+    \item 两个概念
+        \begin{itemize}
+            \item 原函数概念
+            \item 不定积分概念
+        \end{itemize}
+    \item \textbf{三种积分方法(重点)}
+        \begin{itemize}
+            \item 第一类换元法
+            \item 第二类换元法
+            \item 分部积分法
+        \end{itemize}
+    \item 三种可积函数
+        \begin{itemize}
+            \item 有理函数积分
+            \item 三角有理函数积分
+            \item 含有无理函数的积分
+        \end{itemize}
+\end{itemize}
+其中有关不定积分的计算，考试只会考察一些比较基本的题型。
+难题可以仅简单了解一下。
+有关难度练习，例题请参阅 \cite[page 96]{we} 开始的各例题。
+
+\subsection{不容易记忆的公式}
+
+\begin{align}
+    &\int \dfrac{1}{{a^2 + x^2}} \, dx          &=& \dfrac{1}{a} \arctan \left( \dfrac{x}{a} \right)      &+ C\\
+    &\int \dfrac{1}{{a^2 - x^2}} \, dx          &=& \dfrac{1}{2a} \ln \left| \dfrac{a + x}{a - x} \right| &+ C\\
+    &\int \dfrac{1}{{\sqrt{a^2 + x^2}}} \, dx   &=& \ln \left| x + \sqrt{a^2 + x^2} \right|               &+ C\\
+    &\int \dfrac{1}{{\sqrt{x^2 - a^2}}} \, dx   &=& \ln \left| x + \sqrt{x^2 - a^2} \right|               &+ C
+\end{align}
+更多公式请参见 \cite[page 93, pdf 104]{we}.
+
+\subsection{两个概念的应用}
+
+比如 \cite[page 101, example 1]{we}:
+\begin{example}
+    Let $f'(e^x) = \sin x$, what is the $f(x)$?
+\end{example}
+本题目一方面可以通过令 $t = e^x$ 的方法然后进行比较常规的做法解出。
+另外还可以对等式两边同时对 $e^x$ 积，即：
+\[
+    \int f'(e^x) \mbox{d} e^x = \int \sin x \mbox{d} e^x
+\]
+则 $\mbox{LHS} = f(e^x)$\footnote{应用了两个概念的某一个}, 
+$\mbox{RHS}$ 为一种很好的分部积分的形式。
+进一步解得 $f(e^x) = (e^x/2) (\sin x - \cos x) + C$ 后，
+再进行变量代换 $t = e^x$ 求出 $f(x)$ 即可。
+
+\subsection{分部积分}
+
+\begin{definition}
+    Suppose both $u(x)$ and $v(x)$ has their one order continuous deritative repectively.
+    Thus, 
+    \[
+        \int u \mbox{d} v = uv - \int v \mbox{d} u
+    \]
+\end{definition}
+
+分部积分适用于 integrand 为两个不同类型函数的乘积时。
+其中 $uv$ 的选择关系到做题速度，相关信息请参见 \cite[page 95, pdf 106]{we}.
+
+\subsection{第一类换元法}
+
+有理被积函数尤其是分式的时候，可以考虑 \textbf{加项减项拆}
+的策略来将式子分为多个式子相加减的形式。
+请参阅\cite[page 98, pdf 109, example 7]{we}
+
+\subsection{第二类换元法}
+
+\begin{table}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        若式子中出现 & 令 \\
+        \midrule
+        $\sqrt{a^2 - x^2}$ & $x = a \sin t$或$x = a \cos t$ \\
+        $\sqrt{a^2 + x^2}$ & $x = a \tan t$ \\
+        $\sqrt{x^2 - a^2}$ & $x = a \sec t$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{常用第二类换元法替换}
+    \label{tab:useful-sec-type-substitutions}
+\end{table}
+第二类换元法常用替换请参见表格 \ref{tab:useful-sec-type-substitutions}.
+
+\subsection{三类常见可积函数中不熟悉的考点}
+
+\subsubsection{三角有理积分}
+
+即形如
+\[
+    \int R(\sin x, \cos x) \mbox{d} x 
+\]
+的。
+
+可以采用\textit{万能代换}法，令 $t = \tan (t/2)$, 则有
+\begin{equation}
+    \int R(\sin x, \cos x) \mbox{d} x 
+    = \int R\left(\dfrac{2t}{1+t^2}, \dfrac{1-t^2}{1+t^2}\right) 
+    \dfrac{2}{1+t^2} \mbox{d} x
+\end{equation}
+该方法虽然通用性很好，但是计算比较繁琐复杂
+\footnote{若三角函数的次数为1，则可以考虑}，
+不到万不得已，不适用该方法。
+
+\begin{table}
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        若 & 令 \\
+        \midrule
+        $R(- \sin x,   \cos x) = -R(\sin x, \cos x)$ & $u = \cos x$ \\
+        $R(  \sin x, - \cos x) = -R(\sin x, \cos x)$ & $u = \sin x$ \\
+        $R(- \sin x, - \cos x) =  R(\sin x, \cos x)$ & $u = \tan x$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{常用三角有理式代换}
+    \label{tab:useful-tri-rational-substitutions}
+\end{table}
+这种问题，最好先使用三角变形、换元、分部积分。
+表\ref{tab:useful-tri-rational-substitutions}是常用的集中换元和其条件。
+
+\subsubsection{简单无理积分} \label{simple-irrational-integral}
+
+\begin{equation}
+    \int R\left(x, \sqrt[n]{\dfrac{ax+b}{cx+d}}\right) \mathrm{d} x
+\end{equation}
+令 $\sqrt[n]{\dfrac{ax+b}{cx+d}}=t$ 将其化为有理函数进行计算。
+\footnote{
+    比\cite{we}更详细的讲解，请参见
+    \url{https://zhuanlan.zhihu.com/p/413132173}.
+}
+\begin{align*}
+    x &= \dfrac{d t^n-b}{a-c t^n} \\
+    \mathrm{d} x &= \dfrac{n t^{n-1} (a d-b c)}{\left(a-c t^n\right)^2} \mathrm{d} t
+\end{align*}
+其中，若 $n = 1$
+\begin{equation}
+    \mathrm{d} x = \dfrac{ad-bc}{(a-ct)^2}
+\end{equation}
+若 $n = 2$
+\begin{equation}
+    \mathrm{d} x = \dfrac{2t(ad-bc)}{(a-ct^2)^2}
+\end{equation}
+
+\begin{example}
+    求
+    \[
+        \int \dfrac{1}{x} \sqrt{\dfrac{x+1}{x}} \mathrm{d} x
+    \].
+
+    令 $t =\sqrt{\dfrac{x+1}{x}}$，则 $x = \dfrac{1}{t^2 - 1}$,
+    $\mathrm{d}x = - \dfrac{2t}{(t^2 - 1)^2}$.
+    则
+    \begin{align*}
+        \int \dfrac{1}{x} \sqrt{\dfrac{x+1}{x}} \mathrm{d} x 
+        &=& 
+        &\int (t^2 - 1) t \dfrac{2t}{(t^2-1)^2} \mathrm{d} t \\
+        &=& 
+        &-2 \int \dfrac{t^2}{(t^2-1)^2} \mathrm{d} t\\
+        &=& 
+        &-2 \int \left(1+\dfrac{1}{t^2-1}\right) \mathrm{d} t\\
+        &=& 
+        &-2\left(t + \dfrac{1}{2} \ln \left|\dfrac{t-1}{t+1}\right|\right) + \mathrm{C}
+    \end{align*}
+\end{example}
+
+\subsection{分段函数的不定积分}
+
+本题型考察的就是分段点的处理，只需保证积分后两个分段是连续的即可
+\footnote{在考研数学中这种情况无需考生证明可导性，
+可以证明连续分段被积函数若其两段原函数是连续能够推出原函数可导}。
+参见 \cite[page 101, pdf 112, example 5]{we}.
+
+\begin{example}
+    求不定积分 $\int e ^{-|x|} \mathrm{d} x$
+
+    \textbf{方法一：}
+    \[
+        e^{-|x|} = \left\{
+            \begin{array}{rl}
+                \mathrm{e} ^{-x} &, x \leq 0, \\
+                \mathrm{e} ^x    &, x < 0.
+            \end{array}
+        \right.
+    \]
+    \[
+        \int \mathrm{e} ^{-|x|} \mathrm{d} x = \left\{
+            \begin{array}{rl}
+                - \mathrm{e} ^{-x} + \mathrm{C_1} &, x \leq 0, \\
+                  \mathrm{e} ^x    + \mathrm{C_2} &, x < 0.
+            \end{array}
+        \right.
+    \]
+
+    \uline{
+        $\mathrm{e}^{-|x|}$ 连续，
+        原函数$F(x)$\textbf{必连续}, 从而$F(x)$
+        在 $x = 0$ \textbf{连续}
+    }，由于
+    \begin{align*}
+        &\lim_{x \to 0^+} F(x) &= &\lim_{x \to 0^+}(-e^{-x} + C_{1})&=& -1& +\mathrm{C_{1}}  \\
+        &\lim_{x \to 0^-} F(x) &= &\lim_{x \to 0^-}(e^{x} + C_{2})  &=&  1& +\mathrm{C_{2}} 
+    \end{align*}
+    所以 $ -1 + \mathrm{C_1} = 1 + \mathrm{C_2}$.
+    \textbf{令 $C_1 = C$，则 $C_2 = -2 + C$} 因此
+    \[
+        \int \mathrm{e}^{-|x|} = \left\{
+            \begin{array}{rl}
+                - \mathrm{e}^{-x} + \mathrm{C} &, x \geq 0, \\
+                  \mathrm{e}^{ x} - 2 + \mathrm{C} &, x < 0.
+            \end{array}
+        \right.
+    \]
+
+    \begin{center}
+    \raisebox{0.5ex}{\rule{\textwidth}{0.3pt}}
+    \end{center}
+
+    \textbf{方法二：}
+    由于 $\mathrm{e}^{-|x|}$ 连续，则$F(x) = \int_{0}^{x} \mathrm{e}^{-|x|} \mathrm{d} t$
+    是其一个原函数，又
+    \begin{align*}
+        F(x) &= \int_{0}^{x} e^{-|x|} \mathrm{d} t = 
+        \left\{
+            \begin{array}{rl}
+                \int_{0}^{x} \mathrm{e}^t    \mathrm{d} t &, x < 0, \\
+                \int_{0}^{x} \mathrm{e}^{-t} \mathrm{d} t &, x \geq 0.
+            \end{array}
+        \right. \\
+        &= \left\{
+            \begin{array}{rl}
+                \mathrm{e}^x - 1 &, x < 0 \\
+                1 - \mathrm{e}^{-x} &, x \leq 0.
+            \end{array}
+        \right.
+    \end{align*}
+    \underline{则 $\int \mathrm{e}^{-|x|} \mathrm{d} x = F(x) + \mathrm{C}$}.
+\end{example}
+本例\footnote{注意下划线标记内容的表述方式。}
+中，后一种不需要使用极限语言说明连续性，
+
+\subsection{其它事项}
+
+根据定义\ref{defination-definite-integral}可知，下列为不等式而非等式
+\[
+    \int \dfrac{f(x)}{g(x)} \mathrm{d}x 
+    \neq 
+    \dfrac{\int f(x) \mathrm{d} x}{\int g(x) \mathrm{d} x}
+\]
+Sigma 的使用注意事项请参见 \ref{giant-operator} 节。
+
+\subsection{好题汇编}
+
+\begin{example}\label{two-in-one-integral}
+    求 $I_1 = \int \cos ^4 x \mathrm{d} x$, $I_2 = \int \sin ^4 x \mathrm{d} x$.
+    \begin{align*}
+        I_1 + I_2 &= \int 
+                    \left[
+                        (\sin ^2 x + \cos ^2 x)^2 - \dfrac{1}{2} \sin ^2 2x
+                    \right] \mathrm{d}x \\
+                  &= \int 1 - \dfrac{1}{2} \sin ^2 2x \mathrm{d} x \quad \mbox{降幂很巧妙}\\
+                  &= \int 1 - \dfrac{1}{4} (1-\cos 4x) \mathrm{d} x \\
+                  &= \dfrac{3}{4} x + \dfrac{1}{16} \sin x + C_1
+    \end{align*}
+    \begin{align*}
+        I_1 - I_2 &= \int \cos ^4 x - \sin ^4 x \mathrm{d}x \\
+                  &= \int \cos 2x \mathrm{d}x \\
+                  &= \dfrac{1}{2} \sin 2x +C_2
+    \end{align*}
+    所以
+    \begin{align*}
+        I_1 &= \dfrac{1}{2} \left[(I_1+I_2)+(I_1-I_2)\right]=\mbox{something}_1 \\ 
+        I_2 &= \dfrac{1}{2} \left[(I_1+I_2)-(I_1-I_2)\right]=\mbox{something}_2
+    \end{align*}
+    \cite[page 26, question 57]{w660ans}
+\end{example}
+Example\ref{two-in-one-integral}巧妙利用积分的和等于和的积分这一性质，
+将两个积分组合到一起。这样更便于使用初等数学中三角恒等变换的知识
+辅助解题。
+
+\section{定积分}\label{finite-integral}
+
+\subsection{定积分的概念}
+
+\begin{itemize}
+    \item 定积分概念
+    \item 定积分几何意义
+    \item 可积性
+    \item \textbf{计算（重点）}
+    \item \textbf{变上限积分（重点）}
+    \item 定积分性质
+    \item \underline{积分不等式（难点）}
+\end{itemize}
+
+使用黎曼和定义，根据几何意义的细微差别解析式形式也有细微不同，
+但他们的值都是相同的：
+\begin{definition}[Definite Integral]\label{defination-definite-integral}
+    If $f$ is a fuction defined for $a \leq x \leq b$, 
+    we devide the interval $[a, b]$ into $n$ subintervals of equal width
+    $\Delta x = (b - a) / n$.
+    We let $x_0 (=a), x_1, x_2, x_3, \cdots, x_n (=b)$ be the endpoints
+    of these subintervals and we let $x_1^*, x_2^*, \cdots, x_n^*$ 
+    be any \textbf{sample points} in these subintervals, so $x_u^*$
+    lies in the $i$th subinterval $[x_{i-1}, x_i]$.
+    Then the \textbf{definite integral of $f$ from $a$ to $b$} is
+    \[
+        \int_{a}^{b} f(x) \mbox{d} x = 
+        \lim_{n \to \infty} \sum_{i = 1}^{n} f\left(x_i^*\right) \Delta x
+    \]
+    provided that this \emph{limit exists} and gives the same value for all
+    possible choices of sample point. 
+    \emph{If it does exist, we say that $f$ is \textbf{integrable} on $[a, b]$}.
+    \cite[page 384]{stewart}
+\end{definition}
+上述定义式中 $\Delta x$ 可以写作 $\dfrac{1}{n}$
+\footnote{被武忠祥老师称为“可爱因子”}, 
+$x^*_i$ 可以写作 $\dfrac{i}{n}$, 
+这样式子就变成了
+\begin{equation}\label{eq:the-other-definition-definite-integral}
+    \lim_{n \to \infty} \dfrac{1}{n}
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i}{n}\right)}_{\mbox{右端点函数值}} 
+\end{equation}
+\begin{equation}
+    \lim_{n \to \infty} \dfrac{1}{n}
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i-1}{n}\right)}_{\mbox{左端点函数值}}
+\end{equation}
+\begin{equation}
+    \lim_{n \to \infty} \dfrac{1}{n}
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{2i-1}{2n}\right)}_{\mbox{中点函数值}} 
+\end{equation}
+上述三个公式是完全等价的。
+
+\subsection{存在性}
+\begin{align}
+    f(x) \mbox{可积} &\quad         \Longrightarrow  \quad f(x) \mbox{有界} \\
+    f(x) \mbox{有界} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{可积} \notag
+\end{align}
+
+\begin{theorem}[Integrable Theorem] \label{integrable-therom}
+    If $f$ \underline{is continuous on $[a,b]$},
+    or if $f$ has only 
+    \underline{a finite number of \textit{jump discontinuities}}
+    \footnote{按照武忠祥老师的说法，这里第一类间断点也可（跳跃、可去）}, 
+    then $f$ is \emph{integrable} on $[a, b]$;
+    that is, the definite integral $\int_a^b f(x) \mathrm{d} x$ exists.
+\end{theorem}
+
+\begin{align}
+    f(x) \mbox{连续} &\quad         \Longrightarrow  \quad f(x) \mbox{可积} \\
+    f(x) \mbox{可积} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{连续} \notag
+\end{align}
+
+\subsection{定积分计算}
+
+\subsubsection{分部积分}
+
+\begin{definition}[定积分分部积分法]
+    设函数 $u(x)$ 和 $v(x)$ 在 $[a, b]$ 上有\textbf{连续一阶导数}，则
+    \[
+        \int_a^b u \mbox{d} v = uv \left.\right|^{b}_{a} - \int_a^b v \mbox{d} u
+    \]
+\end{definition}
+
+\subsubsection{公式}
+
+周期性定积分公式：
+\begin{lemma}
+    \begin{equation}
+        \int_a^{a + T} f(x) \mathrm{d} x = \int_0^T f(x) \mathrm{d} x
+    \end{equation}
+\end{lemma}
+
+三角函数有关的公式:
+\begin{lemma}
+    \begin{multline}
+        \int_0^{\frac{\pi}{2}} \sin ^n x \mathrm{d} x = \int_0^{\frac{\pi}{2}} \cos ^n x \mathrm{d} x \\
+        = 
+        \left\{ 
+            \begin{array}{rl}
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{1}{2} \cdot \dfrac{\pi}{2} &, n \mbox{\ is even.}   \\[1em]
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{2}{3}                      &, n \mbox{\ is odd} > 1 \\
+            \end{array}
+        \right.
+    \end{multline}
+    
+    若 $f(x)$ 连续，则
+    \begin{equation}
+        \int_0^{\pi} x f(\sin x) \mathrm{d} x = \dfrac{\pi}{2} \int_0^{\pi} f(\sin x) \mathrm{d} x
+    \end{equation}
+\end{lemma}
+
+\section{广义积分中值定理} 
+
+\begin{theorem}[广义积分中值定理] \label{general-mean-value-theorem-of-integral}
+    若 $f(x), g(x)$ 在 $[a, b]$ 上连续，且 $g(x)$ 不变号，则
+    \[
+        \int_a^b f(x) g(x) \mathrm{d} x = f(\xi) \int_a^b g(x) \mathrm{d} x, a \leq \xi \leq b.
+    \]
+    当取 $g(x) = 1$ 则有
+    \[
+        \int_a^b f(x) \mathrm{d} x = f(\xi)(b - a), a < \xi < b.
+    \]
+    后者可直接用拉格朗日中值定理证明。
+\end{theorem}
+就某些问题，使用\emph{广义积分中值定理}比较方便。
+
+\section{定积分的应用}\label{app-finite-integral}
+
+利用定积分定义求极限请参见 Section \ref{use-squeeze-or-definition-of-integral}.
+
+\cleardoublepage
+\bibliography{ref}
+
+\end{document}

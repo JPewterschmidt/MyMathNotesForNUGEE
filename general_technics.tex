@@ -1,0 +1,152 @@
+\chapter{全局通用技术}
+
+\begin{lemma}
+\begin{multline*}
+	f, g \mbox{在} x_0 \mbox{有公共切线} \\ \Rightarrow f(x_0) = g(x_0), f'(x_0) = g'(x_0)
+\end{multline*}
+\end{lemma}
+上述内容中小心遗漏 $f(x_0) = g(x_0)$
+
+\begin{definition}
+    \begin{equation}
+        \mathbf{C}_{k}^{n}\binom{n}{k} = \frac{n!}{k!(n-k)!}
+    \end{equation}
+\end{definition}
+
+\section{Tylor Series and Formula} \label{tylor}
+
+\subsection{公式和形式}
+
+\begin{definition}[泰勒公式的一般形式]
+	\begin{equation}
+		f(x)=\sum_{i=0}^{n}{\frac{f^{(i)}(x_0)}{i!}(x-x_0)^i}+R_n(x)
+	\end{equation}
+	其中，$f^{(i)}(x_0)$表示$f(x)$在$x_0$处的$i$阶导数，$R_n(x)$表示余项，有多种形式，例如：
+	\begin{align*}
+		&R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}, \\ &\xi \in [x,x_0]\ or \ \xi \in [x_0,x]
+	\end{align*}
+\end{definition}
+
+In summary, the Peano remainder focuses on 
+the local behavior of the function near the point of expansion 
+and gives a rough upper bound on the error for a specific value of $x$. 
+\begin{definition}{The Cauchy remainder}
+    \[
+        R_n=\dfrac{(x-x^*)^n}{n!}(x-x_0)f^{(n+1)}(x^*)
+    \]
+    where $x^*$ is in $[x_0,x]$ (Hamilton 1952).
+\end{definition}
+The \textbf{Cauchy remainder provides a more global perspective by 
+considering the behavior of derivatives across a broader 
+interval between $x_0$ and $x$}. It gives a more refined estimate 
+of the error over that interval. This distinction in the scope 
+of accuracy makes the Cauchy remainder more useful when you want 
+to understand how well the Taylor polynomial approximates the function 
+across a larger range of values.
+
+下面是常用的一些Tylor公式
+\begin{align}
+	\notag e^x&=1+x+\frac{x^2}{2!}+\frac{x^3}{3!} \\ &+\cdots+\frac{x^n}{n!}+o(x^n)\\
+	\notag \ln(1+x)&=x-\frac{x^2}{2}+\frac{x^3}{3}\\ &-\cdots+(-1)^{n-1}\frac{x^n}{n}+o(x^n)\\
+	\notag \sin x&=x-\frac{x^3}{3!}+\frac{x^5}{5!}\\ &-\cdots+(-1)^{n-1}\frac{x^{2n-1}}{(2n-1)!}+o(x^{2n})\\
+	\notag \cos x&=1-\frac{x^2}{2!}+\frac{x^4}{4!}\\ &-\cdots+(-1)^n\frac{x^{2n}}{(2n)!}+o(x^{2n+1})\\
+	\notag (1+x)^\alpha&=1+\alpha x+\frac{\alpha(\alpha-1)}{2!}x^2+ \\  &\cdots+\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n+o(x^n)
+\end{align}
+
+\subsection{做题应用} \label{tylor-app}
+
+其中，\textbf{奇函数}的麦克劳林级数展开中偶数阶导数系数为0。
+
+\section{不等式} \label{inequlity}
+
+\subsection{基本不等式}
+
+考研数学中常用的不等式有以下几类：
+
+对非负实数$a,b$，有
+\begin{equation}
+	a+b \geq 2\sqrt {ab}
+\end{equation}
+等号成立当且仅当$a=b$.
+
+对正实数$a,b$，有
+\begin{equation}
+	\dfrac{a}{b}+\dfrac{b}{a} \geq 2
+\end{equation}
+等号成立当且仅当$a=b$.
+
+对任意实数$x,y$，有
+\begin{equation}
+	(x+y)^2 \leq 2(x^2+y^2)
+\end{equation}
+等号成立当且仅当$x=y$或$x=-y$.
+
+对任意实数$x,y,z$，有
+\begin{equation}
+	(x+y+z)^2 \leq 3(x^2+y^2+z^2)
+\end{equation}
+等号成立当且仅当$x=y=z$.
+
+对任意实数$x_1,x_2,\dots,x_n$和正整数$n$，有
+\begin{equation}
+	\dfrac{x_1+x_2+\cdots+x_n}{n} \geq \sqrt[n]{x_1x_2\cdots x_n}
+\end{equation}
+等号成立当且仅当$x_1=x_2=\cdots=x_n$.
+
+对任意实数$a,b,c$和正整数$n$，有
+\begin{equation}
+	(a^n+b^n+c^n)^3 \geq 27a^nb^nc^n(a+b+c)^n
+\end{equation}
+等号成立当且仅当$a=b=c$.
+
+对任意实数$a,b,c,d$和正整数$n,m$，有
+\begin{equation}
+	\begin{array}{c}
+		(a^n+b^n+c^n+d^n)(a^m+b^m+c^m+d^m)\\ \geq \\(a^{n+m}+b^{n+m}+c^{n+m}+d^{n+m})^2
+	\end{array}
+\end{equation}
+等号成立当且仅当$a=b=c=d$.
+
+\subsection{三角不等式}
+考研数学中常用的三角不等式有以下几种：
+
+\subsubsection{绝对值形式}
+对任意实数$a,b$，有
+\begin{equation}
+	|a-b| \leq |a|+|b|
+\end{equation}
+等号成立当且仅当$a,b$同号或其中一个为零.
+
+对任意实数$a,b,c$，有
+\begin{equation}
+	|a+b+c| \leq |a|+|b|+|c|
+\end{equation}
+等号成立当且仅当$a,b,c$同号或其中两个为零.
+
+对任意实数$a_1,a_2,\dots,a_n$和正整数$n$，有
+\begin{equation}
+	|a_1+a_2+\cdots+a_n| \leq |a_1|+|a_2|+\cdots+|a_n|
+\end{equation}
+等号成立当且仅当$a_1,a_2,\dots,a_n$同号或其中$n-1$个为零.
+
+\subsubsection{向量形式}
+对$n$维向量 
+$\pmb{x}=(x_1,x_2,\dots,x_n),$
+$\pmb{y}=(y_1,y_2,\dots,y_n)$，有
+\begin{equation}
+	|\pmb{x}|-|\pmb{y}|\leqslant |\pmb{x}\pm\pmb{y}|\leqslant |\pmb{x}|+|\pmb{y}|
+\end{equation}
+等号成立当且仅当$\pmb{x}\parallel\pmb{y}$.
+
+对$n$维向量$\pmb{x}=(x_1,x_2,\dots,x_n),\pmb{y}=(y_1,y_2,\dots,y_n),$
+$\pmb{z}=(z_1,z_2,\dots,z_n)$，有
+\begin{equation}
+	|\pmb{x}+\pmb{y}+\pmb{z}| \leq |\pmb{x}|+|\pmb{y}|+|\pmb{z}|
+\end{equation}
+
+\section{巨算符} \label{giant-operator}
+
+\cite[page A36]{stewart}
+\[
+    \sum \dfrac{f(x)}{g(x)} \neq \dfrac{\sum f(x)}{\sum g(x)}
+\]
