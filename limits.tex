@@ -4,6 +4,8 @@
 请在实际做题的时候主义当前的极限类型，并选择最合适的做法，灵活运用。
 使用导数定义求极限请参考下一章。
 
+和定积分有关的极限问题请参见 \ref{limit-questions-involved-definite-integral}.
+
 \section{通用技术}
 
 本节将会对下文将会详细描述的各种求极限类型所用到的一些通用手段进行总结和归纳。
@@ -120,10 +122,16 @@ Thus,
         \frac{()}{0} \to c \Rightarrow () \to 0
     \end{equation}
     which $c$ is a constant number.
-
 \end{lemma}
 
-\section{数列极限之 Squeeze Theorem 还是 定积分定义？}
+\begin{lemma}
+    \[
+        \lim_{x \to 0^+} x^{\alpha} \ln^{\beta}x = 0
+    \]
+    Once $a$ is a positive number. ??? %TODO
+\end{lemma}
+
+\section{极限之 Squeeze Theorem 还是 定积分定义？}
 \label{use-squeeze-or-definition-of-integral}
 
 观察数列求和式子中每一项的分母，找到其中的\textbf{变化部分和不变部分}。
@@ -177,6 +185,10 @@ Thus,
 	\item Tylor 公式
 	\item 加减项（若上述方法均不方便）\footnote{武讲义0/0例3，三星笔记求极限通法2P10}
 \end{enumerate}
+
+这种类型的极限之所以不好求，
+是因为分母有0因子。
+则将分母上的0因子消掉，也是一个很好的办法。
 
 加减项可参考本例：
 \begin{align*}
