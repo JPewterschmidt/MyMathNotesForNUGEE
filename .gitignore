@@ -42,3 +42,4 @@ latexmkrc
 *.upb
 *.upm
 *.fdb_latexmk
+main

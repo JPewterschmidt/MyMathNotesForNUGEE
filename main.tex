@@ -16,6 +16,7 @@
 \usepackage{cuted}
 \usepackage{amsthm}
 \usepackage{ulem}
+\usepackage{graphicx}
 \geometry{a4paper}
 
 \bibliographystyle{alpha}
@@ -58,7 +59,7 @@ We shall classfy differential equations according to
 \begin{itemize}
     \item[Types]
         \begin{itemize}
-            \item ODE\footnote{Noly the ODE is required by NUGEE.}
+            \item ODE\footnote{Only the ODE is required by NUGEE.}
             \item PDE
         \end{itemize}
     \item[Order]
@@ -83,7 +84,7 @@ You have to check the solution of a differential equation wether
 or not fit it's interval of definition (domain).
 
 The domain of $y = 1/x$, considered simply as a \textbf{function}, 
-is the set of all real numbers $x$ except $0$y. 
+is the set of all real numbers $x$ except $0$. 
 
 Now $y = 1/x$ is also a \textbf{solution} 
 of the linear first-order differential equation
@@ -93,9 +94,354 @@ mean that it is a function defined
 \emph{on an interval I} on which it is differentiable and
 \emph{satisfies} the equation\cite{fcde}.
 
-\section{Initial-Value Problems}
+\section{First-Order Differential Equations}
 
+The \textbf{critical point} of a autonomous differential equation
+is a constant number which satisfy $f(c) = 0$.
+Meanwhile, $y(x) = c$ is also a constant solution of the equation.
 
+A critical point is also called \textbf{equilibrium point} or
+\textbf{stationary point}.
+
+A constant solution $y(x) = c$ is called an 
+\textbf{equilibrium solution}\cite{fcde}.
+
+\subsection{Conclusions of Non-constant Solution of A Autonomous}
+
+\begin{definition}
+    [Autonomous differential equation] is a First-Order Differential Equations which like
+    \[
+        \dfrac{\mathrm{d}y}{\mathrm{d}t} = f(y)
+    \]
+
+    Many differential equations encountered in applications or equations that are
+    models of physical \emph{laws that do not change over time} are autonomous\cite{fcde}.
+\end{definition}
+
+\begin{itemize}
+    \item Non-constant solution do not cross the equilibrium solution.
+    \item $f(y)$ do not change the signs in a subregion.
+    \item a solution $y(x)$ is strictly monotonic in s subregion.
+    \item If $y(x)$ is \emph{bounded}
+        \begin{itemize}
+            \item[above] by a critical point $c_1$,
+                then the graph of $y(x)$ must approach the graph of the
+                equilibrium solution $y(x) = c_1$ 
+                either as $x \to \infty$ or as $x \to - \infty$.
+            \item[(both)] by two consecutive critical points 
+                $c_1$ and $c_2$ (as in subregion where $c_1 < y(x) < c_2$ for all $x$),
+                then the graph of $y(x)$ must approach the graph of the
+                equilibrium solutions $y(x) = c_1$ and $y(x) = c_2$
+                one as $x \to \infty$, the other as $x \to - \infty$.
+            \item[below] by a critical point $c_2$,
+                then the graph of $y(x)$ must approach the graph of the
+                equilibrium solution $y(x) = c_2$ 
+                either as $x \to \infty$ or as $x \to - \infty$.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Solution Curves of an Autonomous DE}
+
+\begin{example}
+    \[
+        \dfrac{\mathrm{d}y}{\mathrm{d}x} = \sin y
+    \]
+
+    \begin{verbatim}
+StreamPlot[
+    {1, Sin[y]}, 
+    {x, -2, 2}, {y, -2 Pi, 2 Pi}
+]
+    \end{verbatim}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width = \textwidth]{figure/direction-field-dy-slash-dx-siny}
+        \caption{the direction field of $dy/dx = \sin y$}
+        \label{fig:direction-field-dy-slash-dx-siny}
+    \end{figure}
+\end{example}
+
+By the figure \ref{fig:direction-field-dy-slash-dx-siny}, we know
+the slopes of lineal elements on a horizontal line are all the same.
+
+Thus we could got 
+\begin{corollary}[The Transltion Property of autonomous DEs]
+    If $y(x)$ is a solution of an autonomous differential equation
+    $dy/dx = f(y)$, then $y_1(x) = y(x - k)$, $k$ a constant,
+    is also a solution.
+\end{corollary}
+
+\subsection{Solutions of Separable Equations}
+
+\begin{definition}
+    A first-order differential equation of the form
+    \begin{equation}\label{eq:form-of-separable-equation}
+        \dfrac{\mathrm{d}y}{\mathrm{d}x} = g(x)h(y)
+    \end{equation}
+    is said to be separable or to have separable variables.
+\end{definition}
+
+You basically convert the euqation \ref{eq:form-of-separable-equation} into
+\begin{align*}
+    1/h(y) \mathrm{d}y &= g(x) \mathrm{d}x\\
+    \int 1/h(y) \mathrm{d}y &= \int g(x) \mathrm{d}x
+\end{align*}
+after that, you could get the solution(s).
+
+Sometime, the antiderivatives of each side could not be 
+representde by a elementary function. 
+In this case, the solutions could only be represented by a 
+integral-defined function
+\[
+    y(x) = y_0 + \int_{x_0}^{x} g(t) \mathrm{d}t
+\]
+
+\subsection{Solutions of a Linear First-Order DE}
+
+\begin{enumerate}
+    \item Remember to put a linear equation into the standard form
+        \begin{equation}\label{eq:standard-form-of-linear-ODE}
+            \dfrac{\mathrm{d}y}{\mathrm{d}x} + P(x) y = f(x)
+        \end{equation}
+        both the coefficient function $P(x)$ and $f(x)$
+        \textbf{are continuous on the interval $I$}.
+    \item 
+        From the standard form of the equation 
+        identify $P(x)$ and then find the
+        integrating factor
+        $\exp\{\int P(x) \mathrm{d}x\}$
+        . 
+        No constant need be used in evaluating the
+        indefinite integral $\int P(x) \mathrm{d}x$.
+    \item 
+        Multiply the both sides of the standard form equation by the integrating
+        factor. The left-hand side of the resulting equation 
+        is automatically\footnote{See also \cite[page 55]{fcde}} the
+        derivative of the product of the integrating factor
+        $\exp\{\int P(x) \mathrm{d}x\}$
+        and $y$:
+        \begin{equation}
+            \dfrac{\mathrm{d}}{\mathrm{d}x}
+            \left[
+                e^{\int P(x) \mathrm{d}x} y
+            \right]
+            =
+            e^{\int P(x) \mathrm{d}x} f(x)
+        \end{equation}
+    \item 
+        Integrate both sides of the last equation and solve for $y$\cite[page 56]{fcde}.
+\end{enumerate}
+
+Function
+\[
+    \mu (x) = e^{\int P(x) \mathrm{d}x}
+\]
+is called \textbf{integrating factor} for equation \ref{eq:standard-form-of-linear-ODE}.
+
+\begin{example}
+    IVP:
+    \[
+        y \dfrac{\mathrm{d}x}{\mathrm{d}y} -x = 2y^2, \quad y(1) = 5.
+    \]
+    \cite[page 63]{fcde}
+
+\end{example}
+
+\section{Exact Equations}
+
+\begin{definition}[Exact Equation] \label{def:exact-equation}
+    A differential expression $M(x, y) \mathrm{d}x + N(x, y) \mathrm{d}y$
+    is an \textbf{exact differential} in a region $R$ of the 
+    xy-plane if it corresponds to the differential of some function
+    $f (x, y)$ defined in $R$. 
+    A first-order differential equation of the form
+    \[
+        M(x, y) \mathrm{d}x + N(x, y) \mathrm{d}y = 0
+    \]
+    is said to be an 
+    \textbf{
+        exact
+        \footnote{
+            An equation is called \emph{exact}
+            when it can be expressed as 
+            the derivative of a function 
+            (often referred to as a potential function 
+            or a primitive function). 
+            In other words, equations satisfied \ref{eq:criterion-for-an-exact-differential}
+            would be called exact.
+        } equation
+    } if the expression on the 
+    LHS is an exact differential.
+    \cite[page 65]{fcde}
+\end{definition}
+
+Once we get the \emph{exact equation}, 
+we could get the implicit solution(s)
+via some way.
+
+\begin{theorem}[Criterion for an Exact Differential]
+    \label{criterion-for-an-exact-differential}
+    Let $M(x, y)$ and $N(x, y)$ be continuous and 
+    have continuous first partial derivatives 
+    in a rectangular region $R$ defined by $a < x < b, c < y < d$. 
+    Then a necessary and sufficient condition that 
+    $M(x, y) \mathrm{d}x + N(x, y) \mathrm{d}y$ be an exact
+    differential is
+    \begin{equation}\label{eq:criterion-for-an-exact-differential}
+        \dfrac{\partial M}{\partial y} = \dfrac{\partial^2 f}{\partial y \partial x} = \dfrac{\partial N}{\partial x}  
+    \end{equation}
+\end{theorem}
+ 
+The equality of the mixed partials is a consequence of 
+the continuity of the first partial derivatives of $M(x, y)$ and $N(x, y)$.
+
+The sufficiency part of Theorem \ref{criterion-for-an-exact-differential} 
+consists of showing that there exists a function $f$ for which
+\[\partial f/ \partial x = M(x, y)\] and \[\partial f/ \partial y = N(x, y)\]
+when ever (\ref{eq:criterion-for-an-exact-differential}) holds.
+The construction of the function $f$ actually reflects a basic procedure
+for solving exact equations,
+
+In other words:
+\[
+    \dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}  
+    \Longrightarrow 
+    \dfrac{\partial f}{\partial x} = M(x, y) 
+    \bigwedge
+    \dfrac{\partial f}{\partial y} = N(x, y) 
+\]
+
+We can find $f$ by integrating $M(x, y)$ 
+with respect to $x$ while holding $y$ constant:
+\[
+    f(x, y) = \int M(x, y) \mathrm{d}x + g(y)
+\]
+where the arbitrary function $g(y)$ is the \emph{constant} of integration. 
+
+After that, 
+\[
+    \dfrac{\partial f}{\partial y} = \dfrac{\partial}{\partial y}
+    \int M(x, y) \mathrm{d}x + g'(y) = N(x, y)
+\]
+then you can get the $g'(x)$, moreover by integrading $g(y)$ also got.
+
+\begin{example}
+    IVP:
+    \[
+        \dfrac{\mathrm{d}y}{\mathrm{d}x} = 
+        \dfrac{xy^2 - \cos x \sin x}{y(1-x^2)}, \quad y(0) = 2.
+    \]
+    \cite[page 68]{fcde}
+\end{example}
+
+\subsection{Integrading Factor}
+
+Multiplying a \textbf{integrading factor} on both side of a nonexact equation
+\[
+    \mu (x, y) M(x, y) \mathrm{d}x + \mu (x, y) N(x, y) \mathrm{d}y = 0
+\]
+could convert it into a exact equation.
+
+See also \cite[page 68]{fcde}.
+
+\section{High-Order Differential Equations}
+
+\subsection{Reduction of Order} \label{reduction-of-order}
+
+\begin{enumerate}
+    \item Put equation
+        \[
+            a_2(x)y'' + a_1(x) y' + a_0(x) y = 0
+        \]
+        into 
+        \begin{equation}\label{eq:standard-form-linear-DE-2}
+            y'' + P(x)y'x + Q(x)y = 0
+        \end{equation}
+        where $P$ and $Q$ are continuous on some interval $I$.
+    \item Suppose $y_1$ is a konwn solution of \ref{eq:standard-form-linear-DE-2} on $I$
+        and that $y_1(x) \neq 0$ for every $x$ in the interval.
+        if we \textbf{define} $y = u(x)y_1(x)$, it follows that
+        \begin{align}
+            y'  &= u y'_1 + y_1 u' \notag\\
+            y'' &= uy''_1 + 2y_1'u' + y_1 u'' \notag\\
+            y'' + Py'x + Qy &= 
+                u\underbrace{
+                    \left[y_1'' + Py_1' + Qy_1\right]
+                }_{
+                    =0 \mbox{, \,= equation \ref{eq:standard-form-linear-DE-2}}
+                }\notag\\
+                &+ y_1u'' + (2y_1' + Py_1) u' = 0 \label{eq:before-rename-of-linear-ODE-when-reduction-order}
+        \end{align}
+    \item Let $w = u'$, thus equation \ref{eq:before-rename-of-linear-ODE-when-reduction-order} turns into
+        \[
+            y_1w' + (2y_1' + Py_1) w = 0
+        \]
+    \item By separating variables and integrating, we obtain
+        \begin{equation}\label{eq:another-sln-reduction-order}
+            y_2 = y_1(x) \int \dfrac{e^{-\int P(x) \mathrm{d}x}}{{y_1}^2 (x)} \mathrm{d}X
+        \end{equation}
+\end{enumerate}
+
+\subsection{Homogeneous Linear Equations with Constant Coefficients}
+
+\begin{example}
+Solving $ay' + by = 0$ for $y'$ yields $y' = ky$, 
+where $k$ is a constant. This observation reveals
+the nature of the unknown solution $y$.
+
+\emph{The only nontrivial elementary function whose
+derivative is a constant multiple of itself is 
+an exponential function} $e^{mx}$.
+
+If we substitute $y = e^{mx}$ and $y' = me^{mx}$ into $ay' + by = 0$, 
+we get
+\[
+    ame^{mx} + be^{mx} = 0 \quad \mbox{or} \quad e^{mx}(am + b) = 0
+\]
+Since $e^{mx}$ is never zero for real number $x$, that's impiles
+\begin{equation}\label{eq:a-simple-example-of-aux-equation}
+    am + b = 0
+\end{equation}
+For this single value of $m$, $y = e^{mx}$ is a solution of the DE.
+Equation \ref{eq:a-simple-example-of-aux-equation} is called \textbf{auxiliary equation}.
+\end{example}
+
+The foregoing procedure can produce exponential solutions
+for homogeneous linear higher-order DEs.
+\begin{equation}\label{eq:standard-form-high-order-homogeneous-linear-DE}
+    y^{(n)} + a_{n-1}y^{(n-1)} + \ldots + a_1y' + a_0y = 0
+\end{equation}
+where the Coefficients $a_i, i = 0, 1, \cdots, n$ are real constants
+and $a_n \neq 0$.
+
+For 2-order HLDEs, we have auxiliary equation
+\[
+    am^2 + bm + c = 0
+\]
+
+There're 3 types of solution which we can use:
+\begin{itemize}
+    \item[$\Delta > 0$] We could get two solutions: 
+        \[
+            y_1 = e^{m_1x} \quad \mbox{and} \quad y_2 = e^{m_2x}
+        \]
+    \item[$\Delta = 0$] We could get one solution directly: $y_1 = e^{m_1x}$.
+        The other solution could be solved by the equation 
+        \ref{eq:another-sln-reduction-order}
+        \begin{align}
+            y_2 &= e^{m_1 x} \int \dfrac{e^{2 m_1 x}}{e^{2 m_1 x}} \mathrm{d}x = e^{m_1 x} \int \mathrm{d}x \notag \\
+                &= x e^{m_1 x}
+        \end{align}
+    \item[$\Delta < 0$]
+        If $m_1$ and $m_2$ are complex, then we can write
+        \[
+            m_1 = \alpha + i \beta \quad \mbox{and} \quad m_2 = \alpha - i \beta
+        \]
+        the general solution is
+        \begin{equation}
+            y(x) = e^{\alpha x}(c_1 \cos(\beta x) + c_2 \sin(\beta x))
+        \end{equation}
+\end{itemize}
 
 \cleardoublepage
 \bibliography{ref}
