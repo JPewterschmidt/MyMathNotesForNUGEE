@@ -748,8 +748,33 @@ $g(x)$ 写答案即可。
     \[
         y \dfrac{\mathrm{d}p}{\mathrm{d}y} + 2p = 0 \quad \mbox{or} \quad p = 0
     \]
-    由于 $p=0$ 即 $y' = 0$ 不符合题目要求，故只考方程
+    由于 $p=0$ 即 $y' = 0$ 不符合题目要求，故只考虑方程
     \[
         y \dfrac{\mathrm dp}{\mathrm dy} + 2p = 0
     \]
+    通过分离变量法得
+    \[
+        \ln|p| + 2\ln|y| = \underbrace{\ln|C_1|}_{\mathclap{\mbox{仍为一常数}}}
+    \]
+    即 $p = C_1/y^2$.
+
+    当 $x=0$ 时，
+    \[
+        y = 1, p = y' = -1
+    \]
+    可确定常数 $C_1 = -1$.
+    于是，
+    \begin{gather*}
+        y' = p = - \dfrac{1}{y^2} \\
+        y^2 \mathrm dy  + \mathrm dx = 0
+    \end{gather*}
+    积分得
+    \[
+        y^3 + 3x = C_2
+    \]
+    有由 $y(0) = 1$ 可以确定 $C_2 = 1$，故所求特解为
+    \[
+        y = \sqrt[3]{1-3x}
+    \]
 \end{example}
+

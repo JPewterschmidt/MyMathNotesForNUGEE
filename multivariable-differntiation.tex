@@ -1,0 +1,328 @@
+\chapter{多元函数微分学}
+
+PAY ATTENTION: $\partial f/\partial x$ 
+can't be interpreted as a ratio of differentials.
+
+\section{概念}
+
+多元函数微分学很多概念都可以
+类比一元函数微分学。但一元函数微分学中的 L'Hospital
+法则是不可在这里使用的。
+
+\subsection{重极限}
+\label{multivariable-limits}
+
+重极限在利用定义判断多元函数可微性质时有用，
+因此要掌握简单的重极限求法。
+面对 $0/0$ 型极限，可以用夹迫定理来代替L'Hospital法则。
+
+$0/0$ 型重极限方法1:
+\begin{enumerate}
+    \item 对极限的值进行估计（猜测），
+        \begin{itemize}
+            \item 分子的幂比分母的\emph{大}的，分式极限值\emph{可能}为$0$;
+                这种情况下可以
+                \begin{enumerate}
+                    \item 
+                        使得
+                        \begin{align*}
+                              \abs*{f(x_1, x_2, \cdots)} 
+                            = &\underbrace{\abs*{g(x_1, x_2, \cdots)}}_{\mbox{有界}} \\ 
+                              &\underbrace{\abs*{h(x_1, x_2, \cdots)}}_{\to 0}
+                        \end{align*}
+                    \item 即有界函数乘无穷小仍为无穷小。
+                \end{enumerate}
+            \item 分子的幂比分母的\emph{小}的，分式极限值\emph{可能}为$\infty$。
+            \item 分子分母同幂的时候，极限可能不存在。
+                例子请参见 
+                Example\ref{general-example-relation-continuous-differential}.
+        \end{itemize}
+    \item 
+        \footnote{ 将目标函数化为绝对之后只需要找到一个放缩条件后即可应用夹迫定理。 }
+        $f(x_1, x_2, \cdots) \to 0 \Leftrightarrow |f(x_1, x_2, \cdots)| \to 0$, 
+    \item 利用常用不等式\footnote{参见小节\ref{inequlity}}得到放缩式子，
+    \item 用夹迫定理\footnote{可参见小节\ref{use-squeeze-or-definition-of-integral}}得出结论
+\end{enumerate}
+
+\begin{example}
+    \label{multi-var-dervative-example}
+    $0/0$型
+    \[
+        \lim_{(x, y) \to (0, 0)} \dfrac{x^2 y}{x^2 + y^2} 
+    \]
+
+    \begin{enumerate}
+        \item \emph{猜测}结果为0，
+        \item 
+            \[
+                \abs*{\dfrac{x^2 y}{x^2 + y^2}} \leq \underbrace{\abs*{y}}_{\to 0}
+            \]
+        \item By Squeeze Theorem, 
+            \[
+                \lim_{(x, y) \to (0, 0)} \dfrac{x^2 y}{x^2 + y^2} = 0
+            \]
+    \end{enumerate}
+    另外上述第二部分还可以通过常用基本不等式说明
+    \[
+        \abs*{\dfrac{x^2}{x^2 + y^2}} \leq 1
+    \]
+    又 $\abs*{y} \to 0$ 也可以得到原式极限为$0$.
+\end{example}
+
+\subsection{通过重极限帮助证明可微性}
+
+只要举例子某点上重极限有不同的值即可
+\begin{enumerate}
+    \item 用直线作为例子找不同路径极限不同的点，
+    \item 若直线的例子通过了检验，则可以引入其他容易算的曲线的例子。
+\end{enumerate}
+
+\subsection{偏导数}
+\label{partial-deverative}
+
+求偏导数就是将一个变量看作是常量对另外一个变量求导数，
+求\emph{具体点}的偏导数则可以 \textbf{\emph{先带后求}}，
+这样在进行代数运算之前就可以消灭掉一个符号。例子请参考 \ref{general-example-relation-continuous-differential}.
+
+\subsection{高阶偏导数}
+\begin{align}
+    \dfrac{\partial^2 z}{\partial x^2}          &= f''_{xx}(x, y) = \dfrac{\partial z}{\partial x}\left(\dfrac{\partial z}{\partial x}\right) \notag \\
+    \dfrac{\partial^2 z}{\partial x \partial y} &= f''_{xy}(x, y) = \dfrac{\partial z}{\partial y}\left(\dfrac{\partial z}{\partial x}\right) \label{eq:x-first-y-latter} \\
+    \dfrac{\partial^2 z}{\partial y \partial x} &= f''_{yx}(x, y) = \dfrac{\partial z}{\partial x}\left(\dfrac{\partial z}{\partial y}\right) \label{eq:y-first-x-latter} \\
+    \dfrac{\partial^2 z}{\partial y^2}          &= f''_{yy}(x, y) = \dfrac{\partial z}{\partial y}\left(\dfrac{\partial z}{\partial y}\right) \notag
+\end{align}
+
+其中上述公式 \ref{eq:x-first-y-latter} 和 \ref{eq:y-first-x-latter} 在一定条件下是相等的。
+
+\begin{theorem}
+    如果函数 $z = f(x, y)$ 的两个二阶混合偏导数 $f''_{xy}(x, y)$ 以及 $f''_{yx}(x, y)$
+    在区域 $D$ 内\emph{连续}， 则在区域 $D$ 内恒有
+    \[
+        f''_{xy}(x, y) = 
+        f''_{yx}(x, y)
+    \]
+\end{theorem}
+
+\subsection{全微分}
+下面四个式子是函数 $f(x, y)$ 在点 $(x_0, y_0)$ 点的可微的等价形式，
+由它们都可以得到 $f(x, y)$ 在 $(x_0, y_0)$ 可微。
+$f'_x(x_0, y_0) = A, f'_y(x_0, y_0) = B$ 
+
+\begin{strip}
+    \begin{align}
+        \Delta z &= f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) = A \Delta x + B \Delta y + o(\rho)\\
+        \Delta z &= f(x, y) - f(x_0, y_0) = A (x - x_0) + B (y - y_0) + o(\rho)
+    \end{align}
+
+    \begin{equation}
+        \label{eq:full-differentiation-determinant-1}
+        \lim_{(\Delta x,\Delta y) \to (0,0) }
+        \dfrac{\left[ f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) \right]-\left[ A\Delta x + B \Delta y \right]}{\sqrt{\left( \Delta x \right)^2 + \left( \Delta y \right)^2}} = 0
+    \end{equation}
+    \begin{equation}
+        \label{eq:full-differentiation-determinant-2}
+        \lim_{(x,y) \to (x_0,y_0) }
+        \dfrac{\left[ f(x,y) - f(x_0, y_0) \right]-\left[ A(x - x_0) + B(y - y_0) \right]}{\sqrt{\left( \Delta x \right)^2 + \left( \Delta y \right)^2}} = 0
+    \end{equation}
+\end{strip}
+
+\subsubsection{可微性判定}
+
+\begin{align*}
+    \mbox{可微} &\Rightarrow f'_x(x_0, y_0) \mbox{and} f'_y(x_0, y_0) \mbox{exists} \\ 
+    \mbox{可微} &\Leftarrow  f'_x(x, y), f'_y(x, y) \mbox{continuous at} (x_0, y_0).
+\end{align*}
+
+用定义判定是否可微两部曲，用起来比较方便\footnote{上文关于重极限的计算，就是为了服务这里}：
+\begin{enumerate}
+    \item $f'_x(x_0, y_0)$ 和 $f'_y(x_0, y_0)$ 都存在，且
+    \item 式子 \ref{eq:full-differentiation-determinant-1} 或 \ref{eq:full-differentiation-determinant-2} 成立。
+\end{enumerate}
+
+\subsubsection{计算}
+
+若 $f(x,y)$ 可微，则
+\[
+    \mathrm{d}z = \dfrac{\partial f}{\partial x} \mathrm{d}x + \dfrac{\partial f}{\partial y} \mathrm{d}y
+\]
+
+\subsubsection{连续、可导、可微之关系}
+\label{relationship-among-continuous-differentiable}
+
+多元函数
+\begin{gather*}
+    \mbox{一阶偏导数连续} \Rightarrow \mbox{可微} \Rightarrow \mbox{一阶偏导数存在} \\
+    \mbox{连续} \Rightarrow \mbox{一阶偏导数存在}
+\end{gather*}
+
+\subsection{二元函数极值和最值}
+
+\subsubsection{极值}
+
+二元函数极值点只可能在驻点或者偏导不存在的点出现，
+所以通常情况下还是需要找驻点。
+
+\begin{definition}[Critical point of multivariable function]
+    \label{def:critical_point_multivariable}
+    A point $(a, b)$ is called \textbf{critical point} (or stationary point)
+    of $f$ if
+    \begin{gather*}
+        f_x(a, b) = 0\\
+        f_y(a, b) = 0
+    \end{gather*}
+\end{definition}
+
+\begin{theorem}
+    \textbf{If} $f$ has a local maximum or minimum at $(a, b)$ and the 
+    first-order partial derivatives of $f$ exist there, 
+    \textbf{then} $(a, b)$ is a stationary point
+    \footnote{
+        This can be stated in the notation 
+        of gradient vectors as $\nabla f(a, b) = \mathbf{0}$
+    }.
+\end{theorem}
+
+要注意上述要求 $f$ 可导，反之
+极值点不一定是驻点($f(x, y) = |x|+|y|$)，
+驻点也不一定是极值点($f(x, y) = xy$)。
+
+\begin{theorem}[Second derivatives test of mutivariable]
+    \label{sec-derivatives-test-of-multivariable}
+    Suppose the second partial derivatives of $f$ are continuous
+    on a disk with center $(a, b)$, and suppose that
+    $(a, b)$ is a critical point of $f$.
+    Let 
+    \[
+        D = \begin{vmatrix}
+            f_{xx} & f_{xy} \\
+            f_{yx} & f_{yy}
+        \end{vmatrix}
+        = f_{xx}f_{yy} - (f_{xy})^2
+    \]
+    \begin{enumerate}
+        \item If $D > 0$ and $f_{xx}(a, b) > 0$, then $f(a, b)$ is a local maximum.
+        \item If $D > 0$ and $f_{xx}(a, b) < 0$, then $f(a, b)$ is a local minimum.
+        \item If $D < 0$ then $(a, b)$ is a saddle point of $f$.
+    \end{enumerate}
+\end{theorem}
+
+如果试图说明驻点是极值点则必须使用 Theorem\ref{sec-derivatives-test-of-multivariable}，
+其中，如果 $D = 0$, 则需要使用定义来判定是否为极值点。
+
+\begin{definition}[Maximum and Minimum Value of multivariable function]
+    \label{def:max-min-val-multivariable}
+    A function of two variables has a \textbf{local maximum} at $(a, b)$
+    if 
+    \[
+        f(x, y) \leq f(a, b)
+    \]
+    \footnote{
+        This means that $f(x, y) \leq f(a, b)$ for all points 
+        $(x, y)$ in some disk with center $(a, b)$.
+    }
+    when $(x, y)$ is near $(a, b)$.
+    The number $f(a, b)$ is called a \textbf{local maximum value}.
+
+    if 
+    \[
+        f(x, y) \geq f(a, b)
+    \]
+    \footnote{
+        This means that $f(x, y) \geq f(a, b)$ for all points 
+        $(x, y)$ in some disk with center $(a, b)$.
+    }
+    when $(x, y)$ is near $(a, b)$.
+    The number $f(a, b)$ is called a \textbf{local minimum value}.
+\end{definition}
+
+\subsubsection{条件极值和 Lagrange Multipliers}
+\label{conditional-extrema-and-lagrange-multipliers}
+
+方法请参考 \cite[page 174, pdf 185]{we}.
+
+\subsubsection{最值}
+
+考研数学中多变量函数最值问题一般不会考察不可偏导函数，
+那么求最值基本上可以总结为下面的步骤
+\begin{enumerate}
+    \item 求 $f(x, y)$ 在 $D$ 上可能的极值点，
+    \item 求 $f(x, y)$ 在 $D$ \emph{边界}上可能的极值点\footnote{本质上是一种条件极值，可用Lagrange multipliers}，
+    \item 比较在两个区域上求得的极值得出最值。
+\end{enumerate}
+
+\section{梯度}\label{gradient}
+
+在空间的每一个点都可以确定无限多个方向，
+一个多元函数在某个点也必然有无限多个方向。
+因此，导数在这无限多个方向导数中最大的一个
+（它直接反映了函数在这个点的变化率的数量级）等于多少？
+它是沿什么方向达到的？描述这个最大方向导数及其所沿方向的矢量，
+就是我们所说的梯度。
+\footnote{
+    梯度（gradient）到底是个什么东西？物理意义和数学意义分别是什么？ 
+    - 人民邮电出版社的回答 - 知乎
+    \url{https://www.zhihu.com/question/29151564/answer/1607285093}
+}
+
+鉴于考研数学2不考察梯度，则当前版本不对梯度进行进一步描述。
+
+\section{题型和方法}
+
+\subsection{判定 连续、可导、可微}
+
+\begin{example}
+    \label{general-example-relation-continuous-differential}
+    \[
+        f(x, y) = 
+        \begin{dcases}
+            \dfrac{x^2 y}{x^2 + y^2}    & (x, y) \neq (0, 0) \\
+            0                           & (x, y) = (0,0)
+        \end{dcases}
+    \]
+    则 $f(x, y)$ 在 $(0,0)$ 点
+    \begin{itemize}
+        \item[A] 不连续
+        \item[B] 连续但偏导数不存在
+        \item[C] 偏导数存在但不连续
+        \item[D] 可微
+    \end{itemize}
+
+    \cite[page 156]{we}
+    
+    根据 Example \ref{multi-var-dervative-example} 可知
+    \[
+        \lim_{(x, y) \to (0,0)} f(x, y) = 0 = f(0, 0)
+    \]
+    所以，函数在$(0,0)$ 点连续。因此选项A不正确。
+
+    由偏导数定义\footnote{求间断点上偏导数往往用定义}可知\footnote{此处利用了先带后求\footnote{参见小节\ref{partial-deverative}}的方法，约化掉了很多符号运算步骤。}:
+    \begin{align*}
+        f'_x(0, 0) &= \lim_{\Delta x \to 0} \dfrac{f(\Delta x, 0) - f(0, 0)}{\Delta x} \\ 
+                   &= \lim_{\Delta x \to 0} \dfrac{0-0}{\Delta x} = 0\\
+        f'_y(0, 0) &= \lim_{\Delta y \to 0} \dfrac{f(0, \Delta y) - f(0, 0)}{\Delta x} \\ 
+                   &= \lim_{\Delta x \to 0} \dfrac{0-0}{\Delta y} = 0
+    \end{align*}
+    则此处一阶偏导数存在\footnote{参考有关可微判定的小节\ref{relationship-among-continuous-differentiable}}，
+    但与之对应的判别式（式子\ref{eq:full-differentiation-determinant-1}）
+    \begin{equation}
+        \label{DNE-multivariable-example-1}
+        \lim_{(\Delta x, \Delta y) \to (0,0)} \dfrac{\overbrace{\Delta y (\Delta x)^2}^{2 \mbox{次}}}{\underbrace{[(\Delta x)^2 + (\Delta y)^2]^{(3/2)}}_{2 \mbox{次}}}
+    \end{equation}
+    不存在\footnote{趋向0，且上下同次极限一般不存在，令 $\Delta y = k \Delta x$进一步说明.}，因为
+    \begin{align*}
+          &\lim_{\Delta x \to 0^+} \dfrac{k(\Delta x)^3}{[(\Delta x)^2 + k^2 (\Delta x)^2]^{(3/2)}}  \\
+          &= \dfrac{k}{(1 + k^2)^{(3/2)}} \\
+          &\neq \lim_{\Delta x \to 0^-} \dfrac{k(\Delta x)^3}{[(\Delta x)^2 + k^2 (\Delta x)^2]^{(3/2)}}  \\
+          &= \dfrac{-k}{(1 + k^2)^{(3/2)}}
+    \end{align*}
+    式子与 $k$ 相关。则重极限不存在，原式不可微。
+\end{example}
+
+上例中，式子\ref{DNE-multivariable-example-1} 中分子分母同次数，且自变量趋向 $0$，则可以推断极限不存在。
+这一点则可以经由事实
+\[
+    \Delta y = k \Delta x
+\]
+来说明\footnote{更多重极限的求法，请参见小节\ref{multivariable-limits}}。
+如上例子中的做法，
+

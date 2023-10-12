@@ -14,6 +14,24 @@
 对于所有题型，这些方法都适合。但是对于选择填空题，要应用更多的应试策略。
 比如带入选项，或者是通过题目条件举出特殊函数的例子等。
 
+根据极限的定义可知
+\[
+    \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L \Rightarrow \lim_{x\to a} f(x) = L
+\]
+因此在处理某些初等函数的时候就不得不注意了
+\begin{example}
+    \cite[page 9]{yc}
+    \[
+        \lim_{x \to 1} \dfrac{x^2 - 1}{x-1} e^{\frac{1}{x-1}}
+    \]
+    式子中出现 $e^{\frac{1}{x-1}}$ 则需要注意分类讨论
+    \begin{align*}
+        \lim_{x \to 1^+} \dfrac{x^2 - 1}{x-1} e^{\frac{1}{x-1}} &= +\infty\\
+        \lim_{x \to 1^-} \dfrac{x^2 - 1}{x-1} e^{\frac{1}{x-1}} &= 0
+    \end{align*}
+    则极限不存在，且不等于 $\infty$.
+\end{example} 
+
 \subsection{L'Hospital}
 
 应用 L'Hospital 法则求极限的时候，
