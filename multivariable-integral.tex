@@ -1,0 +1,204 @@
+\chapter{多元函数积分学}
+
+\section{Basic concepts}
+
+\begin{definition}[Double Integral]
+    \label{def:double-integral}
+    The \textbf{double integral} of $f$ over the rectangle $R$ is
+    \[
+        \iint_{R} f(x, y) \mathrm{d}A = \lim_{m, n \to \infty} \sum_{i = 1}^{m}\sum_{j = 1}^{n} f(x^*_{ij}, y^*_{ij}) \Delta A
+    \]
+    if this limit exists.
+\end{definition}
+A function $f$ is called \textbf{integrable} if the limit in Definition \ref{def:double-integral} exists.
+
+\begin{theorem}[Fubini's Theorem]
+    If $f$ is continuous on the rectangle
+    \[
+        R = \left\{(x, y) | a \leq x \leq b, c \leq y \leq d\right\}
+    \]
+    then
+    \begin{align*}
+        \iint_{R} f(x, y) \mathrm{d}A &= \int_a^b \int_c^d f(x, y) \mathrm{d}y \mathrm{d}x \\
+                                      &= \int_c^d \int_a^b f(x, y) \mathrm{d}x \mathrm{d}y
+    \end{align*}
+    More generally, this is true 
+    if we assume that $f$ is bounded on $R$, $f$ is discontinuous only 
+    on a finite number of smooth curves, and the iterated integrals exist.
+\end{theorem}
+
+\begin{corollary}
+    \[
+        \iint_R g(x) h(x) \mathrm dA = 
+        \underbrace{
+            \int_a^b g(x) \mathrm dx \int_c^d h(y) \mathrm dy    
+        }_{\mathclap{\mbox{product of two single integrals}}}
+    \]
+    where R = $[a, b] \times [c, d]$.
+\end{corollary}
+
+\begin{corollary}
+    If $f$ is continuous on a type $I$ region\footnote{Which type $I$ is like a elliptical} 
+    $D$ described by
+    \[
+        D = \left\{(x, y) | a \leq x \leq b, g_1(x) \leq y \leq g_2(x) \right\}
+    \]
+    then
+    \begin{align*}
+        \iint_D f(x,y) \mathrm dA &= \int_a^b \int_{g_1(x)}^{g_2(x)} f(x, y) \mathrm dy \mathrm dx \\
+                                  &= \int_a^b \mathrm dx \int_{g_1(x)}^{g_2(x)} f(x, y) \mathrm dy
+    \end{align*}
+\end{corollary}
+
+\subsection{Changing the order of Integration}
+
+\begin{example}
+    \[
+        \int_0^1\int_x^1 \sin(y^2) \mathrm{d}y \mathrm{d}x = \iint_D \sin(y^2) \mathrm dA
+    \]
+    If we try to evaluate the integral as it stands, we are faced with the task
+    of first evaluating $\int \sin(y^2) \mathrm dy$.
+    But it’s impossible to do so in finite terms since $\int \sin(y^3) \mathrm dy$ is not an elementary function.
+    So we must
+    change the order of integration. This is accomplished by first expressing the given
+    iterated integral as a double integral. We have
+    \[
+        \int_0^1\int_x^1 \sin(y^2) \mathrm{d}y \mathrm{d}x = \iint_D \sin(y^2) \mathrm dA
+    \]
+    where
+    \[
+        D = \left\{ (x, y) | 0 \leq x \leq 1, x \leq y \leq 1 \right\}
+    \]
+    We could re sketch this region and redescribe it into
+    \[
+        D = \left\{ (x, y) | 0 \leq y \leq 1, 0 \leq x \leq y \right\}
+    \]
+    Thus 
+    \[
+        \iint_D \sin (y^2) \mathrm dA = \int_0^1 \int_0^y \sin (y^2) \mathrm dx \mathrm dy
+    \]
+\end{example}
+
+\subsection{二重积分性质}
+
+\subsubsection{不等式性质}
+
+\[
+    \abs*{\iint_D f(x, y) \mathrm d\sigma} \leq \iint_D \abs*{ f(x, y) } \mathrm d\sigma
+\]
+
+\subsubsection{积分中值定理}
+
+若 $f(x,y)$ 在 $D$ 上连续，则 \[\iint_D f(x,y) \mathrm d\sigma = f(\xi, \eta)\]，
+其中 $(\xi, \eta) \in D$，$S$ 为积分区域 $D$ 的面积。
+
+\subsection{二重积分的计算} 
+
+只有四种主要方法：
+\begin{itemize}
+    \item 利用直角座标
+        \begin{itemize}
+            \item 根据题目的不同选择先 $x$ 后 $y$ 还是反过来
+            \item 某些题目需要对调积分次序
+        \end{itemize}
+    \item 利用极座标
+    \item 利用函数的对称性和奇偶性
+    \item 利用变量对称性
+\end{itemize}
+上述四个方法在解题的时候有时候需要综合应用才行。
+
+\subsubsection{是否适用极座标方法}
+
+如何确定式子是否适合使用极座标计算主要取决于两点：
+\begin{itemize}
+    \item 被积函数（\emph{为主}）
+        \[
+            \underbrace{f(\sqrt{x^2 + y^2})}_{\mbox{化为} F(r)}, 
+            \underbrace{f(\frac{y}{x}), f(\frac{x}{y})}_{\mbox{化为} F(\theta)}
+        \]
+    \item 积分区域，如
+        \begin{gather*}
+            x^2 + y^2 \leq R^2;\\ 
+            r^2 \leq x^2 + y^2 \leq R^2;\\
+            x^2 + y^2 \leq 2ax;\\
+            x^2 + y^2 \leq 2by
+        \end{gather*}
+        或者说，和圆有关的区域。针对区域圆心不在座标轴上的，则对其平移处理。
+        \[
+            F(\theta) = \begin{dcases*}
+                x - x_0 = r \cos \theta \\
+                y - y_0 = r \sin \theta
+            \end{dcases*}
+        \]
+\end{itemize}
+其中如果上述一方适合使用极座标，另一方不适合使用极座标则以被积函数是否适合为主。
+
+\subsubsection{变量对称性}
+\label{multivariable-integral-properity-of-variable-symtric}
+
+对于两个一元函数积分，积分上下限相同，被积函数相同，
+只是被积函数的自变量记号不同，则两个积分是相同的。
+\[
+    \int_a^b f(x) \mathrm dx = \int_a^b f(t) \mathrm dt
+\]
+该结论在二重积分中也有相应的体现。
+当积分区域在对换符号后仍然不变，则我们就可以利用该结论“对换”积分次序。
+比如积分区域是一个圆的时候
+\[
+    \iint\limits_{\mathclap{\substack{x^2 + y^2 \leq 1}}} (5x + 6y) \mathrm dx \mathrm dy = 
+    \iint\limits_{\mathclap{\substack{y^2 + x^2 \leq 1}}} (5y + 6x) \mathrm dy \mathrm dx 
+\]
+有上述性质的积分区域的\textbf{共同特点}是关于 $y = x$ 对称。
+ 
+\begin{theorem}
+    若 $D$ 关于 $y = x$ 对称，则
+    \[
+        \iint_D f(x, y) \mathrm d\sigma = \iint_D f(y, x) \mathrm d\sigma
+    \]
+    特别的
+    \[
+        \iint_D f(x) \mathrm d\sigma = \iint_D f(y) \mathrm d\sigma
+    \]
+\end{theorem}
+
+掌握了相同积分区域，不那么相同的被积函数的两个相等积分，
+则可以利用积分区域重现换元法\footnote{请参见小节\ref{integral-limits-regenerating-substituting}}
+来进行进一步处理，也可以用其他方法。
+
+\section{应用举例}
+
+\begin{example}
+    设区域 $D$ 为 $x^2 + y^2 \leq R^2$ 则 
+    \[
+        \iint_D \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}\right) \mathrm d\sigma 
+    \]
+
+    \cite[page 186]{we}
+
+    由于积分区域$D$关于 $y = x$ 对称，则
+    \[
+        \iint_D \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}\right) \mathrm d\sigma = 
+        \iint_D \left(\dfrac{y^2}{a^2} + \dfrac{x^2}{b^2}\right) \mathrm d\sigma
+    \]
+    从而有
+    \footnote{
+        有关积分上下限重现换元法，请参考小节 \ref{integral-limits-regenerating-substituting}.
+    }
+    \begin{align*}
+          &\iint_D \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}\right) \mathrm d\sigma \\
+        = &\dfrac{1}{2} \iint_D \left[
+            \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}\right) + 
+            \left(\dfrac{y^2}{a^2} + \dfrac{x^2}{b^2}\right) 
+        \right] \mathrm d\sigma \\
+        = &\dfrac{1}{2} \left(\dfrac{1}{a^2} + \dfrac{1}{b^2}\right) \iint_D (x^2 + y^2) \mathrm d\sigma \\
+        = &\dfrac{1}{2} \left(\dfrac{1}{a^2} + \dfrac{1}{b^2}\right) 
+            \int_0^{2\pi} \mathrm d\theta \int_0^R r^3 \mathrm dr \\
+        = &\dfrac{\pi R^4}{4} \left(\dfrac{1}{a^2} + \dfrac{1}{b^2}\right)
+    \end{align*}
+
+\end{example}
+
+和二重积分有关的综合题例子繁多，还请参考武忠祥强化书本.
+
+\cite[page 194, pdf 205]{we}
+

@@ -110,8 +110,8 @@ $f'_x(x_0, y_0) = A, f'_y(x_0, y_0) = B$
 
 \begin{strip}
     \begin{align}
-        \Delta z &= f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) = A \Delta x + B \Delta y + o(\rho)\\
-        \Delta z &= f(x, y) - f(x_0, y_0) = A (x - x_0) + B (y - y_0) + o(\rho)
+        \Delta z &= f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0) = A \Delta x + B \Delta y + o(\rho)\label{eq:full-diff-def1}\\
+        \Delta z &= f(x, y) - f(x_0, y_0) = A (x - x_0) + B (y - y_0) + o(\rho)\label{eq:full-diff-def2}
     \end{align}
 
     \begin{equation}
@@ -125,6 +125,9 @@ $f'_x(x_0, y_0) = A, f'_y(x_0, y_0) = B$
         \dfrac{\left[ f(x,y) - f(x_0, y_0) \right]-\left[ A(x - x_0) + B(y - y_0) \right]}{\sqrt{\left( \Delta x \right)^2 + \left( \Delta y \right)^2}} = 0
     \end{equation}
 \end{strip}
+
+当使用两个常用判别式子(\ref{eq:full-differentiation-determinant-1}, \ref{eq:full-differentiation-determinant-2})
+成功说明可微后，则该二原函数的全微分就可以用 \ref{eq:full-diff-def1} 和 \ref{eq:full-diff-def2} 求得。
 
 \subsubsection{可微性判定}
 
@@ -239,6 +242,31 @@ $f'_x(x_0, y_0) = A, f'_y(x_0, y_0) = B$
 \label{conditional-extrema-and-lagrange-multipliers}
 
 方法请参考 \cite[page 174, pdf 185]{we}.
+
+拉格朗日乘数法的意义在于将 $f(x, y)$ 在条件下
+取得极值的必要条件，
+转换成一个拉格朗日函数无条件取得极值的必要条件。
+
+令
+\[
+    F(x, y, \lambda) = f(x, y) + \lambda \varphi(x, y)
+\]
+\[
+    \begin{dcases*}
+        F_x = f'_x(x, y) + \lambda \varphi'_x(x, y) = 0, \\
+        F_y = f'_y(x, y) + \lambda \varphi'_y(x, y) = 0, \\
+        F_\lambda = \varphi(x, y) = 0
+    \end{dcases*}
+\]
+无条件多元函数取的极值的必要条件就是所有偏导数等于0.
+但使用拉格朗日乘数法，必要条件只能找到可能的极值点。
+条件极值一般情况出现在应用题中，则可能的极值点还要通过题目
+背景来进一步判断。
+
+两个条件的，则可以构造拉格朗日函数：
+\[
+    F(x, y, z, \lambda, \mu) = f(x, y, z) + \lambda \varphi(x, y, z) + \mu \psi(x, y, z)
+\]
 
 \subsubsection{最值}
 

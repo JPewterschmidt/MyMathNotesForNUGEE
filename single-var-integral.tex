@@ -619,6 +619,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 参见\cite[page 110, pdf 121, example 8]{we}.
 
 \subsection{积分上下限重现换元法}
+\label{integral-limits-regenerating-substituting}
 
 这个办法就是通过巧妙地选取换元变量，
 是的换元前后的定积分上下限不变，
@@ -634,6 +635,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \mathrm{d}x
 \]
 只在原函数很难找到的使用，不是万金油。
+另外对于多元函数积分利用该方法之前要先用被积函数变量对称性来对积分进行处理，
+请参考小节\ref{multivariable-integral-properity-of-variable-symtric}.
 
 参见\cite[page 110, pdf 121, example 8]{we}.
 
@@ -1071,13 +1074,66 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 然后是函数的单调性，这样才能说明整个式子的性质。
 其他例子请参见 \cite[page 119, pdf 130]{we}.
 
-
-
-\section{反常积分}
-
-
-
 \section{定积分的应用}\label{app-finite-integral}
 
 利用定积分定义求极限请参见
 Section \ref{use-squeeze-or-definition-of-integral}.
+
+其他定积分的应用请参考
+\cite[page 435]{stewart}等参考书.
+
+\section{无界函数反常积分}
+
+\begin{definition}
+    若函数 $f(x)$ 在点 $a$ 的任一邻域内都无界，
+    那么点 $a$ 称为函数 $f(x)$ 的瑕点。
+\end{definition}
+
+\begin{theorem}[比较判别法]
+    \label{comparasion-deterministic-informal-integral}
+    设$f(x), g(x)$ 在$(a, b]$ 上连续，且
+    $0 \leq f(x) \leq g(x)$，$x = a$ 为 $f(x)$ 和 $g(x)$ 的瑕点，则
+    \begin{gather*}
+        \int_a^b g(x) \mathrm dx \, \mbox{收敛} \Rightarrow \int_a^b f(x) \mathrm dx \, \mbox{收敛} \\
+        \int_a^b g(x) \mathrm dx \, \mbox{发散} \Rightarrow \int_a^b f(x) \mathrm dx \, \mbox{发散} 
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[比较判别法的极限形式]
+    \label{comparasion-deterministic-informal-integral-limit-form}
+    设 $f(x), g(x)$ 在 $(a, b]$ 上非负连续，且
+    \[
+        \lim_{x \to a^+} \dfrac{f(x)}{g(x)} = \lambda \quad \mbox{(有限或无穷)}
+    \]
+    则
+    \begin{align*}
+        \int_a^b f(x) \mathrm dx \mbox{收敛} 
+        \Leftrightarrow 
+        \int_a^b g(x) \mathrm dx \mbox{收敛} &, \lambda \neq 0 \\
+        \int_a^b g(x) \mathrm dx \mbox{收敛} 
+        \Rightarrow 
+        \int_a^b f(x) \mathrm dx \mbox{收敛} &, \lambda = 0 \\
+        \int_a^b g(x) \mathrm dx \mbox{发散} 
+        \Rightarrow 
+        \int_a^b f(x) \mathrm dx \mbox{发散} &, \lambda = 0
+    \end{align*}
+\end{theorem}
+
+\begin{corollary}[P积分]
+    \label{P-integral}
+    \[
+        \int_a^b \dfrac{1}{(x - a)^p} \mathrm dx 
+        \begin{dcases*}
+            \mbox{收敛} & p < 1, \\
+            \mbox{发散} & p \leq 1;
+        \end{dcases*}
+    \]
+    \[
+        \int_a^b \dfrac{1}{(b - x)^p} \mathrm dx 
+        \begin{dcases*}
+            \mbox{收敛} & p < 1, \\
+            \mbox{发散} & p \leq 1.
+        \end{dcases*}
+    \]
+\end{corollary}
+
