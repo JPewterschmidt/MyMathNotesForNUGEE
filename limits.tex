@@ -51,6 +51,13 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 可以在因子上使用。
 但是不能在指数上使用（考研数学不建议，是否可用之判断比较复杂）。
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.55\textwidth]{figure/lots-functiuons-like-x-near-0.png}
+  \caption{Lots functions which behaviour near the origin point are like the $x$.}
+  \label{fig:example}
+\end{figure}
+
 \subsubsection{公式}
 这部分等价无穷小可以通过他们的函数图像辅以记忆，
 由于等价无穷小是在讨论无限接近于0点的函数状态，
@@ -59,7 +66,7 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 	\begin{align}
 		x&\sim\sin{x}\sim\tan{x} \\ 
 		&\sim\arcsin{x}\sim\arctan{x} \\
-		&\sim\ln{1+x}\sim e^x-1
+		&\sim\ln{(1+x)}\sim e^x-1
 	\end{align}
 \end{lemma}
 
@@ -67,8 +74,9 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 \begin{lemma}[等价无穷小]
 	\begin{align}
 		x - \sin{x}     &\sim \frac{x^3}{6} \label{rep1} \\
+        1 - \cos{x}     &\sim \frac{1}{2} x^2 \\
 		\tan{x} - x     &\sim \frac{x^3}{3} \label{rep2} \\
-		x - \ln{1+x}    &\sim \frac{x^2}{2} \\
+		x - \ln{(1+x)}  &\sim \frac{x^2}{2} \\
 		\arcsin{x} - x  &\sim \frac{x^3}{6} \label{rep3}\\
 		x - \arctan{x}  &\sim \frac{x^3}{3} \label{rep4}\\
 		(1+x)^\alpha-1  &\sim \alpha x
@@ -120,13 +128,13 @@ Thus,
 \begin{equation}
 	e^{\alpha(x)} - e^{\beta(x)} \sim \alpha(x) - \beta(x)
 \end{equation}
-其中 $\alpha(x) \to 0$ 且 $\beta(x) \to 0$，但是这个结论\textbf{考研不能直接使用}
+其中 $\alpha(x) \to 0$ 且 $\beta(x) \to 0$，但是这个结论\textbf{考研不能直接使用!}
 
 \section{其他重要结论}
 \begin{lemma}
 	\begin{equation}
 		\lim_{n \to \infty} \sqrt[n]{a^{n}_{1} + a^{n}_{2} + 
-			\cdots + a^{n}_{n}} = \max_{1\leq i \leq n}{a_{i}^{n}}
+        \cdots + a^{n}_{n}} = \max_{1\leq i \leq n}{\sqrt{a_{i}^{n}}}
 	\end{equation}
 \end{lemma}
 
@@ -213,7 +221,9 @@ Thus,
 	&\lim_{x \to 0} \dfrac{\arcsin{x} - \sin{x}}{\arctan{x} - \tan{x}} \\
 	= &\lim_{x \to 0} \dfrac{(\arcsin{x} -x) - (\sin{x}-x)}{(\arctan{x}-x) - (\tan{x}-x)}
 \end{align*}
-然后使用无穷小替换\ref{super-small}快速求解
+然后使用无穷小替换
+\ref{super-small}快速求解
+\footnote{结果是 $-1/2$，本题目也可使用麦克劳林级数替换}。
 
 \subsection{原式化简}
 \begin{enumerate}
@@ -224,26 +234,26 @@ Thus,
 
 其中，往往在有理化过程后出现非零因子，这个时候请立刻将非零因子求出，提到式子外面。比如：
 
-\begin{align*}
-	&\lim_{x \to 0} \dfrac{\sqrt{1+\tan{x}} - \sqrt{1+\sin{x}}}{x \ln{1+x} - x^2} \\
-	=&\lim_{x \to 0} \dfrac{\tan{x} - \sin{x}}{x \ln{1+x} - x^2} \cdot
-	\underbrace{\dfrac{1}{\sqrt{1+\tan{x}} + \sqrt{1+\sin{x}}}}_{\mbox{非零因子}}
-\end{align*}
+\begin{example}
+    \begin{align*}
+        &\lim_{x \to 0} \dfrac{\sqrt{1+\tan{x}} - \sqrt{1+\sin{x}}}{x \ln{(1+x)} - x^2} \\
+        =&\lim_{x \to 0} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2} \cdot
+        \underbrace{\dfrac{1}{\sqrt{1+\tan{x}} + \sqrt{1+\sin{x}}}}_{\mbox{非零因子}}\\
+        =&\dfrac{1}{2} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2}
+    \end{align*}
+    例题选自武忠祥强化课程，本题目接下来可以通过\textbf{拉格朗日中值定理}\ref{lagrange-limit}来求解。
+    详情请参考求极限通法2 三星笔记。
 
-例题选自武忠祥强化课程，本题目接下来可以通过\textbf{拉格朗日中值定理}\ref{lagrange-limit}来求解。
-详情请参考\,求极限通法2 三星笔记。
-
-本题分子里面含有根号，实际上也就是开 $1/2$ 次方，这种情况还可以构造
-$(1+x)^\alpha - a \sim \alpha x$
-\ref{super-small}
-\begin{equation*}
-	\begin{array}{l}
-		\mbox{LHS} = \lim_{x \to 0}
-		\dfrac{\sqrt{1+\sin{x}}\left[ 
-			\sqrt{1+\dfrac{\tan{x}-\sin{x}}{1+\sin{x}}}	- 1
-			\right] }{x \ln{1+x} - x^2}
-	\end{array}
-\end{equation*}
+    本题分子里面含有根号，实际上也就是开 $1/2$ 次方，这种情况还可以构造
+    $(1+x)^\alpha - 1 \sim \alpha x$
+    \ref{super-small}
+    \begin{equation*}
+        \mbox{LHS} = \lim_{x \to 0}
+        \dfrac{\sqrt{1+\sin{x}}\left[ 
+            \sqrt{1+\dfrac{\tan{x}-\sin{x}}{1+\sin{x}}}	- 1
+            \right] }{x \ln{(1+x)} - x^2}
+    \end{equation*}
+\end{example}
 
 \section{无穷比无穷}
 
@@ -273,7 +283,8 @@ $(1+x)^\alpha - a \sim \alpha x$
 
 \section{确定求极限式子里的参数}
 
-这种题目就是要将其按照正常极限进行求解，在求的过程中或者是最后得到要求的参数。
+这种题目就是要将其按照正常极限进行求解，
+在求的过程中或者是最后得到要求的参数。
 
 \begin{lemma} \label{lm:inf-zero-zero}
 	\begin{equation}
@@ -308,7 +319,7 @@ $(1+x)^\alpha - a \sim \alpha x$
 
 这三种方法都是用来在构造完 $f(x)/g(x)$ 之后进行约分化简的时候使用的。
 考察这种知识点的提醒一般比较集中在选择题。
-因此在做题的时候要格外注意策略。
+因此在做题的时候要格外注意策略，不要乖乖按照最一般的直接法生算。
 所谓的定义法也就是构造
 \[
     \lim_{x\to 0} \dfrac{f(x)}{g(x)}
@@ -361,3 +372,52 @@ $(1+x)^\alpha - a \sim \alpha x$
             \item 函数至少有一侧极限不存在的点
         \end{itemize}
 \end{itemize}
+
+\section{例题}
+
+\begin{example}
+    \begin{align*}
+         &\lim_{x \to - \infty} \dfrac{\ln (1+ 3^x)}{\ln (1+ 2^x)} \\
+        =&\lim_{x \to - \infty} \dfrac{3^x}{2^x} \\
+        =&0
+    \end{align*}
+\end{example}
+
+\begin{example}
+    \begin{align*}
+         &\lim_{x \to + \infty} \dfrac{\ln (1+3^x)}{\ln (1+2^x)}\\
+        =&\lim_{x \to + \infty} \dfrac{\ln 3^x \left(\dfrac{1}{3^x} + 1\right)}{\ln 2^x \left(\dfrac{1}{2^x} + 1\right)}\\
+        =&\lim_{x \to + \infty} 
+        \frac{
+            x\ln 3 + \ln \left(1+\dfrac{1}{3^x}\right)
+        }{
+            x\ln 2 + \ln \left(1+\dfrac{1}{2^x}\right)
+        }\\
+        =&\lim_{x \to + \infty} 
+        \frac{
+            \ln 3 + \dfrac{\ln \left(1+\dfrac{1}{3^x}\right)}{x}
+        }{
+            \ln 2 + \dfrac{\ln \left(1+\dfrac{1}{2^x}\right)}{x}
+        }\\
+        =&\dfrac{\ln 3}{\ln 2}
+    \end{align*}
+
+    显而易见的\footnote{如图\ref{fig:ln-1-plus-3-to-x-and-its-sibling}所示。}
+    \[
+        \lim_{x \to +\infty} f(1 + x) = \lim_{x \to +\infty} f(x)
+    \]
+    我个人认为在这种比较简单的极限上可以利用这种符合直觉的判断来加速解题，
+    只要题目不要求写过程。那么原先的题目就变成了
+    \[
+         \lim_{x \to + \infty} \dfrac{\ln (1+3^x)}{\ln (1+2^x)} = 
+         \lim_{x \to + \infty} \dfrac{\ln (3^x)}{\ln (2^x)}
+    \]
+\end{example}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.55\textwidth]{figure/ln(1plus3tox)-ln(3tox).png}
+  \caption{The figure of $\ln(1+3^x), \ln(3^x)$.}
+  \label{fig:ln-1-plus-3-to-x-and-its-sibling}
+\end{figure}
+
