@@ -2,20 +2,26 @@
 \chapter{一元函数微分学}
 
 \begin{definition}
-\begin{align}
-	f'(x_0) &= \lim_{\Delta x \to 0} \dfrac{f(x_0+\Delta x) - f(x_0)}{\Delta x} \\
-	        &= \lim_{x \to x_0} \dfrac{f(x) - f(x_0)}{x - x_0}
-\end{align}
+    \label{def:single-order-derivative}
+    The derivative of a function $f$ at a number $a$, denoted by $f'(a)$, is 
+    \begin{align}
+        f'(x_0) &= \lim_{\Delta x \to 0} \dfrac{f(x_0+\Delta x) - f(x_0)}{\Delta x} \\
+                &= \lim_{x \to x_0} \dfrac{f(x) - f(x_0)}{x - x_0}
+    \end{align}
+    if any of the limit exists\footnote{See also the definition of limit \ref{def:limit}}.
 \end{definition}
+参见小节 $\ref{def-limit}$ 可知，仅给出函数某点$n$阶导数值并不能说明$n$阶导函数存在。
+故 L'Hospital 法则不能用。反面例题参见 Example \ref{counter-example-of-usage-of-L-Hospital}.
 
 \section{通用技术}
+\label{general-technics-single-var-differentiation}
 
 $n$ 阶可导不能保证 $n$ 阶导函数有极限，也不能保证 $n$ 阶导函数连续。
 
 相当一部分题目是和参数有关的，
 当参数作为自变量的系数的时候对其的讨论就会变得复杂。
 可以先将式子出以参数的所在的因子的另一部分，是的参数单独出来。
-请参考 \ref{number-of-roots-question}
+请参考 \ref{number-of-roots-question}，例题\ref{example-limits-and-varidic-limits-integral-2}.
 
 可导 $\Rightarrow$ 连续，相关求参数的题目可以用这一性质求出，
 比如 \cite[quest27]{w660}
@@ -247,6 +253,13 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
     \]
     所以 $f^{(5)}(0) = 60$
 \end{example}
+
+\section{拉格朗日(Lagrange)中值定理}
+
+\begin{definition}[Lagrange's Mean Value Theorem]\label{thm:lagrange}
+    Let $f(x)$ be a continuous function on the closed interval $[a, b]$ and differentiable on the open interval $(a, b)$. Then, there exists at least one number $c$ in the open interval $(a, b)$ such that
+    \[f'(c) = \frac{f(b) - f(a)}{b - a}.\]
+\end{definition}
 
 \section{导数应用}
 

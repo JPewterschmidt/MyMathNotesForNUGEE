@@ -433,11 +433,12 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
             欲对数学进行更深层次了解，请参考数学分析教程。
         }.
     \end{equation}
-    后者可直接用拉格朗日中值定理证明。
+    后者可直接用拉格朗日中值定理\footnote{参见\ref{thm:lagrange}}证明。
 \end{theorem}
 另外，若被积函数和参数有关，即形如$f(x, t)$的，上面式子中的 $\xi$
 也将会和 $t$ 相关，不同的 $t$，可能会造成不同的 $\xi$。
 比如 \cite[page 106, pdf 117, example 3]{we}。
+还可参考例子 \ref{example-limits-and-varidic-limits-integral-2}
 
 \section{和定积分有关的极限问题} 
 \label{limit-questions-involved-definite-integral}
@@ -878,6 +879,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \item 边上限积分的奇偶性
 \end{itemize}
 
+变限积分在计算的时候可以利用 小节\ref{limit-rerepresenting-in-variable-limits-integral}。
+
 \subsection{常用结论和符合直觉的原因}
 
 \subsubsection{连续性和可导性}
@@ -952,6 +955,64 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     再考察连续性，速度就会慢很多。
 \end{example}
 
+\begin{example}
+    \label{example-limits-and-varidic-limits-integral-2}
+    设函数 $f(x)$ \textbf{连续}，且$f(0) \neq 0$，求
+    \[
+        L = \lim_{x \to 0} \dfrac{\int_0^x (x - t) f(t) \mathrm dt }{x \int_0^x f(x - t) \mathrm dt}
+    \]
+    \cite[page 114, pdf 125]{we}
+    \begin{align}
+        &\int_0^x f(x - t) \mathrm dt = \int_0^x f(u) \mathrm du \quad (\mbox{令} x - t = u)\notag \\
+        L =& \lim_{x \to 0} \dfrac{x \int_0^x f(t) \mathrm dt - \int_0^x tf(t) \mathrm dt}{x \int_0^x f(t) \mathrm dt}\notag \\
+          =& \lim_{x \to 0} \dfrac{\int_0^x f(t) \mathrm dt + xf(x) - x(f)}{\int_0^x f(t) \mathrm dt + xf(x)} \quad (\mbox{\L'Hospital}) \notag\\
+          =& \lim_{x \to 0} \dfrac{\int_0^x f(t) \mathrm dt}{\int_0^x f(t) \mathrm dt + xf(x)} \quad \label{eq:part-no-L-Hospital-1}\\
+          =& \lim_{x \to 0} \dfrac{xf(c)}{xf(c) + xf(x)}\quad(c \in (0, x)) \label{eq:part-mid-value-theorm-1}\\
+          =& \dfrac{f(0)}{f(0) + f(0)} = \dfrac{1}{2} \notag
+    \end{align}
+    
+    另解
+    \[
+        L =\lim_{x \to 0} \dfrac{x \int_0^x f(t) \mathrm dt - \int_0^x tf(t) \mathrm dt}{x \int_0^x f(t) \mathrm dt}
+    \]
+    由 $f(0) \neq 0$ 得，当$x\to 0$时\footnote{参见小节\ref{limit-questions-involved-definite-integral}和\ref{limit-rerepresenting-in-variable-limits-integral}}：
+    \begin{align*}
+        \int_0^x f(t) \mathrm dt  &\sim \int_0^x  f(0) \mathrm dt  &= f(0) x \\
+        \int_0^x tf(t) \mathrm dt &\sim \int_0^x tf(0) \mathrm dt &= \dfrac{f(0)}{2} x^2
+    \end{align*}
+    则
+    \begin{equation*}
+        L = 1 - \lim_{x\to 0} \dfrac{\int_0^x tf(t) \mathrm dt}{x \int_0^x f(t) \mathrm dt} 
+          = 1 - \lim_{x\to 0} \dfrac{\frac{f(0)}{2} x^2}{f(0) x^2} = \dfrac{1}{2}
+    \end{equation*}
+
+    另外还有一种解法利用了广义积分中值定理\footnote{参见 Theorem \ref{general-mean-value-theorm-of-integral}}
+    \begin{align}
+        L &= \lim_{x \to 0} \dfrac{f(\xi)\int_0^x (x - t) \mathrm dt}{x^2 f(x - c)} \quad (\xi, c \in [0, x])\label{eq:example-part-general-mid-val-theorm-of-integral-1} \\
+          &= \lim_{x \to 0} \dfrac{\int_0^x (x - t) \mathrm dt}{x^2} \label{eq:example-part-general-mid-val-theorm-of-integral-2} \\
+          &= \lim_{x \to 0} \dfrac{\frac{1}{2} x^2}{x^2} = \dfrac{1}{2} \notag
+    \end{align}
+\end{example}
+上例中步骤(\ref{eq:part-no-L-Hospital-1}) 不可使用L'Hospital法则，
+原因是提干中只说明$f(x)$连续，是可导的充分非必要条件。
+若此处应用 L'Hospital 法则将会出现 $f'(x)$.
+为了继续消除积分符号，可以利用积分中值定理\footnote{参见\ref{general-mean-value-theorm-of-integral}}
+，如步骤(\ref{eq:part-mid-value-theorm-1})和(\ref{eq:example-part-general-mid-val-theorm-of-integral-1}).
+
+积分中值定理的缘故，有 
+\[
+    \lim_{x \to 0} 
+    \dfrac{
+        \overbrace{f(\xi)}^{\mathclap{=f(0) \neq 0}}
+    } {
+        \underbrace{f(x - c)}_{\mathclap{=f(0)\neq 0}}
+    } = 1
+\]
+因此步骤(\ref{eq:example-part-general-mid-val-theorm-of-integral-2})成立。
+
+本例第一个解的前几行是将积分上下限同被积函数变量分离的技术。
+其他有关变限积分被积函数中出现积分上下限的例子，还请参考
+例\ref{example-limits-and-varidic-limits-integral-1}.
 
 \section{积分不等式}
 

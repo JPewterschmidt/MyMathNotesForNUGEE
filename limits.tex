@@ -1,5 +1,30 @@
 \chapter{极限}
 
+\section{定义}
+\label{def-limit}
+
+\begin{definition}
+    \label{def:limit}
+    Let f be a function defined \emph{on some open interval that contains the number $a$}, 
+    except possibly at $a$ itself$a$ itself.
+    Then we say that the \textbf{limit of } $f(x)$ \textbf{as $x$ approaches $a$ is $L$}, 
+    and we write 
+    \[
+        \lim_{x \to a} f(x) = L
+    \]
+    if for every number $\varepsilon > 0$ there is a number $\delta > 0$ s.t.
+    \[
+        0 < |x - a| < \delta \quad \Rightarrow \quad |f(x) - L| < \varepsilon
+    \]
+\end{definition}
+上述定义文本中 \emph{on some open interval that contains the number} 非常重要。
+就考研数学，题目会喜欢给出某点处的导数值，但是这并不是该点邻域有函数定义的充分条件，
+不满足极限定义的要求。
+
+不满足这一点，针对某一些依赖极限的定义定理或者推论则\textbf{不再成立}。
+比如给出某一点$n$阶导数值，并不能说明该函数$n$阶可导。
+进而 L'Hospital 法则不再成立。
+
 求极限的过程会把一种极限类型转化为另一种。
 请在实际做题的时候主义当前的极限类型，并选择最合适的做法，灵活运用。
 使用导数定义求极限请参考下一章。
@@ -39,6 +64,9 @@
 $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 也\textbf{不能保证}$n$阶导函数连续。
 因此对有可导阶数有规定的情况，L'Hospital 只能应用到 $n-1$ 阶。
+另外也要注意，连续不代表可导\footnote{参考例子\ref{example-limits-and-varidic-limits-integral-2}}。
+
+参见小节\ref{general-technics-single-var-differentiation}.
 
 \subsection{选择题策略}
 
@@ -53,7 +81,7 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.55\textwidth]{figure/lots-functiuons-like-x-near-0.png}
+  \includegraphics[width=0.5\textwidth]{figure/lots-functiuons-like-x-near-0.png}
   \caption{Lots functions which behaviour near the origin point are like the $x$.}
   \label{fig:example}
 \end{figure}
@@ -101,6 +129,7 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 \end{align}
 
 \subsubsection{定积分中的替换}
+\label{limit-rerepresenting-in-variable-limits-integral}
 Suppose $f(x)$ and $g(x)$ are continuous on 某邻域，and $\lim_{x \to 0} \frac{f(x)}{g(x)} = 1$
 Thus, 
 \begin{equation}
@@ -241,7 +270,7 @@ Thus,
         \underbrace{\dfrac{1}{\sqrt{1+\tan{x}} + \sqrt{1+\sin{x}}}}_{\mbox{非零因子}}\\
         =&\dfrac{1}{2} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2}
     \end{align*}
-    例题选自武忠祥强化课程，本题目接下来可以通过\textbf{拉格朗日中值定理}\ref{lagrange-limit}来求解。
+    例题选自武忠祥强化课程，本题目接下来可以通过\textbf{拉格朗日中值定理}\footnote{参考\ref{thm:lagrange}}来求解。
     详情请参考求极限通法2 三星笔记。
 
     本题分子里面含有根号，实际上也就是开 $1/2$ 次方，这种情况还可以构造
@@ -280,6 +309,45 @@ Thus,
 	\item 求极限 $A = \lim \alpha(x)\beta(x)$
 	\item 写结果 $\mbox{LHS} = e^{A}$
 \end{enumerate}
+
+\cite[question 30]{w660}.
+
+\begin{example}
+    \label{counter-example-of-usage-of-L-Hospital}
+    设 $f(x)$ 在 $x = 0$ 可导且 $f(0) = 1, f'(0) = 3$，
+    则
+    \[
+        L = \lim_{n \to \infty} {\left[
+            f \left(\dfrac{1}{n}\right) 
+        \right]}^{\left(\dfrac{\frac{1}{n}}{1 - \cos \frac{1}{n}} \right)}
+    \]
+    \cite[question 30]{w660}.
+
+    令 $t = 1/n$，有 $t \to 0$.
+    \begin{align*}
+        L &= \lim_{t \to 0} {f(t)}^{\dfrac{t}{1 - \cos t}} \\
+          &= \lim_{t \to 0} {f(t)}^{\dfrac{t}{\frac{1}{2} t^2}} \\
+          &= \lim_{t \to 0} {f(t)}^{\frac{2}{t}} \\
+          &= \lim_{t \to 0} {[1 + (f(t) - 1)]}^{\frac{2}{t}} \\
+    \end{align*}
+    有（\textbf{典型错误!}）
+    \begin{align}
+        &\lim_{t \to 0} (1+f(t)) \frac{2}{t} \notag \\
+        = &2\lim_{t \to 0} \dfrac{1+ f(t)}{t} \notag \\
+        = &2\lim_{t \to 0} {f'(t)} \label{eq:example-L-Hospital-illegal-usage}  \\
+        = &6 \notag
+    \end{align}
+    所以
+    \[
+        L = e^{6}
+    \]
+\end{example}
+
+上面的错误例子中步骤(\ref{eq:example-L-Hospital-illegal-usage})使用
+L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且给出了该点处导数值。
+但给出的条件并不符合导数的定义
+\footnote{参见 Definition\ref{def:single-order-derivative}.}
+对极限存在的要求，仅仅给出某一点处导数值并不能说明该点临域函数有定义。
 
 \section{确定求极限式子里的参数}
 
@@ -416,8 +484,33 @@ Thus,
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.55\textwidth]{figure/ln(1plus3tox)-ln(3tox).png}
+  \includegraphics[width=0.5\textwidth]{figure/ln(1plus3tox)-ln(3tox).png}
   \caption{The figure of $\ln(1+3^x), \ln(3^x)$.}
   \label{fig:ln-1-plus-3-to-x-and-its-sibling}
 \end{figure}
+
+\begin{example}
+    \label{example-limits-and-varidic-limits-integral-1}
+    \[
+        L = \lim_{x \to 0} 
+        \dfrac{\int_{x^2}^{x} \dfrac{\sin (xt)}{t} \mathrm dt }{x^2}
+    \]
+    不要被极限符号吓到，题目不难发现为$0/0$ 型，
+    可以使用 L'Hospital 法则消灭积分符号。那么
+    \[
+        L = \lim_{x \to 0} \dfrac{2x \dfrac{\sin x^2}{x^2} - 3x^2 \dfrac{\sin x^3}{x^3}}{2x}
+    \]
+    然后使用无穷小代换等方法解出极限。
+
+    另外，变限积分上下限符号和被积函数符号同时作为一个表达式的因子的时候，
+    如本题目的 $\sin (xt)$，则可以使用换元法将两个符号分离
+    \footnote{另请参考例\ref{example-limits-and-varidic-limits-integral-2}}：
+    \[
+        \int_{x^2}^{x}   \dfrac{\sin (xt)}{t}\mathrm dt  = 
+        \int_{x^3}^{x^2} \dfrac{\sin s}{s}   \mathrm ds
+    \]
+    其中 $\mathrm ds = x \mathrm dt$.
+\end{example}
+
+
 
