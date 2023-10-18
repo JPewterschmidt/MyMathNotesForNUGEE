@@ -7,7 +7,8 @@
     \label{def:limit}
     Let f be a function defined \emph{on some open interval that contains the number $a$}, 
     except possibly at $a$ itself$a$ itself.
-    Then we say that the \textbf{limit of } $f(x)$ \textbf{as $x$ approaches $a$ is $L$}, 
+    Then we say that the \textbf{limit of } $f(x)$ 
+    \textbf{as $x$ approaches $a$ is $L$}, 
     and we write 
     \[
         \lim_{x \to a} f(x) = L
@@ -17,31 +18,44 @@
         0 < |x - a| < \delta \quad \Rightarrow \quad |f(x) - L| < \varepsilon
     \]
 \end{definition}
-上述定义文本中 \emph{on some open interval that contains the number} 非常重要。
-就考研数学，题目会喜欢给出某点处的导数值，但是这并不是该点邻域有函数定义的充分条件，
+上述定义文本中 
+\emph{on some open interval that contains the number} 非常重要。
+就考研数学，题目会喜欢给出某点处的导数值，
+但是这并不是该点邻域有函数定义的充分条件，
 不满足极限定义的要求。
 
 不满足这一点，针对某一些依赖极限的定义定理或者推论则\textbf{不再成立}。
 比如给出某一点$n$阶导数值，并不能说明该函数$n$阶可导。
-进而 L'Hospital 法则不再成立。
+进而 L'Hospital 法则不再成立
+\footnote{如例题\ref{counter-example-of-usage-of-L-Hospital}.}。
+
+定义中的 $L$ 是一个常数，
+或者说是一个与函数 $f(x)$ 的任何函数参数（如$x$）
+无关的表达式\footnote{一个常数也构成我所说的表达式}。
+那么，函数极限趋于无穷，则是极限不存在的一种情况。
+在相关的概念考察题目中要注意这一点。
+如 \cite[question 123]{w660}.
 
 求极限的过程会把一种极限类型转化为另一种。
 请在实际做题的时候主义当前的极限类型，并选择最合适的做法，灵活运用。
 使用导数定义求极限请参考下一章。
 
-和定积分有关的极限问题请参见 \ref{limit-questions-involved-definite-integral}.
+和定积分有关的极限问题请参见
+\ref{limit-questions-involved-definite-integral}.
 
 \section{通用技术}
 
-本节将会对下文将会详细描述的各种求极限类型所用到的一些通用手段进行总结和归纳。
-原则上这些内容应当背熟用熟练。
+本节将会对下文将会详细描述的各种求极限类型所用到的
+一些通用手段进行总结和归纳。 原则上这些内容应当背熟用熟练。
 
 对于所有题型，这些方法都适合。但是对于选择填空题，要应用更多的应试策略。
 比如带入选项，或者是通过题目条件举出特殊函数的例子等。
 
 根据极限的定义可知
 \[
-    \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L \Rightarrow \lim_{x\to a} f(x) = L
+    \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L 
+    \Rightarrow 
+    \lim_{x\to a} f(x) = L
 \]
 因此在处理某些初等函数的时候就不得不注意了
 \begin{example}
@@ -64,7 +78,8 @@
 $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 也\textbf{不能保证}$n$阶导函数连续。
 因此对有可导阶数有规定的情况，L'Hospital 只能应用到 $n-1$ 阶。
-另外也要注意，连续不代表可导\footnote{参考例子\ref{example-limits-and-varidic-limits-integral-2}}。
+另外也要注意，连续不代表可导
+\footnote{参考例子\ref{example-limits-and-varidic-limits-integral-2}}。
 
 参见小节\ref{general-technics-single-var-differentiation}.
 
@@ -107,18 +122,44 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 		x - \ln{(1+x)}  &\sim \frac{x^2}{2} \\
 		\arcsin{x} - x  &\sim \frac{x^3}{6} \label{rep3}\\
 		x - \arctan{x}  &\sim \frac{x^3}{3} \label{rep4}\\
-		(1+x)^\alpha-1  &\sim \alpha x
+        (1+x)^\alpha-1  &\sim \alpha x \label{rep5}
 	\end{align}
 \end{lemma}
 上述公式\eqref{rep3}和\eqref{rep4}可由\eqref{rep1}和\eqref{rep2}分别通过项的等价代换得来，
 因为他们代换后两项（加减号两边）不等价。
+公式 \ref{rep5} 在题目中可能表现为根式的形式，
+这种情况可以参考例子
+\ref{ex:limit-simplify-and-sqrt-substitution-example-1}
+和下面的例子
+
+\begin{example}
+    \label{ex:sqrt-substitution-example-2}
+    \[
+        L = \lim_{x \to 0} \dfrac{\cos 2x - \sqrt{\cos 2x}}{x^k} = a \neq 0
+    \]
+    求 $k, a$.
+
+    \cite[question 131]{w660}.
+
+    解1\footnote{我自己想到的解法，确实是一件值得高兴的事。2023年10月28日\, 10:55.}:
+    \begin{align}
+        L &= \lim_{x \to 0} \dfrac{ 1- \cos 2x + \sqrt{\cos 2x} -1 }{-x^k} \notag \\
+          &= \lim_{x \to 0} \dfrac{ \dfrac{1}{2} (2x)^2 + \sqrt{\cos 2x} - 1 }{-x^k} \notag \\ 
+          &= \lim_{x \to 0} \dfrac{ 2x^2 + \sqrt{1 - 2\sin^2 x } - 1 }{-x^k} \label{eq:rep5-expamle} \\
+          &= \lim_{x \to 0} \dfrac{ 2x^2 + \dfrac{1}{2} (-2 \sin^2 x) }{-x^k} \notag \\
+          &= \lim_{x \to 0} \dfrac{ x^2 }{-x^k} = -1 \notag
+    \end{align}
+    则 $k = 2, a = -1$.
+
+    步骤 \ref{eq:rep5-expamle} 利用了式子 \ref{rep5}.
+\end{example}
 
 \subsubsection{何时可用？}
 除了我们熟悉的式子中的\textbf{因子可以直接使用}等价无穷小代换之外，
 实际上因子中的\textbf{项}也可以。但是有条件：
 \textbf{替换后两项不能等价\footnote{相等 $\Rightarrow$ 等价，反之不成立。}。}比如：
 \[
-\lim_{x \to 0} \frac{\sin{x} - \tan{x} }{x^3} \neq 0
+    \lim_{x \to 0} \frac{\sin{x} - \tan{x} }{x^3} \neq 0
 \]
 中LHS的分子中不可以将两个项替换成$x$，因为 $x$ 显然和 $x$ 等价.
 换句话说，我们不让相加减的两个函数的 Tylor Expantion 中的第一项
@@ -127,6 +168,9 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 	\lim_{ x\to x_0 } \frac{a_1}{a_2} &\neq 1  &\Rightarrow a_1 - a_2 \sim b_1 - b_2 \\
 	\lim_{ x\to x_0 } \frac{a_1}{a_2} &\neq -1 &\Rightarrow a_1 + a_2 \sim b_1 + b_2
 \end{align}
+像是这种利用等价无穷小甚至是Tylor公式代换后，项等价的例子可以参考
+\cite[question 130]{w660}，其中官方题解首先对式子进行一种特殊的化简，
+值得参考。
 
 \subsubsection{定积分中的替换}
 \label{limit-rerepresenting-in-variable-limits-integral}
@@ -233,9 +277,10 @@ Thus,
 \end{equation*}
 
 \section{0/0型}
+\label{0-slash-0-type-limits}
 \subsection{常用方法}
 \begin{enumerate}
-	\item L'Hospital
+    \item L'Hospital \footnote{注意可导性陷阱，参见小节\ref{def-limit}.}
 	\item 等价无穷小代换 \ref{super-small}
 	\item Tylor 公式
 	\item 加减项（若上述方法均不方便）\footnote{武讲义0/0例3，三星笔记求极限通法2P10}
@@ -246,13 +291,15 @@ Thus,
 则将分母上的0因子消掉，也是一个很好的办法。
 
 加减项可参考本例：
-\begin{align*}
-	&\lim_{x \to 0} \dfrac{\arcsin{x} - \sin{x}}{\arctan{x} - \tan{x}} \\
-	= &\lim_{x \to 0} \dfrac{(\arcsin{x} -x) - (\sin{x}-x)}{(\arctan{x}-x) - (\tan{x}-x)}
-\end{align*}
-然后使用无穷小替换
-\ref{super-small}快速求解
-\footnote{结果是 $-1/2$，本题目也可使用麦克劳林级数替换}。
+\begin{example}
+    \begin{align*}
+        &\lim_{x \to 0} \dfrac{\arcsin{x} - \sin{x}}{\arctan{x} - \tan{x}} \\
+        = &\lim_{x \to 0} \dfrac{(\arcsin{x} -x) - (\sin{x}-x)}{(\arctan{x}-x) - (\tan{x}-x)}
+    \end{align*}
+    然后使用无穷小替换
+    \ref{super-small}快速求解
+    \footnote{结果是 $-1/2$，本题目也可使用麦克劳林级数替换}。
+\end{example}
 
 \subsection{原式化简}
 \begin{enumerate}
@@ -264,6 +311,7 @@ Thus,
 其中，往往在有理化过程后出现非零因子，这个时候请立刻将非零因子求出，提到式子外面。比如：
 
 \begin{example}
+    \label{ex:limit-simplify-and-sqrt-substitution-example-1}
     \begin{align*}
         &\lim_{x \to 0} \dfrac{\sqrt{1+\tan{x}} - \sqrt{1+\sin{x}}}{x \ln{(1+x)} - x^2} \\
         =&\lim_{x \to 0} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2} \cdot
@@ -289,7 +337,7 @@ Thus,
 \subsection{常用方法}
 
 \begin{enumerate}
-	\item L'Hospital
+    \item L'Hospital \footnote{当心可导陷阱，参见小节\ref{def-limit}}
 	\item “抓大头”\footnote{大题必须要写好步骤，必须要体现分母无穷大于分子}
 \end{enumerate}
 
@@ -378,9 +426,21 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 进一步就可以轻松求出 $b$.
 
 \section{无穷小阶数比较}
+
+\begin{definition}
+    In calculus, an infinitesimal is a concept that refers to an extremely small quantity, approaching zero but not quite equal to zero. It is often denoted by the symbol $dx$ or $dy$ and is used to represent the change in a variable, typically in the context of limits and derivatives.
+
+    Formally, an infinitesimal is defined as a variable that, when it tends towards zero, represents an infinitely small change in a function or a curve. It's a fundamental concept in calculus, particularly in the development of derivatives and integrals, allowing us to understand how functions change at specific points.
+
+    Infinitesimals are a foundational element of calculus and are essential for understanding rates of change and areas under curves, among other mathematical concepts.
+\end{definition}
+
+\emph{比较两个无穷小阶的问题就是求 0/0 型极限\footnote{参见小节 \ref{0-slash-0-type-limits}.}，}
+因此常用的方法就是求 0/0 型极限的常用方法。
+
 三种主要方法：
 \begin{enumerate}
-	\item L'Hospital
+    \item L'Hospital \footnote{当心可导陷阱，参见小节\ref{def-limit}}
 	\item 等价无穷小代换
 	\item Tylor 公式
 \end{enumerate}
@@ -402,6 +462,14 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 	\end{equation}
 \end{lemma}
 
+求导定阶的目的是通过求导数简化我们关系的函数，
+在实际考察中会有函数并不能简单地定阶，则应用求导定阶，
+如下例。
+
+\begin{example}
+    TODO. %TODO
+\end{example}
+
 \begin{lemma}
 	若 $f(x)$ 在 $x=0$ 的某邻域内连续，而且当 $x\to0$ 时 $f(x)$ 是 $x$的 $m$ 阶无穷小，
 	$\sigma(x)$ 是 $x$ 的 $n$ 阶无穷小，则当 $x\to0$ 时
@@ -414,8 +482,29 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 \begin{lemma}
 	低阶 + 高阶 $\sim$ 低阶
 	
-	$x \to 0, x^2+x^3=x^2$
+	$x \to 0, x^2+x^3 \sim x^2$
 \end{lemma}
+
+\begin{example}
+    把 $x \to 0^+$ 时的无穷小
+    \begin{align*}
+        \alpha &= \int_0^x \cos t^2 \mathrm dt, \\
+        \beta  &= \int_0^{x^2} \tan \sqrt{t} \mathrm dt, \\
+        \gamma &= \int_0^{\sqrt{t}} \sin t^3 \mathrm dt
+    \end{align*}
+    使排在后面的是前一个的高阶无穷小，则正确的排列方式是什么？
+    \cite[page 40, example 1]{we}.
+
+    方法三（求导定阶）
+    
+    由于
+    \[ \begin{dcases*}
+        \dfrac{\mathrm d\alpha}{\mathrm dx} = \cos x^2  \to 1 & x \mbox{的0阶无穷小}\\
+        \dfrac{\mathrm d\beta }{\mathrm dx} = 2x \tan x \sim 1  & x\mbox{的2阶无穷小}\\
+        \dfrac{\mathrm d\gamma}{\mathrm dx} = \dfrac{1}{2 \sqrt{x}} \sin x^{\frac{3}{2}} \sim \dfrac{1}{2}x & \mbox{x的1阶段无穷小}.
+    \end{dcases*}\]
+    所以，正确的排序是 $\alpha, \gamma, \beta$.
+\end{example}
 
 \section{连续定义}
 
@@ -440,6 +529,43 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
             \item 函数至少有一侧极限不存在的点
         \end{itemize}
 \end{itemize}
+
+\begin{example}
+    \[
+        f(x) = \dfrac{(x+1) | x-1 |}{e^{\frac{1}{x-2}} \ln |x|}
+    \]
+    的可去间断点的个数是多少？
+
+    \cite[page 46, pdf 57, example 4]{we}.
+
+    根据分母各因子\footnote{其中$\ln |x|$可导出两个条件，不要遗漏 $x \neq 0$ 的要求.}
+    可看出 $x = 0, x = \pm 1$ 和 $x = 2$ 为 $f(x)$ 的间断点，
+    其余处处连续。
+
+    由于
+    \[
+        \lim_{x \to 0} f(x) = 0
+    \]
+    因此 $x = 0$ 是可去间断点；
+    \begin{align*}
+        \lim_{x \to 1} f(x) &= 2e \lim_{x\to 1} \dfrac{|x - 1|}{\ln x} = 2e \lim_{x\to 1} \dfrac{|x - 1|}{x - 1} \\
+                            &= 
+                            \begin{dcases}
+                                2e & x \to 1^+ \\
+                                -2e & x \to 1^-
+                            \end{dcases}
+    \end{align*}
+    因此 $x = 1$ 为跳跃间断点；
+    \begin{align*}
+        \lim_{x \to -1} f(x) &= 2 \sqrt[3]{e} \lim_{x \to -1} \dfrac{1 + x}{\ln |x|} = 2 \sqrt[3]{e} \lim_{x \to -1} \dfrac{1}{\frac{1}{x}} \\
+                             &= 2 \sqrt[3]{e}
+    \end{align*}
+    因此 $x = -1$ 是可去间断点；
+    \begin{align*}
+        \lim_{x \to 2^+} f(x) = 0, \quad \lim_{x \to 2^-} f(x) = \infty.
+    \end{align*}
+    因此 $x = 2$ 是第二类间断点。
+\end{example}
 
 \section{例题}
 
@@ -495,7 +621,7 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
         L = \lim_{x \to 0} 
         \dfrac{\int_{x^2}^{x} \dfrac{\sin (xt)}{t} \mathrm dt }{x^2}
     \]
-    不要被极限符号吓到，题目不难发现为$0/0$ 型，
+    不要被积分\footnote{参见章节\ref{single-var-integral}}符号吓到，题目不难发现为$0/0$ 型，
     可以使用 L'Hospital 法则消灭积分符号。那么
     \[
         L = \lim_{x \to 0} \dfrac{2x \dfrac{\sin x^2}{x^2} - 3x^2 \dfrac{\sin x^3}{x^3}}{2x}
@@ -511,6 +637,4 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
     \]
     其中 $\mathrm ds = x \mathrm dt$.
 \end{example}
-
-
 

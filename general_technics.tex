@@ -206,3 +206,85 @@ $\pmb{z}=(z_1,z_2,\dots,z_n)$，有
 \[
     \sum \dfrac{f(x)}{g(x)} \neq \dfrac{\sum f(x)}{\sum g(x)}
 \]
+
+\section{对数}\label{logrithemic}
+
+\begin{theorem}
+    \begin{gather*}
+        \log_a (mn) = \log_a m + \log_a n \\
+        \log_a \left(\dfrac{m}{n}\right) = \log_a m - \log_a n \\
+        \log_a \left(m^n\right) = n \log_a m  \\
+        \log_a \left(\sqrt[n]{m}\right) = \dfrac{1}{n} \log_a m
+    \end{gather*}
+\end{theorem}
+
+在使用对数函数的时候，必要的时候不要忘记标注定义域。如
+\cite[page 76, pdf 87, example 2]{we}.
+
+\section{三角函数相关} \label{trigonometric}
+
+\begin{corollary}
+    \begin{equation}
+        \arctan x + \arctan \dfrac{1}{x} = \dfrac{\pi}{2} \quad (x > 0)
+    \end{equation}
+\end{corollary}
+
+\begin{corollary}
+    \begin{align}
+        \cos(\sin x) - \cos x &=    2 \sin \dfrac{x + \sin x}{2} \sin \dfrac{x- \sin x}{2} \label{eq:fucking-socalled-trig-formula} \\
+        \cos(\sin x) - \cos x &\sim \dfrac{1}{2} ( x + \sin x )( x - \sin x ) 
+    \end{align}
+\end{corollary}
+
+To convert the expression $\cos(\sin(x)) - \cos(x)$ 
+into a form that contains only linear combinations of 
+$\sin(x)$ or $\cos(x)$, 
+you can use the following trigonometric identity:
+
+\begin{theorem}
+    \label{thm:a-magic-theorem-which-I-dont-know-its-name-about-trig}
+    \begin{equation*}
+        \cos(a) - \cos(b) = -2 \sin\left(\frac{a + b}{2}\right) \sin\left(\frac{a - b}{2}\right)
+    \end{equation*}
+\end{theorem}
+
+In your case, let $a = \sin(x)$ and $b = x$. 
+Applying this identity to your expression, we get:
+
+\begin{equation*}
+    \cos(\sin(x)) - \cos(x) = -2 \sin\frac{\sin(x) + x}{2} \sin\frac{\sin(x) - x}{2}
+\end{equation*}
+
+Now, the expression only contains linear combinations of 
+$\sin(x)$ and $\cos(x)$.
+
+\begin{figure}
+    \centering
+    \label{fig:Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine}
+    \includegraphics[width=0.5\textwidth]{figure/Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine.png}
+    \caption{Diagram illustrating sum to product identities for sine and cosine.}
+\end{figure}
+
+Figure \ref{fig;Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine} 
+illustrating sum-to-product identities for sine and cosine. 
+The blue right-angled triangle has angle $\theta$ and the 
+red right-angled triangle has angle $\varphi$. 
+Both have a hypotenuse of length 1. Auxiliary angles, here called
+$p$ and $q$, are constructed such that $p = (\theta + \varphi) / 2$ 
+and $q = (\theta - \varphi) / 2$. Therefore, $\theta = p + q$
+and $\varphi = p - q$.
+This allows the two congruent purple-outline triangles
+$AFG$ and $FCE$ to be constructed, 
+each with hypotenuse $\cos q$ and angle $p$ at their base.
+The sum of the heights of the red and blue triangles is
+$\sin \theta + \sin \varphi$  and this is equal to 
+twice the height of one purple triangle, 
+i.e. $2 \sin p \cos q$. Writing $p$ and $q$ in that
+equation in terms of $\theta$ and $\varphi$ yields 
+a sum-to-product identity for sine:
+\[
+    \sin \theta + \sin \varphi = 2 \sin \dfrac{\theta + \varphi}{2} \cos \dfrac{\theta - \varphi}{2}
+\]
+Similarly, the sum of the widths of 
+the red and blue triangles yields the corresponding identity for cosine.
+

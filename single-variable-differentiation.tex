@@ -44,17 +44,18 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 因为导数就是用极限来定义的，因此如果能将要求的极限式子变化为导数的定义形式
 则可以应用求导的方法在求极限上。题目无非就是凑导数定义式。
 
-比如
-\[
-	f(-1) = 1, f'(-1) = 2, \mbox{求} \lim_{x \to 1 } \dfrac{f(2-3x) - 1}{x-1}
-\]
-首先观察，分子出现了一个 $-1$，恰好就是 $f(-1)$ ，分母不符合要求，但我们可以乘上一个 factor
-凑出我们想要的式子：
-\begin{align*}
-	\mbox{LHS} &= \lim_{x \to 1 } \dfrac{f(-1+\overbrace{3(1-x)}^{\Delta \to 0}) -
-		 f(-1)}{\underbrace{3(1-x)}_{\Delta \to 0}} \cdot \dfrac{3(1-x)}{x-1} \\
-		 &= f'(-1) \cdot \lim_{x \to 1} \dfrac{3(1-x)}{x-1} = -6
-\end{align*}
+\begin{example}
+    \[
+        f(-1) = 1, f'(-1) = 2, \, \mbox{求} \lim_{x \to 1 } \dfrac{f(2-3x) - 1}{x-1}
+    \]
+    首先观察，分子出现了一个 $-1$，恰好就是 $f(-1)$ ，分母不符合要求，但我们可以乘上一个 factor
+    凑出我们想要的式子：
+    \begin{align*}
+        \mbox{LHS} &= \lim_{x \to 1 } \dfrac{f(-1+\overbrace{3(1-x)}^{\Delta \to 0}) -
+             f(-1)}{\underbrace{3(1-x)}_{\Delta \to 0}} \cdot \dfrac{3(1-x)}{x-1} \\
+             &= f'(-1) \cdot \lim_{x \to 1} \dfrac{3(1-x)}{x-1} = -6
+    \end{align*}
+\end{example}
 本题还可以按照题目给的条件：$f(-1) = 1, f'(-1) = 2$ 直接给出一个满足条件的简单函数并带入求值,
 比如 $f(x) = 2x+3$。
 适合选择填空。
@@ -70,8 +71,6 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 
 \section{导数的几何意义}
 
-略。
-
 \subsection{求切线}
 
 求切线就注意一点，函数值和该点导数都应该相同，不能仅导数相同。
@@ -80,15 +79,70 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 
 \subsection{函数奇偶性辅助解题}
 
-比如
+比如\footnote{对数运算法则请参考节\ref{logrithemic}.}
 \[
     f(x) = \ln(x+\sqrt{1+x^2})
 \]
 求 $f''(x)$.
 这种题目直接使用符合函数求导法则不是很方便，
 在做题之前可先观察函数类型，可以发现本函数
-是\textbf{奇函数}，因此麦克劳林公式展开中，没有偶次导数项。
+是\textbf{奇函数}，因此麦克劳林公式展开\footnote{参考小节\ref{tylor}}中，没有偶次导数项。
 因此二阶导数为 0.
+
+Tylor 公式的一般形式：
+\begin{equation*}
+    f(x)=\sum_{i=0}^{n}{\frac{f^{(i)}(x_0)}{i!}(x-x_0)^i}+R_n(x)
+\end{equation*}
+
+The reason the second-order derivative at the origin point of an odd function is typically 0 relates to the symmetry properties of odd functions. An odd function is one for which $f(-x) = -f(x)$ for all $x$ in its domain. This property implies that the function is symmetric with respect to the origin.
+
+\subsubsection{Examples of odd functions and their second-order derivatives at the origin}
+\begin{enumerate}
+    \item The Cubic Function ($f(x) = x^3$):
+        \begin{itemize}
+            \item $f(x) = x^3$ is an odd function.
+            \item The first derivative is $f'(x) = 3x^2$, which is an even function.
+            \item The second derivative is $f''(x) = 6x$, which evaluated at the origin ($x = 0$) is $f''(0) = 0$.
+        \end{itemize}
+    \item Sine Function ($f(x) = sin(x)$):
+        \begin{itemize}
+            \item The sine function, $\sin(x)$, is an odd function.
+            \item The first derivative is $f'(x) = \cos(x)$, which is an even function.
+            \item The second derivative is $f''(x) = -\sin(x)$, and when evaluated at the origin ($x = 0$), it's $f''(0) = 0$.
+        \end{itemize}
+    \item Linear Odd Function ($f(x) = 2x$):
+        \begin{itemize}
+            \item A simple linear function like $f(x) = 2x$ is an odd function.
+            \item The first derivative is a constant, $f'(x) = 2$, which is even.
+            \item The second derivative is $f''(x) = 0$, and when evaluated at the origin, it's $f''(0) = 0$.
+        \end{itemize}
+    \item Inverse Cube Function ($f(x) = 1/x^3$):
+        \begin{itemize}
+            \item The function $f(x) = 1/x^3$ is an odd function for $x \neq 0$.
+            \item The first derivative is $f'(x) = -3/x^4$, which is even.
+            \item The second derivative is $f''(x) = 12/x^5$, and at $x = 0$, it's not defined (as division by zero is not allowed).
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Maclaurin series expansions for the mentioned odd functions}
+
+\begin{enumerate}
+    \item Cubic Function ($f(x) = x^3$):
+       The Maclaurin expansion for this function is:
+       $$f(x) = x^3$$
+
+    \item Sine Function ($f(x) = \sin(x)$):
+       The Maclaurin expansion for the sine function is:
+       $$f(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots$$
+
+    \item Linear Odd Function ($f(x) = 2x$):
+       The Maclaurin expansion for this linear function is:
+       $$f(x) = 2x$$
+
+    \item Inverse Cube Function ($f(x) = 1/x^3$):
+       Since the Maclaurin expansion of the inverse cube function is not defined at $x = 0$ (division by zero), I recommend not using a Maclaurin expansion for this case.
+\end{enumerate}
+
 
 \subsection{链式法则以外的方法}
 
@@ -103,7 +157,7 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 
 比如 设
 \[
-    \phi (x) = 
+    g(x) = 
     \left\{
         \begin{array}{rl}
             x^3 \sin \frac{1}{x} &, x \neq 0 \\
@@ -203,6 +257,7 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
         \phi (y) = \dfrac{\mbox{d}x}{\mbox{d}y} = \dfrac{1}{\dfrac{\mbox{d}y}{\mbox{d}x}}
                    = \dfrac{1}{f'(x)}
     \end{equation}
+    其中$\phi(y)$ 是 $f(x)$ 的反函数。
 \end{lemma}
 
 \section{高阶导数}
@@ -234,7 +289,7 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 如果是，这个方法就很有用。
 
 另外，还可以使用Tylor 展开来解决求某点的值的问题。
-各典型函数的展开式参见 \ref{tylor}.
+各典型函数的展开式参见小节 \ref{tylor}.
 具体操作步骤请参考下面的例子：
 \begin{example}
     求值：$f^{(5)}(0), f(x) = x^3 e^x$
@@ -272,8 +327,8 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
 题目 
 \begin{itemize}
 
-    \item   \cite[page 70, pdf 81, 例1]{we} 和 
-            \cite[page 75, pdf 86, 例6]{we}利用函数是偶函数，
+    \item   \cite[page 70, pdf 81, 例1]{we}\footnote{有关变上限积分的导数请参见定理\ref{thm:derivative-of-variadict-integral}} 和 
+            \cite[page 75, pdf 86, 例5]{we}利用函数是偶函数，
             因此图像对称，从而你确定第二条渐近线。
 
     \item   题目 \cite[page 77, pdf 88, 例5, 例6]{we} 
@@ -367,7 +422,7 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
     若在\textbf{区间 $I$} 上 $f^{(n)}(x) \neq 0$ 
     则方程 $f(x)$ \textbf{最多有} $n$ 个实数根。
 \end{lemma}
-适罗尔定理推论适合求解至多有多少或者有且仅有多少根的问题。
+适罗尔定理推论适合求解\emph{至多有多少或者有且仅有多少根的问题}。
 后半部分就使用了罗尔定理的推论保证了至多有多少根.
 至于区间 $I$ 是开是闭，主要看题干，提干是开那就开，是闭那就闭。
 
@@ -384,7 +439,22 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
         3 roots.
         In other words, there're exactly 3 roots.
     \end{proof}
+    另外，本例并未使用直接法求解，而是使用了投机举例子的策略，加快解题速度。
 \end{example}
+
+上面的例子中 $f(x)$ 的各阶导数如图
+\ref{fig:3-orders-dervatives-of-2-to-x---x-to2---1} 
+所示，个人认为罗尔定理推论的条件中 
+要求的导数是从一阶导开始，阶数越来越大，
+到第一个出现导函数图像不穿过 $x$ 轴\footnote{包括在 $x$ 轴上方或下方的}
+的那个导数的阶，即为函数可有的最多实数根。
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/3-orders-dervatives-of-2-to-x---x-to2---1.png}
+    \caption{The first, second and the third-ordered derivtives figures of $f(x)$ in Example \ref{ex:special-val-substitution}}
+    \label{fig:3-orders-dervatives-of-2-to-x---x-to2---1}
+\end{figure}
 
 这种题型也比较喜欢和参数一起出，
 这种情况应当先分离参数,比如\cite[page 77, pdf 88, 例5]{we}。
@@ -400,8 +470,7 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
 可以参考 \cite[page 71, pdf 82, 例2]{we}.
 此类问题可先对等式两边求导，之后 let $y' = 0$ 解出 $y$，
 针对不同的 y 的解，结合题目要求进行验证排除不符合要求的选项。
-之后再将符合要求的$y$ 带入原方程中, Thus, you will get an
-equation which contains only one variable, namely $x$.
+之后再将符合要求的$y$ 带入原方程中, 这样就可以得到一个只含有一个参数$x$的函数了。
 对于任何一种求极值点的问题，\textbf{都要应用其充分条件进行验证}。
 
 其中，上文提到的各充分条件和必要条件请参考
@@ -439,7 +508,7 @@ equation which contains only one variable, namely $x$.
         \end{itemize}
     \item $F\left[\xi, f^{(n)}(\xi)\right] \leq 0, (n \leq 2)$.
         \begin{itemize}
-            \item Tylor\ref{tylor} 展开 with Lagrange 余项, 
+            \item Tylor\ref{tylor} 展开（Lagrange 余项）, 
                   $x_0$ 选择函数值导数值提供信息多的点.
         \end{itemize}
 \end{itemize}
