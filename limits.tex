@@ -105,6 +105,7 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 这部分等价无穷小可以通过他们的函数图像辅以记忆，
 由于等价无穷小是在讨论无限接近于0点的函数状态，
 因此要格外关注函数在0点附近性态。
+
 \begin{lemma}[等价无穷小]
 	\begin{align}
 		x&\sim\sin{x}\sim\tan{x} \\ 
@@ -113,7 +114,8 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 	\end{align}
 \end{lemma}
 
-还有一组常用公式是从 Maclaurin's series 推导而来的，作为\textbf{常用结论}使用：
+还有一组常用公式是从 Maclaurin's series 推导而来的，
+作为\textbf{常用结论}使用：
 \begin{lemma}[等价无穷小]
 	\begin{align}
 		x - \sin{x}     &\sim \frac{x^3}{6} \label{rep1} \\
@@ -125,7 +127,8 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
         (1+x)^\alpha-1  &\sim \alpha x \label{rep5}
 	\end{align}
 \end{lemma}
-上述公式\eqref{rep3}和\eqref{rep4}可由\eqref{rep1}和\eqref{rep2}分别通过项的等价代换得来，
+上述公式\eqref{rep3}和\eqref{rep4}可由
+\eqref{rep1}和\eqref{rep2}分别通过项的等价代换得来，
 因为他们代换后两项（加减号两边）不等价。
 公式 \ref{rep5} 在题目中可能表现为根式的形式，
 这种情况可以参考例子
@@ -155,6 +158,7 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 \end{example}
 
 \subsubsection{何时可用？}
+
 除了我们熟悉的式子中的\textbf{因子可以直接使用}等价无穷小代换之外，
 实际上因子中的\textbf{项}也可以。但是有条件：
 \textbf{替换后两项不能等价\footnote{相等 $\Rightarrow$ 等价，反之不成立。}。}比如：
@@ -168,14 +172,108 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 	\lim_{ x\to x_0 } \frac{a_1}{a_2} &\neq 1  &\Rightarrow a_1 - a_2 \sim b_1 - b_2 \\
 	\lim_{ x\to x_0 } \frac{a_1}{a_2} &\neq -1 &\Rightarrow a_1 + a_2 \sim b_1 + b_2
 \end{align}
-像是这种利用等价无穷小甚至是Tylor公式代换后，项等价的例子可以参考
+这种利用等价无穷小甚至是Tylor公式代换后，项等价的例子可以参考
 \cite[question 130]{w660}，其中官方题解首先对式子进行一种特殊的化简，
 值得参考。
+若替换的因子或者项出现在分式中，要注意需要分子分母上下同阶。
+否则不能替换，请参考例子\ref{ex:super-small-wrong-usage-example-1}。
+
+另外，\emph{无穷小代换本质上是 Tylor 公式
+\footnote{参见小节\ref{tylor}}的一个化简的应用\footnote{令人反感的应试的产物！}。}
+在加减式子中利用无穷小代换是需要格外注意不能出现
+两项等价抵消的，这种抵消的现象是错误。不同的函数
+的Tylor公式展开也许第一项都是 $x$，但是后续的项
+却不同。然而等价无穷小替换却只关心到了第一项。
+在使用等价无穷小代换的过程中如果感到不放心，
+可以查看一下对应的Tylor展开式。
+
+\begin{example}
+    \label{ex:super-small-wrong-usage-example-1}
+    设
+    \[
+        L_1 = \lim_{x \to 0} \dfrac{\sin 6x - (\sin x) f(x)}{x^3} = 0
+    \]
+    求值 
+    \[
+        L_2 = \lim_{x \to 0} 
+        \dfrac{
+            \overbrace{
+                6 - f(x)
+            }^{\mathclap{\mbox{需要在$L_1$的变形中体现这个式子}}}
+        }{x^2}
+    \]
+
+    \cite[question 135]{we}.
+
+    本题目不能使用等价无穷小代换（如$\sin 6x \sim 6x$），
+    纵使分子在替换完后两个项不等价。
+    原因是分子分母不同阶，分母是3阶而分子是1阶。
+    所谓的等价无穷小代换只是Tylor展开
+    \footnote{请参见小节\ref{tylor}}的第一项
+    \footnote{毫无疑问是1阶的，那么请问展开的其他项的系数去哪里了?}。
+    如果分子分母都是1阶的，则替换是没有问题的。
+    如果说我们就是想等价无穷小替换，则需要将分子的阶数升高
+    \begin{equation}
+        \label{eq:3-order-super-small-substitution-instance-1}   
+        x- \sin x \sim \frac{1}{6} x^3
+    \end{equation}
+    那么
+    \begin{align*}
+        L_1 &= \lim_{x \to 0} 
+                \dfrac{
+                    \sin(6x) 
+                    \overbrace{
+                        -6x + 6x
+                    }^{\mathclap{\mbox{加减项}}}-(\sin x)f(x)
+                }{x^3} \\[1em]
+            &= \dfrac{
+                \splitfrac{
+                    \sin(6x) -6x +6x 
+                }{
+                    + \underbrace{
+                        6 \sin x- (\sin x)f(x)
+                    }_{\mathclap{\mbox{为了凑$6-f(x)$}} } - 6 \sin x
+                }
+            }{x^3} = L_3 \\[1em]
+            &=  \lim_{x \to 0} 
+                \dfrac{\overbrace{\sin 6x - 6x}^{\mathclap{
+                    \mbox{
+                        与分母阶数保持相同
+                    }
+                }}}{x^3} 
+                +  \lim_{x \to 0} \dfrac{6x - \sin 6x}{x^3} \\
+            &\quad + \underbrace{\lim_{x \to 0} \dfrac{(6 - f(x)) \sin x}{x^3}}_{L_2} \\
+            &= 0 = -36 + 1 + L_2
+    \end{align*}
+    解得 $L_2 = 35$.
+
+    660给出两个解答方案：
+    \begin{align*}
+        L_3 &= \underbrace{\lim_{x \to 0} \dfrac{\sin 6x - 6 \sin x}{x^3}}_{A} + 
+               \lim_{x \to 0} \left[\dfrac{\sin x}{x} \cdot \dfrac{2 - f(x)}{x^2}\right] \\
+            &= 0
+    \end{align*}
+    则有
+    \begin{equation}
+        \label{eq:when-super-small-substitution-could-be-used-rep-1}
+        L_2 = -A = \lim_{x \to 0} \dfrac{6 \sin x - \sin 6x}{x^3}
+    \end{equation}
+    \begin{itemize}
+        \item 方法一，
+            直接在式子
+            \ref{eq:when-super-small-substitution-could-be-used-rep-1} 
+            上使用 L'Hospital 法则；
+        \item 方法二，
+            用Tylor公式
+            \footnote{也可以避开分子分母不同阶的陷阱。参见小节\ref{tylor}。}。
+    \end{itemize}
+\end{example}
 
 \subsubsection{定积分中的替换}
 \label{limit-rerepresenting-in-variable-limits-integral}
-Suppose $f(x)$ and $g(x)$ are continuous on 某邻域，and $\lim_{x \to 0} \frac{f(x)}{g(x)} = 1$
-Thus, 
+设置 $f(x)$ 和 $g(x)$ 在某邻域连续，
+并且$\lim_{x \to 0} \frac{f(x)}{g(x)} = 1$
+那么
 \begin{equation}
 	\int_0^{x} f(t) dt \sim \int_0^{x} g(t) dt
 \end{equation}
@@ -195,13 +293,15 @@ Thus,
 
 \subsection{Lagrange Mean Value Theorem} \label{lagrange-limit}
 当极限式子中某部分出现两个函数相减的形式，就可使用这种方法化简。
-其中析出的一个 $\xi$ 往往可以通过极限趋向来确定，作为非零因子\ref{non-zero-factor}算出。
+其中析出的一个 $\xi$ 往往可以通过极限趋向来确定，
+作为非零因子\ref{non-zero-factor}算出。
 
 当 $x\to0$的时候，如果析出的函数导数是 $e^{\xi} = 1$ 那么，不难理解有
 \begin{equation}
 	e^{\alpha(x)} - e^{\beta(x)} \sim \alpha(x) - \beta(x)
 \end{equation}
-其中 $\alpha(x) \to 0$ 且 $\beta(x) \to 0$，但是这个结论\textbf{考研不能直接使用!}
+其中 $\alpha(x) \to 0$ 且 $\beta(x) \to 0$，
+但是这个结论\textbf{考研不能直接使用!}
 
 \section{其他重要结论}
 \begin{lemma}
@@ -234,47 +334,111 @@ Thus,
 \label{use-squeeze-or-definition-of-integral}
 
 观察数列求和式子中每一项的分母，找到其中的\textbf{变化部分和不变部分}。
-\begin{equation} \label{eq:example-squeeze}
-	\lim_{n \to 0} \left[ 
-	\dfrac{n}{n^2+1} + \dfrac{n}{n^2+2} + \cdots + \dfrac{n}{n^2+n} 
-	\right]  
-\end{equation}
-\begin{equation} \label{eq:example-defination-int}
-	\lim_{n \to 0} \left[ 
-	\dfrac{n}{n^2+1^2} + \dfrac{n}{n^2+2^2} + \cdots + \dfrac{n}{n^2+n^2} 
-	\right]  
-\end{equation}
-本例子中\ref{eq:example-squeeze}各项分母中的两项里面
-\textbf{不变的部分为$n^2$，变化的部分是$1,2,3,4,\cdots$}.
-两部分具有\textbf{不同数量级}，这种情况使用\textbf{Squeeze Theorem}。
-
-本例子中\ref{eq:example-defination-int}各项分母中的两项里面
-\textbf{不变的部分为$n^2$，变化的部分是$1^2,2^2,3^2,4^2,\cdots$}.
-两部分具有\textbf{相同数量级}，
-这种情况使用\textbf{定积分定义}
-(
-    Definition\ref{defination-definite-integral}, 
-    Equation\ref{eq:the-other-definition-definite-integral}
-)。
-
-那么针对使用定积分解决的问题，
-我们接下来提一个因子
+两部分若具有不同的数量级则使用 Squeeze Theorem；
+两部分若具有相同的数量级则使用 定积分定义
 \footnote{
-    被武忠祥老师称为“可爱因子”, 事实上由 
-    $\Delta x$变形而来, 
-    参见 Equation \ref{eq:the-other-definition-definite-integral}
-}，这样可构造出黎曼和定积分定义：
-\begin{equation*}
-	\lim_{n \to 0} \dfrac{1}{n} \left[ 
-	\dfrac{1}{1+\left(\dfrac{1}{n}\right)^2} + 
-	\dfrac{1}{1+\left(\dfrac{2}{n}\right)^2} + \cdots + 
-	\dfrac{1}{1+\left(\dfrac{n}{n}\right)^2}
-	\right]  
-\end{equation*}
-这样 $f(x) = \dfrac{1}{1+x^2}$
-\begin{equation*}
-	\mbox{LHS} = \int_{0}^{1} \dfrac{1}{1+x^2} dx = \pi / 4
-\end{equation*}
+    参见 Definition\ref{defination-definite-integral},
+    和 Equation\ref{eq:the-other-definition-definite-integral}.
+}。
+
+\begin{example}
+    \begin{equation} \label{eq:example-squeeze}
+        \lim_{n \to 0} \left[ 
+        \dfrac{n}{n^2+1} + \dfrac{n}{n^2+2} + \cdots + \dfrac{n}{n^2+n} 
+        \right]  
+    \end{equation}
+    \begin{equation} \label{eq:example-defination-int}
+        \lim_{n \to 0} \left[ 
+        \dfrac{n}{n^2+1^2} + \dfrac{n}{n^2+2^2} + \cdots + \dfrac{n}{n^2+n^2} 
+        \right]  
+    \end{equation}
+    本例子中\ref{eq:example-squeeze}各项分母中的两项里面
+    \textbf{不变的部分为$n^2$，变化的部分是$1,2,3,4,\cdots$}.
+    两部分具有\textbf{不同数量级}，这种情况使用\textbf{Squeeze Theorem}。
+
+    本例子中\ref{eq:example-defination-int}各项分母中的两项里面
+    \textbf{不变的部分为$n^2$，变化的部分是$1^2,2^2,3^2,4^2,\cdots$}.
+    两部分具有\textbf{相同数量级}，
+    这种情况使用\textbf{定积分定义}
+
+    那么针对使用定积分解决的问题，
+    我们接下来提一个因子
+    \footnote{
+        被武忠祥老师称为“可爱因子”, 事实上由 
+        $\Delta x$变形而来, 
+        参见 Equation \ref{eq:the-other-definition-definite-integral}
+    }，这样可构造出黎曼和定积分定义：
+    \begin{equation*}
+        \lim_{n \to 0} \dfrac{1}{n} \left[ 
+        \dfrac{1}{1+\left(\dfrac{1}{n}\right)^2} + 
+        \dfrac{1}{1+\left(\dfrac{2}{n}\right)^2} + \cdots + 
+        \dfrac{1}{1+\left(\dfrac{n}{n}\right)^2}
+        \right]  
+    \end{equation*}
+    这样 $f(x) = \dfrac{1}{1+x^2}$
+    \begin{equation*}
+        \mbox{LHS} = \int_{0}^{1} \dfrac{1}{1+x^2} dx = \pi / 4
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    \label{ex:squeeze-theorm-example-1}
+    \begin{align*}
+        &\splitfrac{
+            \lim_{n \to \infty} \left(
+            \dfrac{1}{n^2 + n + 1} + 
+            \dfrac{2}{n^2 + n + 2} + 
+            \right.
+        }{
+            \left.
+            \dfrac{3}{n^2 + n + 3} + 
+            \cdots + 
+            \dfrac{n}{n^2 + n + n}
+            \right)
+        } \\
+        = &\lim_{n \to \infty} \sum_{i = 1}^n \dfrac{i}{n^2 + n + i}
+    \end{align*}
+
+    \cite[question 137]{w660}.
+    
+    因为   
+    \begin{equation}
+        \label{eq:inequality-squeeze-example-1}
+        \sum_{i = 1}^{n} \dfrac{i}{n^2 + n + n} \leq 
+        \sum_{i = 1}^{n} \dfrac{i}{n^2 + n + i} \leq 
+        \sum_{i = 1}^{n} \dfrac{i}{n^2 + n + 1}
+    \end{equation}
+    所以
+    \[
+        \dfrac{\sum_{i = 1}^n i}{n^2 + n + n} \leq 
+        \sum_{i = 1}^{n} \dfrac{i}{n^2 + n + i} \leq 
+        \dfrac{\sum_{i = 1}^n i}{n^2 + n + 1}
+    \]
+    而
+    \begin{align*}
+        &\lim_{n \to \infty} \dfrac{\sum_{i = 1}^n i}{n^2 + n + n} 
+        =\lim_{n \to \infty} \dfrac{\frac{1}{2} n(n + 1)}{n^2 + n +n} 
+        =\dfrac{1}{2}\\
+        &\lim_{n \to \infty} \dfrac{\sum_{i = 1}^n i}{n^2 + n + 1} 
+        =\lim_{n \to \infty} \dfrac{\frac{1}{2} n(n + 1)}{n^2 + n +1} 
+        =\dfrac{1}{2}
+    \end{align*}
+    由 Squeeze Theorem, $\text{LHS} = 1/2$.
+\end{example}
+
+\subsection{Squeeze Theorem 的放缩法}
+
+三步走策略\footnote{引用自\url{https://zhuanlan.zhihu.com/p/596173443}}：
+\begin{enumerate}
+    \item 写巨算符\footnote{参见小节\ref{giant-operator}}求和的形式
+    \item 找出影响最小的项
+    \item 对这个项进行放缩
+\end{enumerate}
+
+例子 \ref{ex:squeeze-theorm-example-1} 
+中的所谓影响最小的项就是\emph{分母中的}$i$，
+对该项进行放缩，选取原式子中该项位置最大和最小值，
+则有步骤（不等式）\ref{eq:inequality-squeeze-example-1} 两个。
 
 \section{0/0型}
 \label{0-slash-0-type-limits}
@@ -283,7 +447,8 @@ Thus,
     \item L'Hospital \footnote{注意可导性陷阱，参见小节\ref{def-limit}.}
 	\item 等价无穷小代换 \ref{super-small}
 	\item Tylor 公式
-	\item 加减项（若上述方法均不方便）\footnote{武讲义0/0例3，三星笔记求极限通法2P10}
+	\item 加减项（若上述方法均不方便）
+        \footnote{武讲义0/0例3，三星笔记求极限通法2P10}
 \end{enumerate}
 
 这种类型的极限之所以不好求，
@@ -308,17 +473,20 @@ Thus,
 	\item 变量代换
 \end{enumerate}
 
-其中，往往在有理化过程后出现非零因子，这个时候请立刻将非零因子求出，提到式子外面。比如：
+其中，往往在有理化过程后出现非零因子，这个时候请立刻将非零因子求出，
+提到式子外面。比如：
 
 \begin{example}
     \label{ex:limit-simplify-and-sqrt-substitution-example-1}
+
     \begin{align*}
         &\lim_{x \to 0} \dfrac{\sqrt{1+\tan{x}} - \sqrt{1+\sin{x}}}{x \ln{(1+x)} - x^2} \\
         =&\lim_{x \to 0} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2} \cdot
         \underbrace{\dfrac{1}{\sqrt{1+\tan{x}} + \sqrt{1+\sin{x}}}}_{\mbox{非零因子}}\\
         =&\dfrac{1}{2} \dfrac{\tan{x} - \sin{x}}{x \ln{(1+x)} - x^2}
     \end{align*}
-    例题选自武忠祥强化课程，本题目接下来可以通过\textbf{拉格朗日中值定理}\footnote{参考\ref{thm:lagrange}}来求解。
+    例题选自武忠祥强化课程，本题目接下来可以通过
+    \textbf{拉格朗日中值定理}\footnote{参考\ref{thm:lagrange}}来求解。
     详情请参考求极限通法2 三星笔记。
 
     本题分子里面含有根号，实际上也就是开 $1/2$ 次方，这种情况还可以构造
@@ -338,7 +506,8 @@ Thus,
 
 \begin{enumerate}
     \item L'Hospital \footnote{当心可导陷阱，参见小节\ref{def-limit}}
-	\item “抓大头”\footnote{大题必须要写好步骤，必须要体现分母无穷大于分子}
+	\item “抓大头”
+        \footnote{大题必须要写好步骤，必须要体现分母无穷大于分子}
 \end{enumerate}
 
 \section{1 to Infinity}
@@ -373,16 +542,16 @@ Thus,
 
     令 $t = 1/n$，有 $t \to 0$.
     \begin{align*}
-        L &= \lim_{t \to 0} {f(t)}^{\dfrac{t}{1 - \cos t}} \\
-          &= \lim_{t \to 0} {f(t)}^{\dfrac{t}{\frac{1}{2} t^2}} \\
-          &= \lim_{t \to 0} {f(t)}^{\frac{2}{t}} \\
-          &= \lim_{t \to 0} {[1 + (f(t) - 1)]}^{\frac{2}{t}} \\
+        L &= \lim_{t \to 0} {f(t)}^{\dfrac{t}{1 - \cos t}} 
+          = \lim_{t \to 0} {f(t)}^{\dfrac{t}{\frac{1}{2} t^2}}\\
+          &= \lim_{t \to 0} {f(t)}^{\frac{2}{t}} 
+          = \lim_{t \to 0} {[1 + (f(t) - 1)]}^{\frac{2}{t}}
     \end{align*}
     有（\textbf{典型错误!}）
     \begin{align}
         &\lim_{t \to 0} (1+f(t)) \frac{2}{t} \notag \\
-        = &2\lim_{t \to 0} \dfrac{1+ f(t)}{t} \notag \\
-        = &2\lim_{t \to 0} {f'(t)} \label{eq:example-L-Hospital-illegal-usage}  \\
+        = &2\lim_{t \to 0} \dfrac{1+ f(t)}{t} 
+        = 2\lim_{t \to 0} {f'(t)} \label{eq:example-L-Hospital-illegal-usage}  \\
         = &6 \notag
     \end{align}
     所以
@@ -392,8 +561,8 @@ Thus,
 \end{example}
 
 上面的错误例子中步骤(\ref{eq:example-L-Hospital-illegal-usage})使用
-L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且给出了该点处导数值。
-但给出的条件并不符合导数的定义
+L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，
+并且给出了该点处导数值。 但给出的条件并不符合导数的定义
 \footnote{参见 Definition\ref{def:single-order-derivative}.}
 对极限存在的要求，仅仅给出某一点处导数值并不能说明该点临域函数有定义。
 
@@ -428,14 +597,28 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 \section{无穷小阶数比较}
 
 \begin{definition}
-    In calculus, an infinitesimal is a concept that refers to an extremely small quantity, approaching zero but not quite equal to zero. It is often denoted by the symbol $dx$ or $dy$ and is used to represent the change in a variable, typically in the context of limits and derivatives.
+    In calculus, an infinitesimal is a concept that refers 
+    to an extremely small quantity, approaching zero 
+    but not quite equal to zero. It is often denoted 
+    by the symbol $dx$ or $dy$ and is used to represent 
+    the change in a variable, typically in the context of 
+    limits and derivatives.
 
-    Formally, an infinitesimal is defined as a variable that, when it tends towards zero, represents an infinitely small change in a function or a curve. It's a fundamental concept in calculus, particularly in the development of derivatives and integrals, allowing us to understand how functions change at specific points.
+    Formally, an infinitesimal is defined as a variable that, 
+    when it tends towards zero, represents an infinitely 
+    small change in a function or a curve. 
+    It's a fundamental concept in calculus, 
+    particularly in the development of derivatives and integrals, 
+    allowing us to understand how functions change at specific points.
 
-    Infinitesimals are a foundational element of calculus and are essential for understanding rates of change and areas under curves, among other mathematical concepts.
+    Infinitesimals are a foundational element of calculus and 
+    are essential for understanding rates of 
+    change and areas under curves, among other mathematical concepts.
 \end{definition}
 
-\emph{比较两个无穷小阶的问题就是求 0/0 型极限\footnote{参见小节 \ref{0-slash-0-type-limits}.}，}
+\emph{比较两个无穷小阶的问题就是求 0/0 型极限
+    \footnote{参见小节 \ref{0-slash-0-type-limits}.}，
+}
 因此常用的方法就是求 0/0 型极限的常用方法。
 
 三种主要方法：
@@ -455,10 +638,13 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 计算这个极限，看结果是 $\infty, 0$还是$c$。 
 
 \begin{lemma}[L'Hospital求导定阶]
-	若 $x \to 0$ 时 $f(x)$ 是无穷小量，且 $f'(x)$ 是 $x$ 的 $k(k>0)$ 阶无穷小，
+	若 $x \to 0$ 时 $f(x)$ 是无穷小量，
+    且 $f'(x)$ 是 $x$ 的 $k(k>0)$ 阶无穷小，
 	则 $f(x)$ 是 $k+1$ 阶无穷小。即
 	\begin{equation}
-		\lim_{x \to 0} \dfrac{f(x)}{x^{n+1}} = \lim_{x \to 0} \dfrac{f'(x)}{(n+1)x^{n}} \neq 0
+		\lim_{x \to 0} \dfrac{f(x)}{x^{n+1}} 
+        = 
+        \lim_{x \to 0} \dfrac{f'(x)}{(n+1)x^{n}} \neq 0
 	\end{equation}
 \end{lemma}
 
@@ -471,7 +657,8 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 \end{example}
 
 \begin{lemma}
-	若 $f(x)$ 在 $x=0$ 的某邻域内连续，而且当 $x\to0$ 时 $f(x)$ 是 $x$的 $m$ 阶无穷小，
+	若 $f(x)$ 在 $x=0$ 的某邻域内连续，
+    而且当 $x\to0$ 时 $f(x)$ 是 $x$的 $m$ 阶无穷小，
 	$\sigma(x)$ 是 $x$ 的 $n$ 阶无穷小，则当 $x\to0$ 时
 	\begin{equation*}
 		F(x) = \int_{0}^{\sigma(x)} f(t) dt
@@ -511,11 +698,13 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 \begin{definition}
 	函数某点的极限值和函数值相等，称该函数在该点连续。
 \end{definition}
-当然也有左右连续，将上述定义中的极限值分别换成左/右极限值，则左右连续的定义易知。
+当然也有左右连续，将上述定义中的极限值分别换成左/右极限值，
+则左右连续的定义易知。
 
 \section{间断点分类问题}
-一般这种题型要求\textbf{讨论}间断点的类型，则需要写下明确的间断点的位置。
-并且对每个间断点的类型进行讨论，这种讨论必须要对间断点两边分别求极限才可行。
+一般这种题型要求\textbf{讨论}间断点的类型，
+则需要写下明确的间断点的位置。 并且对每个间断点的类型进行讨论，
+这种讨论必须要对间断点两边分别求极限才可行。
 或者那种比较容易判断的\textbf{可去}间断点，则直接求极限。
 
 \begin{itemize}
@@ -538,7 +727,8 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，并且�
 
     \cite[page 46, pdf 57, example 4]{we}.
 
-    根据分母各因子\footnote{其中$\ln |x|$可导出两个条件，不要遗漏 $x \neq 0$ 的要求.}
+    根据分母各因子
+    \footnote{其中$\ln |x|$可导出两个条件，不要遗漏 $x \neq 0$ 的要求.}
     可看出 $x = 0, x = \pm 1$ 和 $x = 2$ 为 $f(x)$ 的间断点，
     其余处处连续。
 
