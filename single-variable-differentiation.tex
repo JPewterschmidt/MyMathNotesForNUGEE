@@ -143,7 +143,6 @@ The reason the second-order derivative at the origin point of an odd function is
        Since the Maclaurin expansion of the inverse cube function is not defined at $x = 0$ (division by zero), I recommend not using a Maclaurin expansion for this case.
 \end{enumerate}
 
-
 \subsection{链式法则以外的方法}
 
 另外，复合函数求导使用链式法则需要两个函数的导数都存在。
@@ -231,18 +230,18 @@ The reason the second-order derivative at the origin point of an odd function is
 
 \begin{lemma}
     \begin{equation}
-        \dfrac{\mbox{d}y}{\mbox{d}x} = \dfrac{y'(t)}{x'(t)}
+        \dfrac{\mathrm{d}y}{\mathrm{d}x} = \dfrac{y'(t)}{x'(t)}
     \end{equation}
 
     \begin{equation}\label{eq:sec-ord-sub-der}
-        \dfrac{\mbox{d}^2 y}{\mbox{d}x^2} = \dfrac{y''(t) x'(t) -x''(t) y'(t)}{x'^3(t)}
+        \dfrac{\mathrm{d}^2 y}{\mathrm{d}x^2} = \dfrac{y''(t) x'(t) -x''(t) y'(t)}{x'^3(t)}
     \end{equation}
 
     等式 \ref{eq:sec-ord-sub-der} 比较适合求具体点的导数值使用，
     求n阶导函数问题可以：
     \begin{equation}
-        \dfrac{\mbox{d}^2y}{\mbox{d}x^2} = 
-        \dfrac{\mbox{d}}{\mbox{d}t} 
+        \dfrac{\mathrm{d}^2y}{\mathrm{d}x^2} = 
+        \dfrac{\mathrm{d}}{\mathrm{d}t} 
         \left(
             \dfrac{y'(t)}{x'(t)} 
         \right)
@@ -254,7 +253,7 @@ The reason the second-order derivative at the origin point of an odd function is
 
 \begin{lemma}
     \begin{equation}
-        \phi (y) = \dfrac{\mbox{d}x}{\mbox{d}y} = \dfrac{1}{\dfrac{\mbox{d}y}{\mbox{d}x}}
+        \phi (y) = \dfrac{\mathrm{d}x}{\mathrm{d}y} = \dfrac{1}{\frac{\mathrm{d}y}{\mathrm{d}x}}
                    = \dfrac{1}{f'(x)}
     \end{equation}
     其中$\phi(y)$ 是 $f(x)$ 的反函数。
@@ -288,7 +287,7 @@ The reason the second-order derivative at the origin point of an odd function is
 往往需要观察 $uv$ 两部分是否属于高阶导数为 0 的情况，
 如果是，这个方法就很有用。
 
-另外，还可以使用Tylor 展开来解决求某点的值的问题。
+另外，还可以使用Tylor 展开来解决\footnote{函数的 Tylor 展开的唯一性}求某点的值的问题。
 各典型函数的展开式参见小节 \ref{tylor}.
 具体操作步骤请参考下面的例子：
 \begin{example}
@@ -299,7 +298,7 @@ The reason the second-order derivative at the origin point of an odd function is
     \]
     又
     \begin{align*}
-        x^3 e^x &= x^3 \underbrace{(1+x+\dfrac{x^2}{2!} + o(x^2))}_{e^x\mbox{的Tylor展开}} \\
+        x^3 e^x &= x^3 \underbrace{(1+x+\dfrac{x^2}{2!} + o(x^2))}_{e^x\mbox{\small 的Tylor展开}} \\
                 &= x^3 + x^4 + \underbrace{\dfrac{1}{2!}}_{\star} x^5 + o(x^5)
     \end{align*}
     其中 
@@ -309,12 +308,77 @@ The reason the second-order derivative at the origin point of an odd function is
     所以 $f^{(5)}(0) = 60$
 \end{example}
 
+\begin{example}
+    \[
+        g(x) = e^{3x}, f(x) = x^2 g(x) = x^2 e^{3x}, f^{(n)} (0) = ?
+    \]
+
+    \cite[question 152]{w660}.
+
+    \begin{align*}
+        f(x) &= x^2 e^{3x}  \\
+             &= x^2 \left[
+                 \splitfrac{
+                     1 + \frac{3}{1!} x 
+                     + \frac{3^2}{2!} x^2 
+                 }{
+                     + \cdots 
+                     + \frac{3^{n - 2}}{(n - 2)!} x^{n - 2}
+                     + o(x^{n - 2})
+                 }
+             \right] \\
+             &= x^2 + \cdots 
+                    + \frac{3^{n - 2}}{(n - 2)!} x^{n} 
+                    + o(x^n)
+    \end{align*}
+    所以
+    \begin{align}
+        \dfrac{f^{(n)}(0)}{n!} &= \dfrac{3^{n - 2}}{(n - 2)!} \label{eq:the-nth-term-of-macluarin-expandition-of-f0}\\
+        \notag f^{(0)} (0) &= \dfrac{3^{n - 2}n!}{(n - 2)!} = 3^{n - 2} n(n - 1).
+    \end{align}
+    其中式子 \ref{eq:the-nth-term-of-macluarin-expandition-of-f0}
+    是对应的麦克劳林级数展开式中的第$n$项系数。
+\end{example}
+
 \section{拉格朗日(Lagrange)中值定理}
 
 \begin{definition}[Lagrange's Mean Value Theorem]\label{thm:lagrange}
     Let $f(x)$ be a continuous function on the closed interval $[a, b]$ and differentiable on the open interval $(a, b)$. Then, there exists at least one number $c$ in the open interval $(a, b)$ such that
     \[f'(c) = \frac{f(b) - f(a)}{b - a}.\]
 \end{definition}
+
+和导数相关的抽象函数问题，可以考虑微分中值定理。
+
+\begin{example}
+    设 $f(0) = 0, f'(x)$ 在 $[0, + \infty)$ 为严格单调增桉树，
+    则函数 \[g(x) = \dfrac{1 - f(x)}{x}\] 在 $(0, +\infty)$ 是
+    \begin{itemize}
+        \item[A] 有界函数
+        \item[B] 有极值
+        \item[C] 单调增函数
+        \item[D] 单调减函数
+    \end{itemize}
+
+    \cite[question 157]{w660}.
+    
+    \[
+        g'(x) = -\dfrac{1}{x^2} - \dfrac{xf'(x) - f(x)}{x^2}
+    \]
+    因为 $f(0) = 0$，有中值定理可知
+    \[
+        f(x) = xf'(\xi), \xi \in (0, x)
+    \]
+    所以
+    \[
+        g'(x) = -\dfrac{1}{x^2} - \dfrac{f'(x) - f'(\xi)}{x}
+    \]
+    而 $f(x)$ 在 $(0, +\infty)$ 为严格单调增函数，所以 $g'(x) < 0$, 
+    函数 $g(x)$ 在 $(0, +\infty)$ 为单调减函数。
+\end{example}
+上例中， 假设 $f(x) = \cramped{x^2}$ 则可以立即排除选项A。
+但是请注意，这种举例方法用作排除选项之用。
+不满足举例的选项则一定不选，满足举例的选项也许在别的例子中不满足。
+要格外注意这里的逻辑关系。 
 
 \section{导数应用}
 
@@ -336,6 +400,31 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
             有关根的个数请参阅 \ref{number-of-roots-question}。
 
 \end{itemize}
+
+\subsection{切线} 
+
+\begin{example}
+    设常数 $a> 1, y = x$ 为曲线 $y = a^{x}$ 的切线，求 $a$ 和 切点。
+
+    \cite[question 156]{w660}.
+
+    设切点为 $(x_0, y_0)$，因为 $y = x$ 为曲线 $y = a^x$ 的切线，
+    \begin{equation*}
+        \begin{dcases*}
+            a^{x_0} = x_0 \\
+            a^{x_0}\ln a = 1
+        \end{dcases*}
+        \mbox{即} 
+        \begin{dcases*}
+            a^{x_0} \ln a - 1= 0 \\
+            x_0\ln a - 1 =0 
+        \end{dcases*}
+    \end{equation*}
+    \begin{gather*}
+        x_0 = \dfrac{1}{\ln a} = \dfrac{\frac{\ln \frac{1}{\ln a}}{\ln a}}, \\
+        a = e^{\frac{1}{e}}, x_0 = y_0 = e.
+    \end{gather*}
+\end{example}
 
 \subsection{拐点}
 
@@ -530,7 +619,7 @@ Rolle's Theorm, Lagrange's Theorm 比较重要。
 \begin{align*}
     \mbox{欲证}\quad f'(\xi) + g(\xi) f(\xi) = 0,  \\
     \mbox{let} \quad 
-    F(x) = \exp \left\{\int g(x) \mbox{d}x\right\} f(x).
+    F(x) = \exp \left\{\int g(x) \mathrm{d}x\right\} f(x).
 \end{align*}
 
 \section{好题收录}

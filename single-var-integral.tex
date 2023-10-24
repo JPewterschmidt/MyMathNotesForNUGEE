@@ -342,22 +342,22 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 这样式子就变成了
 \begin{equation}\label{eq:the-other-definition-definite-integral}
     \lim_{n \to \infty} \dfrac{1}{n}
-    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i}{n}\right)}_{\mathclap{\mbox{右端点函数值}}} 
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i}{n}\right)}_{\mathclap{\mbox{\small 右端点函数值}}} 
 \end{equation}
 \begin{equation}
     \lim_{n \to \infty} \dfrac{1}{n}
-    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i-1}{n}\right)}_{\mathclap{\mbox{左端点函数值}}}
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{i-1}{n}\right)}_{\mathclap{\mbox{\small 左端点函数值}}}
 \end{equation}
 \begin{equation}
     \lim_{n \to \infty} \dfrac{1}{n}
-    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{2i-1}{2n}\right)}_{\mathclap{\mbox{中点函数值}}} 
+    \sum_{i = 1}^{n} \underbrace{f\left(\dfrac{2i-1}{2n}\right)}_{\mathclap{\mbox{\small 中点函数值}}} 
 \end{equation}
 上述三个公式是完全等价的。
 
 \subsection{存在性}
 \begin{align}
-    f(x) \mbox{可积} &\quad         \Longrightarrow  \quad f(x) \mbox{有界} \\
-    f(x) \mbox{有界} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{可积} \notag
+    f(x) \mbox{\small 可积} &\quad         \Longrightarrow  \quad f(x) \mbox{\small 有界} \\
+    f(x) \mbox{\small 有界} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{\small 可积} \notag
 \end{align}
 
 \begin{theorem}[Integrable Theorem] \label{integrable-therom}
@@ -370,9 +370,63 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 \end{theorem}
 
 \begin{align}
-    f(x) \mbox{连续} &\quad         \Longrightarrow  \quad f(x) \mbox{可积} \\
-    f(x) \mbox{可积} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{连续} \notag
+    f(x) \mbox{\small 连续} &\quad         \Longrightarrow  \quad f(x) \mbox{\small 可积} \\
+    f(x) \mbox{\small 可积} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{\small 连续} \notag
 \end{align}
+
+\begin{example}
+    设
+    \[
+        f(x) = 
+        \begin{dcases*}
+            \sin \frac{1}{x}, & x \neq 0 \\
+            1, & x = 0
+        \end{dcases*}, 
+        F(x) = \int_{-1}^{x} f(t) \mathrm dt
+    \]
+    则 $F(x)$ 
+    \begin{itemize}
+        \item[A] 在 $(-1, 1)$ 为无界函数
+        \item[B] 在 $(-1, 1)$ 为连续有界函数
+        \item[C] 在 $(-1, 1)$ 有间断点 $x = 0$
+        \item[D] 在 $[-1, 1]$ 不可积
+    \end{itemize}
+    
+    \cite[question 177]{w660}.
+
+    $f(x)$ 在 $[-1, 1]$ 有界，只有一个间断点 $x = 0$，
+    那么 $f(x)$ 在 $[-1, 1]$ 可积，
+    继而 $F(x)$ 在 $[-1, 1]$ 连续，所以有界。选择B.
+\end{example}
+
+\begin{example}
+    下列命题中正确的是
+    \begin{itemize}
+        \item[A] 设 $f(x)$ 在 $[a, b]$ 可积，$f(x) \leq 0, \nequiv 0, $ 则
+            \[
+                \int_a^b f(x) \mathrm dx > 0
+            \]
+        \item[B] 设 $f(x)$ 在 $[a, b]$ 可积，$g(x)$ 在 $[a, b]$ 不可积，则 $f(x) + g(x)$ 在 $[a, b]$ 不可积。
+        \item[C] 设 $f^2(x)$ 在 $[a, b]$ 可积，则$f(x)$ 在 $[a, b]$ 可积
+        \item[D] 设 $x_0 \in (a, b), f(x)$ 在 $[a, b]\textbackslash \{x_0\}$ 连续且有界，
+            $x = x_0$ 是 $f(x)$ 的间断点，则
+            \[
+                F(x) = \int_a^x f(t) \mathrm dt
+            \]
+            在 $x = x_0$ 不可导
+    \end{itemize}
+
+    \cite[question 181]{w660}.
+
+    选项B是正确的，体现了 linearinity.
+    若 $f(x) + g(x)$ 在 $[a, b]$ 可积，因 $f(x)$ 在 $[a, b]$ 上可积，
+    由 linearinity 可知，
+    \[
+        g(x) = [f(x) + g(x)] - f(x)
+    \]
+    在 $[a, b]$ 可积，与已知 $g(x)$ 在 $[a, b]$ 上不可积矛盾，
+    因此 $f(x) + g(x)$ 在 $[a, b]$ 上不可积
+\end{example}
 
 \subsection{定积分计算}
 
@@ -401,8 +455,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
         = 
         \left\{ 
             \begin{array}{rl}
-                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{1}{2} \cdot \dfrac{\pi}{2} &, n \mbox{\ is even.}   \\[1em]
-                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{2}{3}                      &, n \mbox{\ is odd} > 1 \\
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{1}{2} \cdot \dfrac{\pi}{2} &, n \mbox{\small \ is even.}   \\[1em]
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{2}{3}                      &, n \mbox{\small \ is odd} > 1 \\
             \end{array}
         \right.
     \end{multline}
@@ -439,7 +493,47 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 另外，若被积函数和参数有关，即形如$f(x, t)$的，上面式子中的 $\xi$
 也将会和 $t$ 相关，不同的 $t$，可能会造成不同的 $\xi$。
 比如 \cite[page 106, pdf 117, example 3]{we}。
-还可参考例子 \ref{example-limits-and-varidic-limits-integral-2}
+还可参考例子 \ref{example-limits-and-varidic-limits-integral-2} 和下例。
+\begin{example}
+    设 $f(x)$ 为连续函数，
+    \[
+        g(x) = \int_{-x}^{0} t f(x + t) \mathrm dt
+    \]
+    则 $g'(x) =$ 
+
+    \cite[question 155]{w660}.
+    
+    令 $u = x + t$, 则有
+    \begin{align*}
+        g(x) &= \int_{-x}^0 tf(x + t) \mathrm dt = \int_0^x (u - x) f(u) \mathrm du \\
+             &= \int_0^x uf(u) \mathrm du - x \int_0^x f(u) \mathrm du
+    \end{align*}
+    则
+    \[
+        g'(x) = xf(x) - \int_0^x f(u) \mathrm du - xf(x) = - \int_0^x f(u)
+    \]
+\end{example}
+
+\begin{example}
+    设 $f(x)$ 一阶可导，$f(x) > 0, f'(x) > 0$，
+    则当 $\Delta x > 0$ 时
+    \begin{itemize}
+        \item[A] \[\int_{x}^{x + \Delta x} f(t) \mathrm dt > f(x)\Delta x > 0\]
+        \item[B] \[f(x)\Delta x >\int_{x}^{x + \Delta x} f(t) \mathrm dt > 0\]
+    \end{itemize}
+    
+    \cite[question 178]{w660}.
+
+    \begin{align*}
+        &\int_x^{x + \Delta x} 
+        f(t) \mathrm dt \\
+        \xrightarrow[=]{\mbox{\small 中值定理}} 
+        &f(\xi) [(x + \Delta) - x], \quad \xi \in (x, x + \Delta x) \\
+        =&f(\xi) \Delta x > f(x) \Delta x
+    \end{align*}
+
+    所以选A.
+\end{example}
 
 \section{和定积分有关的极限问题} 
 \label{limit-questions-involved-definite-integral}
@@ -494,7 +588,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \begin{align*}
         &0 \leq \int_0^1 x^n \sqrt{1+x^2} \mathrm{d}x 
         < \underbrace{\sqrt{2} \int_0^1 x^n 
-        \mathrm{d}x}_{\mbox{定积分性质}} \\
+        \mathrm{d}x}_{\mbox{\small 定积分性质}} \\
         &= \dfrac{\sqrt{2}}{n+1}
     \end{align*}
     又\footnote{the Squeeze Theorm}
@@ -593,8 +687,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \int_0^{\pi} \cos^n x \mathrm{d}x &= 
     \left\{
         \begin{array}{rl}
-            0,                                       &n \mbox{\ is odd} \\
-            2 \int_{0}^{\pi/2} \cos^n x \mathrm{d}x, &n \mbox{\ is even}
+            0,                                       &n \mbox{\small \ is odd} \\
+            2 \int_{0}^{\pi/2} \cos^n x \mathrm{d}x, &n \mbox{\small \ is even}
         \end{array}
     \right.
 \end{align}
@@ -613,8 +707,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 \begin{equation}
     I = \int 
     \dfrac{
-         A(\overbrace{c \cos x - d \sin x}^{\mbox{分母的导数}})
-        +B(\overbrace{c \sin x + d \cos x}^{\mbox{分母}})
+         A(\overbrace{c \cos x - d \sin x}^{\mbox{\small 分母的导数}})
+        +B(\overbrace{c \sin x + d \cos x}^{\mbox{\small 分母}})
     }{c \sin x + d \cos x} \mathrm{d}x
 \end{equation}
 其中$A, B$可以通过令两个分子相等解出。
@@ -633,7 +727,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 则
 \[
     I = \dfrac{1}{2} \int_a^b 
-    \underbrace{f_1(x) + f_2(x)}_{{\mbox{这里可以消去一些麻烦}}}
+    \underbrace{f_1(x) + f_2(x)}_{{\mbox{\small 这里可以消去一些麻烦}}}
     \mathrm{d}x
 \]
 只在原函数很难找到的使用，不是万金油。
@@ -710,22 +804,22 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 \begin{example}
     计算二次积分$\int_0^1 \mathrm{d}x \int_{x^2}^{x} xy^2 \mathrm{d}y$
     \begin{align*} 
-        \int_{0}^{1} \text{d}x \int_{x^2}^{x} xy^2 \text{d}y 
-        &= \int_{0}^{1} 
+        &\int_{0}^{1} \text{d}x \int_{x^2}^{x} xy^2 \text{d}y  \\
+        = &\int_{0}^{1} 
         \left[ 
             \int_{x^2}^{x} xy^2 \text{d}y 
         \right] 
-        \text{d}x \\
-        &= \int_{0}^{1} 
+        \text{d}x 
+        = \int_{0}^{1} 
         \left[ 
             \frac{xy^3}{3} 
         \right]_{x^2}^{x} \text{d}x \\ 
-        &= \frac{1}{3} \int_{0}^{1} (x^4 - x^7) \text{d}x \\
-        &= \frac{1}{3} 
+        =& \frac{1}{3} \int_{0}^{1} (x^4 - x^7) \text{d}x 
+        = \frac{1}{3} 
         \left[ 
             \frac{x^5}{5} - \frac{x^8}{8} 
         \right]_{0}^{1} \\ 
-        &= \frac{1}{3} \cdot \frac{3}{40} = \frac{1}{40}. \\ 
+        =& \frac{1}{3} \cdot \frac{3}{40} = \frac{1}{40}.
     \end{align*}
 
     \url{https://www.zhihu.com/question/517593800}
@@ -758,11 +852,11 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     式子中的前面一部分的化简目标为单位元面积，
     参见\ref{definite-integral-about-circle-area}。
     则令 $t = (x-1)$ 则 $2x-x^2 = 1-t^2$
-    \begin{align*}
-        &\int_0^1 \sqrt{2x-x^2} \mathrm{d}x\\
+    \[
+        \int_0^1 \sqrt{2x-x^2} \mathrm{d}x
         = 
-        &\int_{-1}^0 \sqrt{1-t^2} \mathrm{d}t = \frac{\pi}{4}
-    \end{align*}
+        \int_{-1}^0 \sqrt{1-t^2} \mathrm{d}t = \frac{\pi}{4}
+    \]
     
     那么 $I = \dfrac{\pi}{4} - \dfrac{3\pi}{16} = \dfrac{\pi}{16}$
 \end{example}
@@ -825,7 +919,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \begin{align*}
         I &= \int_0^{\pi/2} \dfrac{1}{1 + \sin 2x} \mathrm{d}x\\
           &= \dfrac{1}{2} \int_{0}^{\pi} \dfrac{1}{1+\sin x} \mathrm{d}x\\
-          &= \dfrac{1}{2} \int_{\pi/2}^{\pi + \pi/2} \dfrac{1}{1+\cos x} \mathrm{d}x \quad (\mbox{诱导公式})\\
+          &= \dfrac{1}{2} \int_{\pi/2}^{\pi + \pi/2} \dfrac{1}{1+\cos x} \mathrm{d}x \quad (\mbox{\small 诱导公式})\\
           &\mbox{D.N.E}
     \end{align*}
     该解法无法求得定积分，因为被积函数在积分区间上有间断点。如下图所示
@@ -967,7 +1061,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \begin{align}
         &\int_0^x f(x - t) \mathrm dt = \int_0^x f(u) \mathrm du \quad (\mbox{令} x - t = u)\notag \\
         L =& \lim_{x \to 0} \dfrac{x \int_0^x f(t) \mathrm dt - \int_0^x tf(t) \mathrm dt}{x \int_0^x f(t) \mathrm dt}\notag \\
-          =& \lim_{x \to 0} \dfrac{\int_0^x f(t) \mathrm dt + xf(x) - x(f)}{\int_0^x f(t) \mathrm dt + xf(x)} \quad (\mbox{\L'Hospital}) \notag\\
+          =& \lim_{x \to 0} \dfrac{\int_0^x f(t) \mathrm dt + xf(x) - x(f)}{\int_0^x f(t) \mathrm dt + xf(x)} \quad (\mbox{\small L'Hospital}) \notag\\
           =& \lim_{x \to 0} \dfrac{\int_0^x f(t) \mathrm dt}{\int_0^x f(t) \mathrm dt + xf(x)} \quad \label{eq:part-no-L-Hospital-1}\\
           =& \lim_{x \to 0} \dfrac{xf(c)}{xf(c) + xf(x)}\quad(c \in (0, x)) \label{eq:part-mid-value-theorm-1}\\
           =& \dfrac{f(0)}{f(0) + f(0)} = \dfrac{1}{2} \notag
@@ -1074,6 +1168,38 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \end{itemize}
 \end{example}
 
+\begin{example}
+    \begin{align*}
+        M &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{(1+x)^2}{1+x^2} \mathrm dx \\
+        N &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{1+x}{e^x} \mathrm dx \\
+        K &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (1+\sqrt{\cos x})\mathrm dx 
+    \end{align*}
+    请比较上述三个积分的大小.
+
+    \cite[question 184]{w660}.
+
+    \begin{align*}
+        M &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{(1+x)^2}{1+x^2} \mathrm dx 
+           = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{1+x^2+2x}{1+x^2} \mathrm dx \\
+          &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 1 \mathrm dx 
+          + \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \underbrace{\frac{2x}{1+x^2}}_{\mathclap{\mbox{\small 函数关于原点对称}}} \mathrm dx = \pi
+    \end{align*}
+    因为\footnote{基本不等式参见小节 \ref{inequlity}} $e^x > 1+x$, 
+    \[
+        N = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{1+x}{e^x} \mathrm dx < 
+        \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 1 \mathrm dx 
+        = \pi
+    \]
+    又因为 
+    \begin{gather*}
+        1+\sqrt{\cos x} \geq 1\\ x \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\\
+        K = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (1+\sqrt{\cos x})\mathrm dx > 
+        \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 1 \mathrm dx 
+        = \pi
+    \end{gather*}
+    综上\footnote{题目用一个 $\pi$ 联系了起来} $K>M>N$.
+\end{example}
+
 大题考法\footnote{列举出的方法是在题目中都要使用的方法}：
 \begin{itemize}
     \item 函数单调性方法
@@ -1136,6 +1262,87 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 在书写过程的时候要注意说明自变量的单调性，
 然后是函数的单调性，这样才能说明整个式子的性质。
 其他例子请参见 \cite[page 119, pdf 130]{we}.
+
+\begin{example}
+    求证
+    \begin{gather}
+        \label{exeq:prof1-quiz} \int_0^{2\pi} \dfrac{\sin x}{x} \mathrm dx > 0 \\
+        \label{exeq:prof2-quiz} \int_0^{2\pi} \cos x \ln ( 2+ \cos x) \mathrm dx > 0 \\
+        \label{exeq:prof3-quiz} \int_0^{\frac{\pi}{2}} \dfrac{\sin x}{x} \mathrm dx > 1
+    \end{gather}
+
+    \cite[question 183]{w660}.
+
+    \begin{proof}[Proof of \ref{exeq:prof1-quiz}]
+        \begin{align*}
+            \int_0^{2\pi} \dfrac{\sin x}{x} \mathrm dx
+            &= \int_0^{\pi} \dfrac{\sin x}{x} \mathrm dx 
+            + \int_{\pi}^{2\pi} \dfrac{\sin x}{x} \mathrm dx \\
+            &= \int_0^{\pi} \dfrac{\sin x}{x} \mathrm dx 
+            + \int_{0}^{\pi} \dfrac{\sin (x + \pi)}{x + \pi} \mathrm dx \\
+            &= \int_0^{\pi} \dfrac{\sin x}{x} \mathrm dx 
+            - \int_{0}^{\pi} \dfrac{\sin x }{x + \pi} \mathrm dx \\
+            &= \int_0^{\pi} \dfrac{\pi \sin x}{x(x + \pi)} \mathrm dx  > 0
+        \end{align*}
+    \end{proof}
+
+    \begin{proof}[Proof of \ref{exeq:prof2-quiz}]
+        由于被积函数是以 $2\pi$ 为周期的偶函数，所以
+        \begin{align*}
+            &\int_0^{2\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx \\
+            =&\int_{-\pi}^{\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx \\
+            =&2\int_{0}^{\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx \\
+            =&2\left[
+                \splitfrac{
+                    \int_0^{\pi/2} \cos x \ln ( 2+ \cos x ) \mathrm dx
+                }{
+                    + 
+                    \underbrace{\int_{\pi/2}^{\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx}_{I_1}
+                }
+            \right]
+        \end{align*}
+        对 $I_1$ 做积分变量变换 $x = \pi - t$ 则
+        \begin{align*}
+            &\int_{\frac{\pi}{2}}^{\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx \\
+            =&\int_0^{\frac{\pi}{2}} \cos t \ln ( 2+ \cos t ) \mathrm dt 
+        \end{align*}
+        所以
+        \begin{align*}
+            &\int_0^{2\pi } \cos x \ln (2 + \cos x) \mathrm dx \\
+            =&2 \int_0^{\frac{\pi}{2}} \cos x \ln \dfrac{2+ \cos x}{2- \cos x} \mathrm dx > 0
+        \end{align*}
+    \end{proof}
+
+    \begin{proof}[Proof of \ref{exeq:prof3-quiz}]
+        有
+        \[
+            RHS = 1 = \int_0^{\frac{\pi}{2}} \dfrac{2}{\pi} \mathrm dx
+        \]
+        令
+        \[
+            \varphi(x) = \frac{\sin x}{x} -\frac{2}{\pi}, \quad x \in \left(0, \frac{\pi}{2}\right)
+        \]
+        有
+        \begin{align*}
+            \varphi\left(\frac{\pi}{2}\right) &= 0, \\
+            \varphi'(x) &= \dfrac{x \cos x - \sin x}{x^2}\\
+                        &= \dfrac{\cos x \overbrace{(x - \tan x)}^{\mathclap{<0 \mbox{\small, See Figure \ref{fig:tanx-x}}}}}{x^2} < 0
+        \end{align*}
+        所以当 $x \in \left(0, \frac{\pi}{2}\right)$ 时 $\varphi(x)>0$
+        即
+        \begin{align*}
+            &\dfrac{\sin x}{x} > \dfrac{2}{\pi}, \quad x \in \left(0, \frac{\pi}{2}\right) \\
+            \Rightarrow &\int_0^{\frac{\pi}{2}} \dfrac{\sin x}{x} \mathrm dx > \int_0^{\frac{\pi}{2}} \dfrac{2}{\pi} \mathrm dx = 1
+        \end{align*}
+    \end{proof}
+\end{example}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/tanx-x.pdf}
+    \caption{The figure of $\tan x$ and $x$, to illustrate $\tan x > x, x \in (0, \pi/2)$.}
+    \label{fig:tanx-x}
+\end{figure}
 
 \section{定积分的应用}\label{app-finite-integral}
 
