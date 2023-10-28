@@ -1,4 +1,4 @@
-\chapter{全局通用技术}
+\chapter{Pre-calculus}
 
 \begin{lemma}
 \begin{multline*}
@@ -20,7 +20,7 @@
     \end{align*}
 \end{lemma}
 
-\section{函数}
+\section{Function}
 
 无论是导数还是积分，相关题目和函数性质（图像、单调性等）相关性总是很大，
 在处理的时候要善于利用函数的性质，辅助解题。
@@ -226,7 +226,7 @@ $\pmb{z}=(z_1,z_2,\dots,z_n)$，有
 在使用对数函数的时候，必要的时候不要忘记标注定义域。如
 \cite[page 76, pdf 87, example 2]{we}.
 
-\section{三角函数相关} \label{trigonometric}
+\section{Trigonometric} \label{trigonometric}
 
 \begin{corollary}
     \begin{equation}
@@ -265,9 +265,9 @@ $\sin(x)$ and $\cos(x)$.
 
 \begin{figure}
     \centering
-    \label{fig:Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine}
     \includegraphics[width=0.5\textwidth]{figure/Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine.png}
     \caption{Diagram illustrating sum to product identities for sine and cosine.}
+    \label{fig:Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine}
 \end{figure}
 
 Figure \ref{fig:Diagram_illustrating_sum_to_product_identities_for_sine_and_cosine} 
@@ -293,3 +293,36 @@ a sum-to-product identity for sine:
 Similarly, the sum of the widths of 
 the red and blue triangles yields the corresponding identity for cosine.
 
+\begin{theorem}[Double angle equations]
+    \label{thm:trig-double-angle-equations}
+    \begin{align*}
+        \sin 2 \alpha &= 2 \sin \alpha \cos \alpha \\
+        \cos 2 \alpha &= \cos^2 \alpha - \sin^2 \alpha \\ 
+                      &= 2 \cos^2 \alpha - 1 \\
+                      &= 1 - 2 \sin^2 \alpha \\
+        \tan 2 \alpha &= \frac{2 \tan \alpha}{1 - \tan^2 \alpha}
+    \end{align*}
+\end{theorem}
+
+\section{Basic Algebra}
+\label{basic-algebra}
+
+\begin{theorem}[Formulas of Cube of Sum/Difference]
+    \label{co:formula-cube-sd}
+    \begin{align*}
+        (a + b)^3 &= a^3 + 3a^2 b + 3a b^2 + b^3 \\
+                  &= ( a+b ) ( a+b )^2 \\
+                  &= ( a+b ) (a^2 + 2ab + b^2) \\
+        (a - b)^3 &= a^3 - 3a^2 b + 3a b^2 - b^3 \\
+                  &= ( a-b ) ( a-b )^2 \\
+                  &= ( a-b ) (a^2 - 2ab + b^2)
+    \end{align*}
+\end{theorem}
+
+\begin{corollary}[Formulas of Sum/Difference of cube]
+    \label{co:formula-sd-cube}
+    \begin{align*}
+        a^3 + b^3 = (a + b)(a^2 - 2ab + b^2) \\
+        a^3 - b^3 = (a - b)(a^2 + 2ab + b^2)
+    \end{align*}
+\end{corollary}

@@ -2,17 +2,26 @@
 \label{single-var-integral}
 
 本章考察的重点是
-\textbf{定积分}\ref{finite-integral}和
-\textbf{定积分的应用}\ref{app-finite-integral}.
+\textbf{定积分} \ref{finite-integral}和
+\textbf{定积分的应用} \ref{app-finite-integral}.
+
+\begin{theorem}[the Fundamental Theorem of Calculus]
+    \label{thm:FCM}
+    Suppose $f$ is continuous on $[a, b]$.
+    \begin{enumerate}
+        \item If \[g(x) = \int_a^x f(x) \mathrm dx\]then \[g'(x) = f(x)\]
+        \item \[\int_a^b f(x) \mathrm dx = F(b) - F(a)\]
+            when $F$ is any \emph{antideritative} of $f$, that is, $F' = f$.
+    \end{enumerate}
+\end{theorem}
 
 \section{通用技术和题型索引}
 
-被积函数中出现根号的请参见\ref{definite-integral-about-circle-area};
+被积函数中出现根号的请参见 \ref{definite-integral-about-circle-area};
 这种情况还可以考虑将换元后目标设置为三角函数，
-进而使用点火公式\ref{eq:launching-formula}.
-
-出现反三角函数应当反应凑微分，然后分部积分\ref{part-integral}.
-例题可参考\ref{example:w660t60}
+进而使用点火公式 \ref{eq:launching-formula}.
+出现反三角函数应当反应凑微分，然后分部积分 \ref{part-integral}.
+例题可参考 \ref{example:w660t60}
 
 \section{不定积分} \label{infinite-integral}
 
@@ -36,6 +45,7 @@
             \item 含有无理函数的积分
         \end{itemize}
 \end{itemize}
+
 其中有关不定积分的计算，考试只会考察一些比较基本的题型。
 难题可以仅简单了解一下。
 有关难度练习，例题请参阅 \cite[page 96]{we} 开始的各例题。
@@ -43,28 +53,222 @@
 \subsection{不容易记忆的公式}
 
 \begin{align}
-    &\int \dfrac{1}{{a^2 + x^2}} \, dx          &=& \dfrac{1}{a} \arctan \left( \dfrac{x}{a} \right)      &+ C\\
-    &\int \dfrac{1}{{a^2 - x^2}} \, dx          &=& \dfrac{1}{2a} \ln \left| \dfrac{a + x}{a - x} \right| &+ C\\
-    &\int \dfrac{1}{{\sqrt{a^2 + x^2}}} \, dx   &=& \ln \left| x + \sqrt{a^2 + x^2} \right|               &+ C\\
-    &\int \dfrac{1}{{\sqrt{x^2 - a^2}}} \, dx   &=& \ln \left| x + \sqrt{x^2 - a^2} \right|               &+ C
+    \int \dfrac{1}{{a^2 + x^2}}         \mathrm dx &= \dfrac{1}{a} \arctan \left( \dfrac{x}{a} \right)      + C\\
+    \int \dfrac{1}{{a^2 - x^2}}         \mathrm dx &= \dfrac{1}{2a} \ln \left| \dfrac{a + x}{a - x} \right| + C\\
+    \int \dfrac{1}{{\sqrt{a^2 + x^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{a^2 + x^2} }       + C\\
+    \int \dfrac{1}{{\sqrt{x^2 - a^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{x^2 - a^2} }       + C\\
+    \int \dfrac{1}{{\sqrt{a^2 - x^2}}}  \mathrm dx &= \frac{1}{a} \arcsin \frac{x}{a}                       + C\\
+    \int \dfrac{1}{{1+e^x}}             \mathrm dx &= x - \ln (1+ e^x)                                      + C\\
+    \int \sec x                         \mathrm dx &= \ln \abs*{\sec x + \tan x }                           + C\\ 
+    \int \csc x                         \mathrm dx &= \ln \abs*{\csc x - \cot x }                           + C\\ 
+    \int \sqrt{x^2 + a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 + a^2} + \frac{a^2}{2} \ln \left(x + \sqrt{x^2 + a^2}\right) + C\\
+    \int \sqrt{x^2 - a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 - a^2} - \frac{a^2}{2} \ln \abs*{x + \sqrt{x^2 - a^2}} + C\\
+    \int \sqrt{a^2 - x^2}               \mathrm dx &= \frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin \frac{x}{2} + C
 \end{align}
+
 更多公式请参见 \cite[page 93, pdf 104]{we}.
+
+\begin{example}
+    \[
+        I = \int \sqrt{\frac{1-x}{1+x}} \mathrm dx
+    \]
+    
+    \cite[page 129, question 11]{yc}.
+
+    \begin{align}
+        I &= \int \frac{1-x}{\sqrt{1-x^2}} \mathrm dx \label{eq:key-point-this-example-integration-with-sqrt-1} \\
+          &= \int \frac{1}{\sqrt{1 - x^2}} \mathrm dx - \int \frac{x}{\sqrt{1 - x^2}} \mathrm dx \notag \\
+          &= \arcsin x - \left(-\frac{1}{2} \int \frac{1}{\sqrt{1-x^2}} \mathrm d(1-x^2)\right) \notag \\ 
+          &= \arcsin x + \sqrt{1 - x^2} + C \notag
+    \end{align}
+
+    上式子 (\ref{eq:key-point-this-example-integration-with-sqrt-1}) 
+    是本问题的关键，分子分母都带有根号的问题常用这种方法，如
+    \[
+        \int \sqrt{\dfrac{e^x - 1}{e^x + 1}} \mathrm dx
+    \]
+\end{example}
+
+\begin{example}
+    \[
+        I = \int \dfrac{e^{3x} + 1}{e^x + 1} \mathrm dx
+    \]
+
+    \cite[page 130, question 21]{yc}.
+
+    \begin{align}
+        I &= \int \dfrac{(e^x + 1)(e^{2x} - e^x + 1)}{e^x + 1} \mathrm dx \label{eq:usage-of-cube-sum-1}\\
+          &= \int e^{2x} - e^x + 1 \mathrm dx \notag \\
+          &= \frac{1}{2} e^{2x} - e^x + x+ C \notag
+    \end{align}
+
+    其中式子 (\ref{eq:usage-of-cube-sum-1}) 利用了立方和公式，
+    请参见推论 (\ref{co:formula-sd-cube}).
+\end{example}
+
+\subsection{有绝对值的不定积分}
+
+\begin{theorem}
+    \label{thm:i-dont-know-how-to-name-this-theorem-2}
+    The antiderivative of any continuous function is continuous.
+\end{theorem}
+
+\begin{proof}[Proof of \ref{thm:i-dont-know-how-to-name-this-theorem-2}]
+    Let $f(x)$ be a continuous function on an interval $[a, b]$. 
+    We want to show that the antiderivative $F(x)$ 
+    of $f(x)$ is continuous on $[a, b]$.
+
+    By the Fundamental Theorem of Calculus
+    \footnote{Theorem \ref{thm:FCM}}, we have:
+    \[F(x) = \int_{a}^{x} f(t) \, dt + C\]
+    where $C$ is a constant. 
+    Since $f(x)$ is continuous on $[a, b]$, 
+    we can apply the continuity of definite integrals. 
+    Thus, $\int_{a}^{x} f(t) \, dt$ is continuous
+    \footnote{See Theorem \ref{integrable-therom}}
+    on $[a, b]$.
+
+    Now, consider the constant $C$. Constants 
+    are always continuous functions.
+
+    Since both the definite integral $\int_{a}^{x} f(t) \, dt$ 
+    and the constant $C$ are continuous, their sum 
+    $F(x)$ is also continuous on $[a, b]$.
+
+    Therefore, we have shown that the antiderivative 
+    $F(x)$ of the continuous function $f(x)$ is continuous 
+    on the interval $[a, b]$.
+\end{proof}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/sqrt-2-cos-pi-slash-4-plus-x-with-without-abs.pdf}
+    \caption{The figure of $\abs*{f}$ and $f$. This two function has been drawn overlapped over the $x$-axis.}
+    \label{fig:sqrt-2-cos-pi-slash-4-plus-x-with-without-abs}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/sin-and-cos-in-some-interval.pdf}
+    \caption{The figure of $\sin x$(the solid curve) and it's deritative $\cos x$ on $[-\pi /2, \pi/2)$. }
+    \label{fig:sin-and-cos-in-some-interval}
+\end{figure}
+
+\begin{example}
+    \label{example:a-complicated-example-of-antiderivative-1}
+
+    \cite[page 130]{yc}.
+    \begin{align}
+        \notag &\int \sqrt{1 - \sin 2x} \mathrm dx 
+        \notag =\int \sqrt{1 - 2 \sin x \cos x} \mathrm dx \\
+        \notag =&\int \sqrt{(\sin x + \cos x)^2} \mathrm dx 
+        \notag =\int \abs*{\sin x + \cos x} \mathrm dx \\
+        \label{eq:aux-angle-example-1} =&\int \underbrace{\abs*{\sqrt{2} \cos \left(x + \frac{\pi}{4}\right)}}_{f} \mathrm dx \\
+        \label{eq:remove-abs-symbol-example-1} =
+            & \underbrace{
+                \left[
+                    \splitfrac{
+                        \overbrace{
+                            \sqrt{2} \sin 
+                            \left[(k + 1) \pi + \frac{\pi}{4} + x \right] 
+                        }^{G}
+                        + C_k,
+                    }{
+                        x \in \left[
+                            k\pi + \frac{\pi}{4}, k \pi + \frac{5\pi}{4}
+                        \right), k \in \mathbb Z 
+                    }
+                \right]
+            }_{F}
+    \end{align}
+    由原函数在 $k\pi + \frac{5\pi}{4}$ 处的连续性
+    \footnote{参见 Theorem \ref{thm:i-dont-know-how-to-name-this-theorem-2}}
+    可知，
+    \[
+        C_{k + 1} = C_k + 2\sqrt{2}
+    \]
+    故原函数\footnote{如图 \ref{fig:a-complicated-antiderivative-example}}为
+    \begin{align*}
+        &\sqrt{2}\sin \overbrace{\left[(k+1) \pi + \frac{\pi}{4} + x\right]}^{A} + C + 2\sqrt{2} k \\
+        &x\in \left[k\pi + \frac{\pi}{4}, k \pi + \frac{5\pi}{4}\right), k \in \mathbb Z 
+    \end{align*}
+
+    需要解释一下这个题，根据 FCM \footnote{Theorem \ref{thm:FCM}}
+    式子 (\ref{eq:remove-abs-symbol-example-1}) 中 $f$ 要获得其原函数
+    需要满足其绝对值的要求。
+    若 $F$ 中不带有任何定义域限制，
+    无法满足 $f$ 中绝对值的要求（如图 \ref{fig:sqrt-2-cos-pi-slash-4-plus-x-with-without-abs}）。
+
+    由式子 (\ref{eq:remove-abs-symbol-example-1}) 可得
+    \[
+        A \in \left[
+            (2k + 1) \pi + \frac{\pi}{2}, (2k + 1) \pi + \frac{3\pi}{2}
+        \right), k \in \mathbb Z
+    \]
+    进而可得\footnote{如图 (\ref{fig:sin-and-cos-in-some-interval}) 所示}
+    \[
+        \frac{\mathrm d}{\mathrm dx}\left(\sin A\right) \geq 0.
+    \]
+    综上，我们说明了对 $x$ 取值范围的限定，是为了保证式子 (\ref{eq:aux-angle-example-1})
+    中的 $G' > 0$。
+
+    \emph{连续函数的原函数必然连续}，
+    需要在原函数末添加一个特殊常量 $C_k$ 来满足。
+    若不添加该常数，函数则为一带有周期跳跃间断点的函数，
+    如图\ref{fig:a-complicated-antiderivative-example-wrong}所示。
+\end{example}
+
+上例通过直观的图像展示了题目各关键步骤的原因和其中的考虑。
+对于做题来说，形如\footnote{$f$ 是周期函数}
+\[
+    F = \int \abs*{f(x)} \mathrm dx
+\]
+可理解为\emph{需要使 $F'(x) \geq 0$}，换句话说就是需要 $F$ 是一个\emph{递增}函数。
+\begin{enumerate}
+    \item 使用一般方法解一个准原函数，
+    \item 对自变量进行修改——通过仔细选取一个\emph{递增}的区间，并使用周期变量\footnote{上例中的 $k$}对其进行拓展。
+    \item 之后在修饰后的\footnote{上例中$G$}原函数后加上一个周期相关的“常数”
+        \footnote{
+            上例中 $C_k$，我不知道周期相关的常数是否还可以被称之为常数。抑或者这是另一种分段函数的表现形式
+        }，使得原函数连续。
+\end{enumerate}
+其中第二部
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/a-complicated-antiderivative-example.pdf}
+    \caption{The figure of $F$ in Example \ref{example:a-complicated-example-of-antiderivative-1}. }
+    \label{fig:a-complicated-antiderivative-example}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/a-complicated-antiderivative-example-wrong.pdf}
+    \caption{
+        The figure of $G$ (equals $F - C_k$) 
+        in Example
+        \ref{example:a-complicated-example-of-antiderivative-1}. 
+    }
+    \label{fig:a-complicated-antiderivative-example-wrong}
+\end{figure}
 
 \subsection{两个概念的应用}
 
-比如 \cite[page 101, example 1]{we}:
 \begin{example}
     Let $f'(e^x) = \sin x$, what is the $f(x)$?
+
+    \cite[page 101, example 1]{we}:
+
+    本题目一方面可以通过令 $t = e^x$ 的方法然后进行比较常规的做法解出。
+    另外还可以对等式两边同时对 $e^x$ 积，即：
+    \[
+        \int f'(e^x) \mbox{d} e^x = \int \sin x \mbox{d} e^x
+    \]
+    则 $\mbox{LHS} = f(e^x)$\footnote{应用了 FCM (Theorem \ref{thm:FCM}) part 1}, 
+    $\mbox{RHS}$ 为一种很好的分部积分的形式。
+    进一步解得 $f(e^x) = (e^x/2) (\sin x - \cos x) + C$ 后，
+    再进行变量代换 $t = e^x$ 求出 $f(x)$ 即可。
 \end{example}
-本题目一方面可以通过令 $t = e^x$ 的方法然后进行比较常规的做法解出。
-另外还可以对等式两边同时对 $e^x$ 积，即：
-\[
-    \int f'(e^x) \mbox{d} e^x = \int \sin x \mbox{d} e^x
-\]
-则 $\mbox{LHS} = f(e^x)$\footnote{应用了两个概念的某一个}, 
-$\mbox{RHS}$ 为一种很好的分部积分的形式。
-进一步解得 $f(e^x) = (e^x/2) (\sin x - \cos x) + C$ 后，
-再进行变量代换 $t = e^x$ 求出 $f(x)$ 即可。
 
 \subsection{分部积分}\label{part-integral}
 
@@ -78,6 +282,71 @@ $\mbox{RHS}$ 为一种很好的分部积分的形式。
 
 分部积分适用于 integrand 为两个不同类型函数的乘积时。
 其中 $uv$ 的选择关系到做题速度，相关信息请参见 \cite[page 95, pdf 106]{we}.
+
+\begin{example}
+    \[
+        \int x \sin x \mathrm dx
+    \]
+
+    \cite[page 486]{stewart}.
+
+    \begin{gather*}
+        u = x\quad \mathrm dv = \sin x \mathrm dx \\
+        du = dx \quad v = -\cos x
+    \end{gather*}
+    and so
+    \begin{align*}
+        \int x \sin x \mathrm dx &= \int \overbrace{x}^{u} \overbrace{\sin x \mathrm dx}^{\mathrm dv} \\
+                                 &= \underbrace{x}_{u}\underbrace{(-\cos x)}_{v} - \int \underbrace{(-\cos x)}_{v}  \underbrace{\mathrm dx}_{\mathrm du} \\
+                                 &= -x \cos x + \int \cos x \mathrm dx \\
+                                 &= -x \cos x + \sin x + C
+    \end{align*}
+\end{example}
+
+\begin{example}
+    \[
+        \int e^x \sin x \mathrm dx
+    \]
+
+    \cite[page 488]{stewart}.
+
+    Neither $e^x$ nor $\sin x$ becomes simpler when differentiated,
+    so let's try choosing
+    \footnote{It's turns out that, in this case, chosing $u = \sin x, \mathrm dv = e^x \mathrm dx$ also works.}
+    $u = e^x$ and $\mathrm dv = \sin x \mathrm dx$. 
+    Then $\mathrm du = e^x$ and $v = -\cos x$, so integration by parts gives
+    \begin{equation}
+        \label{eq:integration-by-part-example-eq2}
+        \int e^x \sin x\mathrm dx = -e^x \cos x + \int e^x \cos x \mathrm dx
+    \end{equation}
+    The integral that we have obtained, $\int e^x \cos x \mathrm dx$, 
+    is no simpler than the original one, but at least it's no more difficult.
+     Having had success in the preceding example integrating
+    by parts twice, we persevere and integrate by parts again. It is important that we again
+    choose $u = e^x$, so $\mathrm dv = \cos x \mathrm dx$, 
+    Then $\mathrm du = e^x \mathrm dx, v = \sin x$ and
+    \begin{equation}
+        \label{eq:integration-by-part-example-eq1}
+        \int e^x \cos x \mathrm dx = e^x \sin x - \int e^x \sin x \mathrm dx
+    \end{equation}
+    At first glance, it appears as if we have accomplished nothing because we have arrived
+    at $\int e^x \sin x \mathrm dx$, which is where we started, 
+    However, if we put the expression for $\int e^x \mathrm dx$ 
+    from Equation (\ref{eq:integration-by-part-example-eq1}) 
+    into Equation (\ref{eq:integration-by-part-example-eq2}) 
+    we get
+    \begin{equation*}
+        \int e^x \sin x \mathrm dx = -e^x \cos x + e^x \sin x - \int e^x \sin x \mathrm dx 
+    \end{equation*}
+    This can be regarded as an equation to be solved for the unknown integral. Adding
+    $\int e^x \sin x\mathrm dx$ to both sides, we obtain
+    \begin{align*}
+        2 \int e^x \sin x \mathrm dx &= -e^x \cos x + e^x \sin x  \\
+        \int e^x \sin x \mathrm dx &= \frac{1}{2} e^x (\sin x - \cos x) + C
+    \end{align*}
+\end{example}
+
+定积分的分部积分法请参见小节 \ref{definite-integration-by-parts}.
 
 \subsection{第一类换元法}
 
@@ -111,8 +380,6 @@ $\mbox{RHS}$ 为一种很好的分部积分的形式。
 \[
     \int R(\sin x, \cos x) \mbox{d} x 
 \]
-的。
-
 可以采用\textit{万能代换}法，令 $t = \tan (t/2)$, 则有
 \begin{equation}
     \int R(\sin x, \cos x) \mbox{d} x 
@@ -167,29 +434,30 @@ $\mbox{RHS}$ 为一种很好的分部积分的形式。
     求
     \[
         \int \dfrac{1}{x} \sqrt{\dfrac{x+1}{x}} \mathrm{d} x
-    \].
+    \]
 
     令 $t =\sqrt{\dfrac{x+1}{x}}$，则 $x = \dfrac{1}{t^2 - 1}$,
     $\mathrm{d}x = - \dfrac{2t}{(t^2 - 1)^2}$.
     则
     \begin{align*}
-        \int \dfrac{1}{x} \sqrt{\dfrac{x+1}{x}} \mathrm{d} x 
-        &=& 
-        &\int (t^2 - 1) t \dfrac{2t}{(t^2-1)^2} \mathrm{d} t \\
-        &=& 
-        &-2 \int \dfrac{t^2}{(t^2-1)^2} \mathrm{d} t\\
-        &=& 
-        &-2 \int \left(1+\dfrac{1}{t^2-1}\right) \mathrm{d} t\\
-        &=& 
-        &-2\left(t + \dfrac{1}{2} \ln \left|\dfrac{t-1}{t+1}\right|\right) + \mathrm{C}
+          &\int \dfrac{1}{x} \sqrt{\dfrac{x+1}{x}} \mathrm{d} x 
+        = \int (t^2 - 1) t \dfrac{-2t}{(t^2-1)^2} \mathrm{d} t \\
+        = &-2 \int \dfrac{t^2}{t^2-1} \mathrm{d} t
+        = -2 \int \left(1+\dfrac{1}{t^2-1}\right) \mathrm{d} t\\
+        = &-2\left(t + \dfrac{1}{2} \ln \left|\dfrac{t-1}{t+1}\right|\right) + \mathrm{C} \\
+        = &-2 \sqrt{\frac{x + 1}{x}} - \ln \abs*{\frac{\sqrt{\frac{1+x}{x} }-1}{\sqrt{\frac{1+x}{x} } +1}} + \mathrm C
     \end{align*}
 \end{example}
+
+不要忘了不定积分换元后，结果要将符号换回去。
 
 \subsection{分段函数的不定积分}
 
 本题型考察的就是分段点的处理，只需保证积分后两个分段是连续的即可
-\footnote{在考研数学中这种情况无需考生证明可导性，
-可以证明连续分段被积函数若其两段原函数是连续能够推出原函数可导}。
+\footnote{
+    在考研数学中这种情况无需考生证明可导性,
+    只需要说明分段被积函数\textbf{连续}即可
+}。
 参见 \cite[page 101, pdf 112, example 5]{we}.
 
 \begin{example}
@@ -199,15 +467,15 @@ $\mbox{RHS}$ 为一种很好的分部积分的形式。
     \[
         e^{-|x|} = \left\{
             \begin{array}{rl}
-                \mathrm{e} ^{-x} &, x \leq 0, \\
+                \mathrm{e} ^{-x} &, x \geq 0, \\
                 \mathrm{e} ^x    &, x < 0.
             \end{array}
         \right.
     \]
     \[
-        \int \mathrm{e} ^{-|x|} \mathrm{d} x = \left\{
+        F(x) = \int \mathrm{e} ^{-|x|} \mathrm{d} x = \left\{
             \begin{array}{rl}
-                - \mathrm{e} ^{-x} + \mathrm{C_1} &, x \leq 0, \\
+                - \mathrm{e} ^{-x} + \mathrm{C_1} &, x \geq 0, \\
                   \mathrm{e} ^x    + \mathrm{C_2} &, x < 0.
             \end{array}
         \right.
@@ -233,27 +501,19 @@ $\mbox{RHS}$ 为一种很好的分部积分的形式。
         \right.
     \]
 
-    \begin{center}
-    \raisebox{0.5ex}{\rule{\textwidth}{0.3pt}}
-    \end{center}
-
     \textbf{方法二：}
     由于 $\mathrm{e}^{-|x|}$ 连续，则$F(x) = \int_{0}^{x} \mathrm{e}^{-|x|} \mathrm{d} t$
     是其一个原函数，又
     \begin{align*}
-        F(x) &= \int_{0}^{x} e^{-|x|} \mathrm{d} t = 
-        \left\{
-            \begin{array}{rl}
-                \int_{0}^{x} \mathrm{e}^t    \mathrm{d} t &, x < 0, \\
-                \int_{0}^{x} \mathrm{e}^{-t} \mathrm{d} t &, x \geq 0.
-            \end{array}
-        \right. \\
-        &= \left\{
-            \begin{array}{rl}
-                \mathrm{e}^x - 1 &, x < 0 \\
-                1 - \mathrm{e}^{-x} &, x \leq 0.
-            \end{array}
-        \right.
+        F(x) &= \int_{0}^{x} e^{-|t|} \mathrm{d} t = 
+        \begin{dcases*}
+            \cramped{\int_{0}^{x} \mathrm{e}^t    \mathrm{d} t} &, x < 0, \\
+            \cramped{\int_{0}^{x} \mathrm{e}^{-t} \mathrm{d} t} &, x \geq 0.
+        \end{dcases*}\\
+        &= \begin{dcases*}
+            \mathrm{e}^x - 1 &, x < 0 \\
+            1 - \mathrm{e}^{-x} &, x \leq 0.
+        \end{dcases*}
     \end{align*}
     \underline{则 $\int \mathrm{e}^{-|x|} \mathrm{d} x = F(x) + \mathrm{C}$}.
 \end{example}
@@ -272,33 +532,36 @@ Sigma 的使用注意事项请参见 \ref{giant-operator} 节。
 
 \subsection{好题汇编}
 
-\begin{example}\label{two-in-one-integral}
+\begin{example}
     求 $I_1 = \int \cos ^4 x \mathrm{d} x$, $I_2 = \int \sin ^4 x \mathrm{d} x$.
     \begin{align*}
         I_1 + I_2 &= \int 
                     \left[
                         (\sin ^2 x + \cos ^2 x)^2 - \dfrac{1}{2} \sin ^2 2x
                     \right] \mathrm{d}x \\
-                  &= \int 1 - \dfrac{1}{2} \sin ^2 2x \mathrm{d} x \quad \mbox{降幂很巧妙}\\
+                  &= \int 1 - \dfrac{1}{2} \sin ^2 2x \mathrm{d} x \quad \mbox{(降幂很巧妙)}\\
                   &= \int 1 - \dfrac{1}{4} (1-\cos 4x) \mathrm{d} x \\
                   &= \dfrac{3}{4} x + \dfrac{1}{16} \sin x + C_1
     \end{align*}
-    \begin{align*}
-        I_1 - I_2 &= \int \cos ^4 x - \sin ^4 x \mathrm{d}x \\
-                  &= \int \cos 2x \mathrm{d}x \\
-                  &= \dfrac{1}{2} \sin 2x +C_2
-    \end{align*}
+    \begin{align}
+        I_1 - I_2 &= \int \cos ^4 x - \sin ^4 x \mathrm{d}x \notag \\
+                  &= \int \cos 2x \mathrm{d}x \label{eq:app-trig-double-angle-1} \\
+                  &= \dfrac{1}{2} \sin 2x +C_2 \notag
+    \end{align}
     所以
     \begin{align*}
-        I_1 &= \dfrac{1}{2} \left[(I_1+I_2)+(I_1-I_2)\right]=\mbox{something}_1 \\ 
-        I_2 &= \dfrac{1}{2} \left[(I_1+I_2)-(I_1-I_2)\right]=\mbox{something}_2
+        I_1 &= \dfrac{1}{2} \left[(I_1+I_2)+(I_1-I_2)\right] \\
+            &= \frac{3}{8} x + \frac{1}{32} \sin 4x + \frac{1}{4} \sin 2x + C_1 \\
+        I_2 &= \dfrac{1}{2} \left[(I_1+I_2)-(I_1-I_2)\right] \\
+            &= \frac{3}{8} x + \frac{1}{32} \sin 4x - \frac{1}{4} \sin 2x + C_2
     \end{align*}
     \cite[page 26, question 57]{w660ans}
 \end{example}
-Example\ref{two-in-one-integral}巧妙利用积分的和等于和的积分这一性质，
-将两个积分组合到一起。这样更便于使用初等数学中三角恒等变换的知识
-辅助解题。
+上例巧妙利用积分的和等于和的积分这一性质，将两个积分组合到一起。
+这样更便于使用初等数学中三角恒等变换的知识辅助解题。
 
+式子 (\ref{eq:app-trig-double-angle-1}) 利用了三角函数二倍角公式。
+三角函数相关公式请参见小节 \ref{trigonometric}.
 
 \section{定积分}\label{finite-integral}
 
@@ -430,12 +693,14 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 
 \subsection{定积分计算}
 
-\subsubsection{分部积分}
+\subsection{分部积分（定积分）}
+\label{definite-integration-by-parts}
 
-\begin{definition}[定积分分部积分法]
-    设函数 $u(x)$ 和 $v(x)$ 在 $[a, b]$ 上有\textbf{连续一阶导数}，则
+\begin{definition}
+    \textbf{Assuming $f'$ and $g'$ are continuous on $[a, b]$}, 
+    and using the Fundamental Theorem, we obtain
     \[
-        \int_a^b u \mbox{d} v = uv \left.\right|^{b}_{a} - \int_a^b v \mbox{d} u
+        \int_a^b f(x) g'(x) \mathrm dx = \left. f(x)g(x) \right]_a^b - \int_a^b g(x)f'(x) \mathrm dx
     \]
 \end{definition}
 
@@ -455,17 +720,29 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
         = 
         \left\{ 
             \begin{array}{rl}
-                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{1}{2} \cdot \dfrac{\pi}{2} &, n \mbox{\small \ is even.}   \\[1em]
-                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdots \dfrac{2}{3}                      &, n \mbox{\small \ is odd} > 1 \\
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdot \cdots \cdot \dfrac{1}{2} \cdot \dfrac{\pi}{2} &, n \mbox{\small \ is even.}   \\[1em]
+                \dfrac{n - 1}{n} \cdot \dfrac{n - 3}{n - 2} \cdot \cdots \cdot \dfrac{2}{3}                      &, n \mbox{\small \ is odd} > 1 \\
             \end{array}
         \right.
     \end{multline}
     
     若 $f(x)$ 连续，则
     \begin{equation}
+        \label{eq:magic-trig-integration-simplification-1}
         \int_0^{\pi} x f(\sin x) \mathrm{d} x = \dfrac{\pi}{2} \int_0^{\pi} f(\sin x) \mathrm{d} x
     \end{equation}
 \end{lemma}
+
+\begin{example}
+    \[
+        I = \int_0^{\pi} x \sqrt{\cos^2 x - \cos^4 x} \mathrm dx
+    \]
+
+    \cite[question 187]{w660}.
+
+    由公式 (\ref{eq:magic-trig-integration-simplification-1}) 得
+    TODO %TODO
+\end{example}
 
 \section{广义积分中值定理} 
 
@@ -558,24 +835,26 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 \end{itemize}
 
 \begin{example}
-    设 $f(x)$ 连续，且 $\lim_{x \to +\infty} f(x) = 1$，
-    则 $\lim_{x \to +\infty} \int_x^{x+2} t \sin\left(\frac{3}{t}\right)f(t)$ 是多少？
+    设 $f(x)$ 连续，且 \[\lim_{x \to +\infty} f(x) = 1\]
+    则 \[\lim_{x \to +\infty} \int_x^{x+2} t \sin\left(\frac{3}{t}\right)f(t) \mathrm dt\] 是多少？
     \cite[page 106, pdf 117]{we}
 
-    积分的上下限之差为一个常数，即 $(x + 2) - x = 2$，
+    积分的上下限之差为一个常数，即 \[(x + 2) - x = 2\]
     这种题型一般就可以选用
     \emph{积分中值定理}
     \footnote{
         本例使用的是非广义积分中值定理
         （式子\ref{eq:non-general-mean-value-theorm-of-integral-equation}）
     } 来处理。
-
     \begin{align*} 
          &\lim_{x \to +\infty} \int_x^{x+2} t \sin\left(\frac{3}{t}\right)f(t) \mathrm{d} t\\
         =&\lim_{x \to +\infty} 2 \xi \sin \left(\dfrac{3}{\xi}\right) f(\xi) \quad \underline{(x < \xi < x+2)}\\
+        =&\lim_{\xi \to +\infty} 2 \xi \sin \left(\dfrac{3}{\xi}\right) \\
+        =&\lim_{t \to 0} 2 \cdot \frac{\sin 3t}{t} \quad \mbox{\small （等价无穷小代换）}\\ 
+        =&\lim_{t \to 0} 2 \times 3 \\
         =&6
     \end{align*}
-    \footnote{取值范围声明不要忘了写}
+    取值范围声明（下划线部分）不要忘了写！
 \end{example}
 
 \begin{example}
@@ -591,7 +870,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
         \mathrm{d}x}_{\mbox{\small 定积分性质}} \\
         &= \dfrac{\sqrt{2}}{n+1}
     \end{align*}
-    又\footnote{the Squeeze Theorm}
+    又\footnote{the Squeeze Theorem}
     \[
         \lim_{x\to \infty} \dfrac{\sqrt{2}}{n+1} = 0
     \]
@@ -668,9 +947,9 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 
 利用定积分几何意义可知：
 \begin{align}
-    \int_0^{a}  \sqrt{a^2 - x^2} &= \dfrac{\pi}{4} a^2 \quad,(a > 0) \label{eq:unit-circle-1-for-integral-evaluation}\\
-    \int_0^{a}  \sqrt{2ax - x^2} &= \dfrac{\pi}{4} a^2 \quad,(a > 0) \label{eq:unit-circle-2-for-integral-evaluation}\\
-    \int_0^{2a} \sqrt{2ax - x^2} &= \dfrac{\pi}{2} a^2 \quad,(a > 0) \label{eq:unit-circle-3-for-integral-evaluation}
+    \int_0^{a}  \sqrt{a^2 - x^2} \mathrm dx &= \dfrac{\pi}{4} a^2 \quad,(a > 0) \label{eq:unit-circle-1-for-integral-evaluation}\\
+    \int_0^{a}  \sqrt{2ax - x^2} \mathrm dx &= \dfrac{\pi}{4} a^2 \quad,(a > 0) \label{eq:unit-circle-2-for-integral-evaluation}\\
+    \int_0^{2a} \sqrt{2ax - x^2} \mathrm dx &= \dfrac{\pi}{2} a^2 \quad,(a > 0) \label{eq:unit-circle-3-for-integral-evaluation}
 \end{align}
 其中，
 \begin{itemize}
@@ -829,12 +1108,13 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 
 \begin{example}\label{example:w660t60}
     \[
-        I = \int_0^1 \left(\sqrt{\underbrace{2x-x^2}_{-(x-1)^2\mbox{的一部分}}} 
-        - \underbrace{\sqrt{(1-x^2)^3}}_{\mbox{出现}\sqrt{a^2-x^2}\mbox{形}}\right) \mathrm{d}x
+        I = \int_0^1 \left(\sqrt{\underbrace{2x-x^2}_{-(x-1)^2\mbox{\small 的一部分}}} 
+        - \underbrace{\sqrt{(1-x^2)^3}}_{\mbox{\small 出现}\sqrt{a^2-x^2}\mbox{\small 形}}\right) \mathrm{d}x
     \]
+
     \cite[page 24, question 60]{w660}
 
-    上面第二个大括号提示请参见表\ref{tab:useful-sec-type-substitutions}.
+    上面第二个大括号提示请参见表 \ref{tab:useful-sec-type-substitutions}.
     按照表中提示，令 $x = \sin t$，那么
     \begin{align*}
         \int_0^1 \left(
@@ -847,18 +1127,18 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
         &=
         \frac{3}{4} \times \frac{1}{2} \times \frac{\pi}{2} = \frac{3}{16} \pi
     \end{align*}
-    之后可运用点火公式\ref{eq:launching-formula}计算高次幂三角函数。
+    之后可运用点火公式 \ref{eq:launching-formula} 计算高次幂三角函数。
 
     式子中的前面一部分的化简目标为单位元面积，
-    参见\ref{definite-integral-about-circle-area}。
-    则令 $t = (x-1)$ 则 $2x-x^2 = 1-t^2$
+    参见小节 \ref{definite-integral-about-circle-area}。
+    则令 \[t = (x-1)\] 则 $2x-x^2 = 1-t^2$
     \[
         \int_0^1 \sqrt{2x-x^2} \mathrm{d}x
         = 
         \int_{-1}^0 \sqrt{1-t^2} \mathrm{d}t = \frac{\pi}{4}
     \]
     
-    那么 $I = \dfrac{\pi}{4} - \dfrac{3\pi}{16} = \dfrac{\pi}{16}$
+    那么 \[I = \dfrac{\pi}{4} - \dfrac{3\pi}{16} = \dfrac{\pi}{16}\]
 \end{example}
 
 \begin{example}
@@ -891,10 +1171,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
                       \dfrac{\arcsin x}{\sqrt{1-x^2}} \cdot x
                   \mathrm{d}x 
               }_{B}
-          \right)
-    \end{align*}
-    其中
-    \begin{align*}
+          \right) \\[1em]
         A &= - \int_0^1 \arccos x \, \mathrm{d} \sqrt{1-x^2} \\
           &= \left.- \arccos x \sqrt{1-x^2}\right]_0^1 + \int_0^1 \sqrt{1-x^2} \cdot 
               \dfrac{-\mathrm{d}x}{\sqrt{1-x^2}} \\
@@ -922,7 +1199,7 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
           &= \dfrac{1}{2} \int_{\pi/2}^{\pi + \pi/2} \dfrac{1}{1+\cos x} \mathrm{d}x \quad (\mbox{\small 诱导公式})\\
           &\mbox{D.N.E}
     \end{align*}
-    该解法无法求得定积分，因为被积函数在积分区间上有间断点。如下图所示
+    该解法无法求得定积分，因为被积函数在积分区间上有无穷间断点。如下图所示
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -1073,8 +1350,8 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \]
     由 $f(0) \neq 0$ 得，当$x\to 0$时\footnote{参见小节\ref{limit-questions-involved-definite-integral}和\ref{limit-rerepresenting-in-variable-limits-integral}}：
     \begin{align*}
-        \int_0^x f(t) \mathrm dt  &\sim \int_0^x  f(0) \mathrm dt  &= f(0) x \\
-        \int_0^x tf(t) \mathrm dt &\sim \int_0^x tf(0) \mathrm dt &= \dfrac{f(0)}{2} x^2
+        \int_0^x f(t) \mathrm dt  &\sim \int_0^x  f(0) \mathrm dt = f(0) x \\
+        \int_0^x tf(t) \mathrm dt &\sim \int_0^x tf(0) \mathrm dt = \dfrac{f(0)}{2} x^2
     \end{align*}
     则
     \begin{equation*}
@@ -1302,10 +1579,9 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
             \right]
         \end{align*}
         对 $I_1$ 做积分变量变换 $x = \pi - t$ 则
-        \begin{align*}
-            &\int_{\frac{\pi}{2}}^{\pi} \cos x \ln ( 2+ \cos x ) \mathrm dx \\
-            =&\int_0^{\frac{\pi}{2}} \cos t \ln ( 2+ \cos t ) \mathrm dt 
-        \end{align*}
+        \[
+            I_1 = \int_0^{\frac{\pi}{2}} \cos t \ln ( 2+ \cos t ) \mathrm dt 
+        \]
         所以
         \begin{align*}
             &\int_0^{2\pi } \cos x \ln (2 + \cos x) \mathrm dx \\
