@@ -19,7 +19,7 @@
 *.mst
 
 # Build output
-*.pdf
+main.pdf
 
 # Editor-specific ignores
 .vscode/

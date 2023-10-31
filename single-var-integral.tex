@@ -53,17 +53,17 @@
 \subsection{不容易记忆的公式}
 
 \begin{align}
-    \int \dfrac{1}{{a^2 + x^2}}         \mathrm dx &= \dfrac{1}{a} \arctan \left( \dfrac{x}{a} \right)      + C\\
-    \int \dfrac{1}{{a^2 - x^2}}         \mathrm dx &= \dfrac{1}{2a} \ln \left| \dfrac{a + x}{a - x} \right| + C\\
-    \int \dfrac{1}{{\sqrt{a^2 + x^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{a^2 + x^2} }       + C\\
-    \int \dfrac{1}{{\sqrt{x^2 - a^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{x^2 - a^2} }       + C\\
-    \int \dfrac{1}{{\sqrt{a^2 - x^2}}}  \mathrm dx &= \frac{1}{a} \arcsin \frac{x}{a}                       + C\\
-    \int \dfrac{1}{{1+e^x}}             \mathrm dx &= x - \ln (1+ e^x)                                      + C\\
-    \int \sec x                         \mathrm dx &= \ln \abs*{\sec x + \tan x }                           + C\\ 
-    \int \csc x                         \mathrm dx &= \ln \abs*{\csc x - \cot x }                           + C\\ 
-    \int \sqrt{x^2 + a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 + a^2} + \frac{a^2}{2} \ln \left(x + \sqrt{x^2 + a^2}\right) + C\\
-    \int \sqrt{x^2 - a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 - a^2} - \frac{a^2}{2} \ln \abs*{x + \sqrt{x^2 - a^2}} + C\\
-    \int \sqrt{a^2 - x^2}               \mathrm dx &= \frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin \frac{x}{2} + C
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-1}  \int \dfrac{1}{{a^2 + x^2}}         \mathrm dx &= \dfrac{1}{a} \arctan \left( \dfrac{x}{a} \right)      + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-2}  \int \dfrac{1}{{a^2 - x^2}}         \mathrm dx &= \dfrac{1}{2a} \ln \left| \dfrac{a + x}{a - x} \right| + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-3}  \int \dfrac{1}{{\sqrt{a^2 + x^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{a^2 + x^2} }       + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-4}  \int \dfrac{1}{{\sqrt{x^2 - a^2}}}  \mathrm dx &= \ln               \abs*{ x + \sqrt{x^2 - a^2} }       + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-5}  \int \dfrac{1}{{\sqrt{a^2 - x^2}}}  \mathrm dx &= \frac{1}{a} \arcsin \frac{x}{a}                       + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-6}  \int \dfrac{1}{{1+e^x}}             \mathrm dx &= x - \ln (1+ e^x)                                      + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-7}  \int \sec x                         \mathrm dx &= \ln \abs*{\sec x + \tan x }                           + C\\ 
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-8}  \int \csc x                         \mathrm dx &= \ln \abs*{\csc x - \cot x }                           + C\\ 
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-9}  \int \sqrt{x^2 + a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 + a^2} + \frac{a^2}{2} \ln \left(x + \sqrt{x^2 + a^2}\right) + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-10} \int \sqrt{x^2 - a^2}               \mathrm dx &= \frac{x}{2} \sqrt{x^2 - a^2} - \frac{a^2}{2} \ln \abs*{x + \sqrt{x^2 - a^2}} + C\\
+    \label{eq:indefinite-integreal-equality-uneasy-to-recite-11} \int \sqrt{a^2 - x^2}               \mathrm dx &= \frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin \frac{x}{2} + C
 \end{align}
 
 更多公式请参见 \cite[page 93, pdf 104]{we}.
@@ -354,6 +354,25 @@
 的策略来将式子分为多个式子相加减的形式。
 请参阅\cite[page 98, pdf 109, example 7]{we}
 
+另外，被积函数是分式的时候应当将其化成\emph{头重脚轻}的形式，
+即分子项数多于分母，之后逐个击破。
+
+\begin{example}
+    \cite[page 141]{yc}.
+    \begin{align*}
+         &\int \dfrac{\sqrt{x^2 - 4}}{x} \mathrm dx \\
+        =&\int \dfrac{x^2 - 4}{x \sqrt{x^2 - 4}} \mathrm dx \quad \mbox{\small (分子项数比分母多)}\\
+        =&\int \dfrac{x}{\sqrt{x^2 - 4}} \mathrm dx - 4\int \dfrac{1}{x\sqrt{x^2 - 4}} \mathrm dx \quad \mbox{\small (逐个击破)} \\
+        =&\frac{1}{2} \int \dfrac{1}{\sqrt{x^2 - 4}} \mathrm d (x^2 - 4 ) -4\int \dfrac{1}{x\sqrt{x^2 - 4}} \mathrm dx \\
+        =&\sqrt{x^2 - 4}                            - 4\int \dfrac{1}{x\sqrt{x^2 - 4}} \mathrm dx \\
+        =&\sqrt{x^2 - 4}                            - \frac{4}{2} \int \dfrac{2}{x \sqrt{x^2 - 4}} \mathrm dx \\
+        =&\sqrt{x^2 - 4}                            - 2 \int \dfrac{\frac{2}{x}}{\sqrt{x^2 - 4}} \mathrm dx \\
+        =&\sqrt{x^2 - 4}                            - 2 \int \dfrac{\frac{2}{x^2}}{\sqrt{1 - \frac{4}{x^2}}} \mathrm dx \\
+        =&\sqrt{x^2 - 4}                            + 2 \int \dfrac{\mathrm d\frac{2}{x}}{\sqrt{1 - \left(\frac{2}{x}\right)^2}} \quad \mbox{\small (应用公式\ref{eq:indefinite-integreal-equality-uneasy-to-recite-5})}\\
+        =&\sqrt{x^2 - 4}                            + 2\arcsin \frac{2}{x} + C
+    \end{align*}
+\end{example}
+
 \subsection{第二类换元法}
 
 \begin{table}
@@ -371,6 +390,7 @@
     \label{tab:useful-sec-type-substitutions}
 \end{table}
 第二类换元法常用替换请参见表格 \ref{tab:useful-sec-type-substitutions}.
+一定积分例见 Example \ref{example:example-sec-substitution-integration-1}.
 
 \subsection{三类常见可积函数中不熟悉的考点}
 
@@ -632,6 +652,48 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     that is, the definite integral $\int_a^b f(x) \mathrm{d} x$ exists.
 \end{theorem}
 
+\begin{example}
+    设 $n, m \in \mathbb Z$, 
+    \[
+        I_{n, m} = \int_0^1 x^n \ln^m x \mathrm dx
+    \]
+    是什么积分（定积分 or 反常积分）？如果是定积分，值为多少？
+
+    \cite[question 190]{w660}.
+
+    虽然被积函数在 $x = 0$ 处没有定义，但
+    \[
+        \lim_{x \to 0^+} \int_0^1 x^n \ln^m x = 0
+    \]
+    则 $x = 0$ 为一类间断点，
+    则该积分为定积分\footnote{参见可积定理 Theorem \ref{integrable-therom}}。
+    \begin{align*}
+        I_{n, m} &= \frac{1}{n+1} \int_0^1 \ln^m x \mathrm d x^{n+1} \\
+                 &= \left.\frac{1}{n+1} x^{n+1} \ln^m x \right]_{0^+}^1 \\
+                 &{\,}- \frac{1}{n+1} \int_0^1 x^{n+1} m \ln^{m - 1} x \cdot \frac{1}{x} \mathrm dx\\
+                 &= -\frac{m}{n+1} \int_0^1 x^n \ln^{m-1} x \mathrm dx \\
+                 &= -\frac{m}{n+1} I_{n, m - 1}
+    \end{align*}
+    反复使用该递推式可得
+    \begin{align*}
+        I_{n, m} &= 
+                    \left(-\frac{m}{n+1}\right)
+                    \left(-\frac{m-1}{n+1}\right) I_{n, m-2}\\
+                 &= 
+                    \left(-\frac{m}{n+1}\right)
+                    \left(-\frac{m-1}{n+1}\right) 
+                    \left(-\frac{m}{n-2}\right) \\
+                 &{\,}\cdots
+                    \left(-\frac{1}{n+1}\right) 
+                    I_{n, 0}\\
+                 &= (-1)^m \frac{m!}{(n+1)^{m+1}}
+    \end{align*}
+    其中
+    \[
+        I_{n, 0} = \int_0^1 x^n \mathrm dx = \frac{1}{n+1}
+    \]
+\end{example}
+
 \begin{align}
     f(x) \mbox{\small 连续} &\quad         \Longrightarrow  \quad f(x) \mbox{\small 可积} \\
     f(x) \mbox{\small 可积} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{\small 连续} \notag
@@ -725,13 +787,17 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
             \end{array}
         \right.
     \end{multline}
-    
+
     若 $f(x)$ 连续，则
     \begin{equation}
         \label{eq:magic-trig-integration-simplification-1}
         \int_0^{\pi} x f(\sin x) \mathrm{d} x = \dfrac{\pi}{2} \int_0^{\pi} f(\sin x) \mathrm{d} x
     \end{equation}
 \end{lemma}
+
+点火公式在使用的时候，如遇到定积分上限不为 $\pi/2$ 之情况，
+则应利用三角函数周期性，将积分化成适合使用点火公式的形式。
+例子参见 Example \ref{ex:centriod-of-curve}.
 
 \begin{example}
     \[
@@ -742,6 +808,49 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 
     由公式 (\ref{eq:magic-trig-integration-simplification-1}) 得
     TODO %TODO
+\end{example}
+
+\begin{example}
+    \cite[question 188]{w660}.
+
+    \begin{align*}
+        &\int_0^1 \frac{x}{\sqrt{x(1-x)}} \mathrm dx 
+        =\int_0^1 \frac{x}{\sqrt{x - x^2}} \mathrm dx \\ 
+        =&\int_0^1 \frac{x}{\sqrt{\frac{1}{4} + x - x^2 -\frac{1}{4}}} \mathrm dx \\ 
+        =&\int_0^1 \frac{x}{\sqrt{\frac{1}{4} - (x - \frac{1}{2})^2}} \mathrm dx \quad \mbox{\small (配平方)}\\ 
+        =&\int_{\frac{-1}{2}}^{\frac{1}{2}} \frac{t + \frac{1}{2}}{\sqrt{\left(\frac{1}{2}\right)^2 - t^2}} \mathrm dt \\ 
+        =&\underbrace{\int_{\frac{1}{2}}^{\frac{-1}{2}} \frac{t}{\sqrt{\left(\frac{1}{2}\right)^2 - t^2}} \mathrm dt}_{A = 0}
+         +\underbrace{\int_{\frac{-1}{2}}^{\frac{1}{2}} \frac{\frac{1}{2}}{\sqrt{\left(\frac{1}{2}\right)^2 - t^2}} \mathrm dt}_{B} \\ 
+        =&\frac{1}{2}\int_{\frac{-1}{2}}^{\frac{1}{2}} \frac{1}{\sqrt{\left(\frac{1}{2}\right)^2 - t^2}} \mathrm dt \\ 
+        =&\frac{1}{2}\cdot 2\int_{0}^{\frac{1}{2}} \frac{1}{\sqrt{\left(\frac{1}{2}\right)^2 - t^2}} \mathrm dt \quad \mbox{\small (利用公式 \ref{eq:indefinite-integreal-equality-uneasy-to-recite-5})} \\ 
+        =&\left.2 \arcsin (2t) \right]^{1/2}_{0} = \dfrac{\pi}{2}
+    \end{align*}
+    式子 $A$ 由于积分上下限对称，
+    并且被积函数为奇函数（中心对称）因此定积分为 $0$, 
+    式子 $B$ 积分上下限对称，被积函数为偶函数，
+    因此定积分为两倍于 $y$ 轴某一侧的积分。
+    另外，本题还用了 Pre-Calculus 中的基本代数知识。
+    这是为了令分母中根号式子里化为便于利用公式的或者便于应用换元法的形式。
+\end{example}
+
+\begin{example}
+    \label{example:example-sec-substitution-integration-1}
+
+    \cite[qustion 189]{w660}.
+
+    \begin{align*}
+        I &= \int_0^1 x^4 \sqrt{\dfrac{1+x}{1-x}} \mathrm dx \\
+          &= \int_0^1 x^4 \frac{1+x}{\sqrt{1-x^2}} \mathrm dx
+    \end{align*}
+    \footnote{二类积分换元法，请参见表格 \ref{tab:useful-sec-type-substitutions}}
+    let $x = \sin t\,$ Thus $t = \arcsin x, \mathrm dx = \cos t \mathrm dt$.
+    \begin{align*}
+        I &= \int_0^{\pi/2} \sin^4 t \frac{1+\sin t}{\cos t} \cos t \mathrm dt \\
+          &= \int_0^{\pi/2} \sin^4 t \mathrm dt + \int_0^{\pi/2} \sin^5 t \mathrm dt \\
+          &= \frac{3}{4} \cdot \frac{1}{2} \cdot \frac{\pi}{2} + 
+             \frac{4}{5} \cdot \frac{2}{3} \quad \mbox{\small (点火公式 \ref{eq:launching-formula})}\\
+          &= \frac{3\pi}{16} + \frac{8}{15}
+    \end{align*}
 \end{example}
 
 \section{广义积分中值定理} 
@@ -1271,6 +1380,29 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
     \]
 \end{theorem}
 
+\begin{corollary}
+    \label{co:derivative-of-variadict-integral-corollary}
+    若 $f(x)$ 在 $[a, b]$ 上连续；$g, h$ 在 $(a, b)$ 上可导， 
+    则 $\int_{h(x)}^{g(x)} f(x) \mathrm{d} t$
+    在 $[a, b]$ 上可导，且
+    \[
+        \left(\int_{h(x)}^{g(x)} f(t) \mathrm{d}t\right)' = 
+        f(g(x))g'(x) - f(h(x))h'(x)
+    \]
+\end{corollary}
+
+\begin{example}
+    \[
+        \dfrac{\mathrm d}{\mathrm dx} \int_{2x}^{\ln x} \ln(1+t) \mathrm dt
+    \]
+    \cite[question 192]{w660}.
+    \begin{align*}
+        &\dfrac{\mathrm d}{\mathrm dx} \int_{2x}^{\ln x} \ln(1+t) \mathrm dt \\
+        =&\ln(1+\ln x)(\ln x)' - \ln(1+2x)(2x)'\\
+        =&\frac{1}{x} \ln (1+\ln x) - 2\ln (1+2x)
+    \end{align*}
+\end{example}
+
 \begin{table}
     \centering
     \begin{tabular}{cc}
@@ -1628,6 +1760,148 @@ Section \ref{use-squeeze-or-definition-of-integral}.
 其他定积分的应用请参考
 \cite[page 435]{stewart}等参考书.
 
+\begin{corollary}[旋转体积]
+    旋转体体积是对其切面（washer）的面积进行积分得来的。
+    而切面的面积可以表示为
+    \[
+        A(y) = \pi \left[(\mbox{\small outer radius})^2-(\mbox{\small inner radius})^2\right]
+    \]
+    整个旋转体体积就可以表示为
+    \[
+        V(y) = \int_a^b A(y) \mathrm dy
+    \]
+    \cite[page 453]{stewart}.
+\end{corollary}
+
+可参考题目 \cite[question 206]{w660}.
+
+\begin{theorem}[The Arc Length Formula]
+    If $f'$ is continuous on $[a, b]$, then the length of the curve
+    $y = f(x), x \in [a, b]$
+    \[
+        L = \int_a^b \sqrt{1 + [f'(x)]^2} \mathrm dx
+    \]
+
+    \cite[page 561]{stewart}.
+\end{theorem}
+
+\begin{theorem}
+    \label{thm:length-arc-parametric}
+    If a curve $C$ is described by the \uline{parametric equations}
+    $x = f(t), y = g(t), t \in [\alpha, \beta]$, where $f'$
+    and $g'$ are continuous on $[\alpha, \beta]$ and $C$ is 
+    traversed \emph{exactly once} as $t$ increases from $\alpha$ to $\beta$, 
+    then the length of $C$ is
+    \[
+        L = \int_{\alpha}^{\beta} 
+        \underbrace{\sqrt{\left(\frac{\mathrm dx}{\mathrm dt}\right)^2 + \left(\frac{\mathrm dy}{\mathrm dt}\right)^2}
+        \mathrm dt}_{\mbox{\small 弧微分}}
+    \]
+\end{theorem}
+
+\begin{corollary}
+    According to the Theorem \ref{thm:length-arc-parametric}:
+    Assuming $f'$ is continuous, the length of the curve with \uline{polor equation}
+    $r = f(\theta), \theta \in [a, b]$ is
+    \[
+        L = \int_a^b 
+        \sqrt{r^2 + \left(\frac{\mathrm dr}{\mathrm d\theta}\right)^2} 
+        \mathrm d\theta
+    \]
+\end{corollary}
+
+\begin{corollary}[摆线质心]
+    摆线质心$(\overline x, \overline y)$就是摆线上所有点的平均位置:
+    \begin{align*}
+        \overline x &= \dfrac{
+            \int_a^b x(t) \overbrace{\sqrt{x'^2(t) + y'^2(t)} \mathrm dt}^{\mbox{\small 弧微分}}
+        }{
+            \int_a^b \sqrt{x'^2(t) + y'2(t)} \mathrm dt 
+        } \\
+        \overline y &= \dfrac{
+            \int_a^b y(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt 
+        }{
+            \underbrace{\int_a^b \sqrt{x'^2(t) + y'^2(t)} \mathrm dt }_{\mbox{\small 弧长}L}
+        } 
+    \end{align*}
+    其中 $t \in [a, b]$
+\end{corollary}
+
+\begin{example}
+    \label{ex:centriod-of-curve}
+    摆线的一支 
+    \begin{align*}
+        x &= a(t - \sin t) \\
+        y &= a(1 - \cos t) 
+    \end{align*}
+    $(t \in [0, 2\pi])$的质心是
+    
+    \cite[question 208]{w660}.
+
+    先求弧微分
+    \begin{align*}
+        \mathrm ds &= \sqrt{x'^2(t) + y'2(t)} \mathrm dt \\
+                   &= \sqrt{(a - a\cos t)^2 + (-a \sin t)^2} \mathrm dt \\
+                   &= \sqrt{a^2(1-\cos t)^2 + (a \sin t)^2} \mathrm dt \\
+                   &= a\sqrt{(1 - \cos t)^2 + a^2 \sin^2 t} \mathrm dt \\
+                   &= a\sqrt{2 - 2 \cos t} \mathrm dt = a\sqrt{2(1 - \cos t)} \mathrm dt \\
+                   &= a\sqrt{2(2 \sin^2 \frac{t}{2})} \mathrm dt \\
+                ds &= 2a \sin \frac{t}{2} \mathrm dt \quad (t \in [0, 2\pi])
+    \end{align*}
+
+    再求弧长
+    \begin{align*}
+        L&=\int_0^{2 \pi} \sqrt{x'^2(t) + y'2(t)} \mathrm dt \\
+         &=\int_0^{2 \pi} 2a \sin \frac{t}{2} \mathrm dt = 4a \left[-\cos \frac{t}{2}\right]^{2\pi}_0 = 8a
+    \end{align*}
+
+    \begin{align*}
+        \overline y &= \dfrac{
+                           \int_a^b y(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt 
+                       }{
+                           \int_a^b \sqrt{x'^2(t) + y'^2(t)} \mathrm dt
+                       } \\
+                    &= \frac{\overbrace{\int_0^{2 \pi} a(1-\cos t) \overbrace{2a \sin \frac{t}{2} \mathrm dt}^{\mathrm ds}}^{A}}{8a} \\
+                  A &= \int_0^{2 \pi} a(2 \sin^2 \frac{t}{2}) 2a \sin \frac{t}{2} \mathrm dt \quad (\mbox{\small Corollary \ref{co:trig-order-raising-equations}})\\
+                    &= 4a^2 \int_0^{2\pi} \sin^3 \frac{t}{2} \mathrm dt = 8a^2 \int_0^{\pi} \sin^3 t \mathrm dt \\
+                    &= 16a^2 \int_0^{\frac{\pi}{2}} \sin^3 t \mathrm dt \quad (\mbox{\small Launching Formula \ref{eq:launching-formula}})\\
+                    &= 16a^2 \cdot \frac{2}{3} = \frac{32}{3}a^2\\
+        \overline y &= \frac{A}{8a} = \frac{\frac{32}{3}a^2}{8a} = \frac{4}{3}a
+    \end{align*}
+
+    另外这支摆线关于直线 $x = \pi a$ 对称
+    \footnote{如图 \ref{fig:figure-of-w660-question-208} 所示。当 $a = 1$ 时，图中加粗线表示 $x = \pi a$} ，
+    根据对称性可知 $\overline x = \pi a$
+    或者计算 
+    \begin{align*}
+         &\int_0^{2\pi} x(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt \\
+        =&\int_0^{2\pi} a(t - \sin t) 2a \sin \frac{t}{2} \mathrm dt \\
+        =&-4a^2 \int_0^{2\pi} t \mathrm d \cos \frac{t}{2} - 4a^2 \int_{0}^{2\pi} \sin^2 \frac{t}{2} \cos \frac{t}{2} \mathrm dt \\
+        =&-4a^2 t \left.\cos \frac{t}{2}\right]^{2\pi}_0 + 4a^2 \int_0^{2\pi} \cos \frac{t}{2} \mathrm dt \\
+         &{\,} -8a^2 \int_0^{2\pi} \sin^2 \frac{t}{2} \mathrm d \sin \frac{t}{2} \\
+        =&8a^2 \pi
+    \end{align*}
+
+    带入公式得
+    \begin{align*}
+        \overline x &= \dfrac{
+                           \int_0^{2pi} x(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt 
+                       }{
+                           \int_0^{2pi} \sqrt{x'^2(t) + y'^2(t)} \mathrm dt
+                       } \\
+                    &= \frac{8a^2 \pi}{8a} = \pi a.
+    \end{align*}
+    
+    综上，$(\overline x, \overline y) = (\pi a, \frac{4}{3}a)$.
+\end{example}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figure/figure-of-w660-question-208.pdf}
+    \caption{The figure of $x = (t - \sin t) y = (1 - \cos t)$.}
+    \label{fig:figure-of-w660-question-208}
+\end{figure}
+
 \section{无界函数反常积分}
 
 \begin{definition}
@@ -1671,15 +1945,46 @@ Section \ref{use-squeeze-or-definition-of-integral}.
         \int_a^b \dfrac{1}{(x - a)^p} \mathrm dx 
         \begin{dcases*}
             \mbox{收敛} & p < 1, \\
-            \mbox{发散} & p \leq 1;
+            \mbox{发散} & p \geq 1;
         \end{dcases*}
     \]
     \[
         \int_a^b \dfrac{1}{(b - x)^p} \mathrm dx 
         \begin{dcases*}
             \mbox{收敛} & p < 1, \\
-            \mbox{发散} & p \leq 1.
+            \mbox{发散} & p \geq 1.
         \end{dcases*}
     \]
 \end{corollary}
 
+\begin{example}
+    证明以下命题不成立
+    \begin{enumerate}
+        \item 设 $f(x)$ 在 $(-\infty, +\infty)$ 内连续是奇函数，则 $\int_{-\infty}^{+\infty} f(x) \mathrm dx = 0$.
+        \item 设 $f(x)$ 在 $(-\infty, +\infty)$ 内连续，$\lim_{R \to +\infty} \int_{-R}^{R} f(x) \mathrm dx$ 存在，则 $\int_{-\infty}^{+\infty} f(x) \mathrm dx$ 收敛.
+        \item 若 $\int_{-\infty}^{0} f(x) \mathrm dx$ 与 $\int_0^{+\infty} f(x) \mathrm dx$ 均发散，则不能确定 $\int_{-\infty}^{+\infty}f(x) \mathrm dx$ 是否收敛.
+    \end{enumerate}
+    
+    \cite[question 204]{w660}.
+
+    \begin{proof}[Proof of Proposition 1]
+        \begin{align*}
+            &\because   \exists f(x) = \sin x \quad \mbox{s.t.} \quad \int_{-\infty}^{+\infty} f(x) \mathrm dx \mbox{divergent}\\
+            &\therefore \mbox{Proposition invalid.}
+        \end{align*}
+    \end{proof}
+
+    \begin{proof}[Proof of Proposition 2]
+        \begin{align*}
+            &\because   \exists f(x) = \sin x \\
+            &{\,}\mbox{s.t.} 
+                        \int_{-\infty}^{+\infty} f(x) \mathrm dx 
+                        \mbox{divergent} \\
+            &{\,}\bigwedge 
+                        \lim_{R \to +\infty} \int_{-R}^{R} f(x) \mathrm dx = 0 \\
+            &\therefore \mbox{Proposition invalid.}
+        \end{align*}
+    \end{proof}
+
+    在 Proposition 3 给定条件下 $\int_{-\infty}^{+\infty}f(x) \mathrm dx$ 发散.
+\end{example}

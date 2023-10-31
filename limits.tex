@@ -386,6 +386,54 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
 \end{example}
 
 \begin{example}
+    \[
+        L = \lim_{n \to \infty} \left(
+            \frac{1}{\sqrt{n^2 + 4}} + 
+            \frac{1}{\sqrt{n^2 + 16}} + 
+            \cdots + 
+            \frac{1}{n^2 + 4n^2}
+        \right)
+    \]
+
+    \cite[question 200]{w660}.
+        
+    \emph{变化的部分} 和 \emph{不变的部分}
+    为相同数量级，则使用定积分定义来处理该题。
+
+    \begin{align}
+        \label{eq:need-explain-for-prone} L &= \lim_{n \to \infty} \sum_{i = 1}^{n} \frac{1}{n} 
+                   \left(\frac{1}{\sqrt{1 + 4\left(\frac{i}{n}\right)^2}}\right) \\
+        \notag   &= \int_0^1 \frac{\mathrm dx}{\sqrt{1+4x^2}}
+                  = \int_0^1 \frac{\mathrm dx}{\sqrt{1+(2x)^2}} \\
+        \notag   &= \frac{1}{2} \int_0^2 \frac{\mathrm dt}{\sqrt{1+t^2}} \quad (t \gets 2x) \\
+        \label{eq:need-explain-1} &= \left.\frac{1}{2} \ln(t + \sqrt{1+t^2}) \right]_{0}^{2} \\
+        \notag   &= \frac{1}{2} \ln (2 + \sqrt{5})
+    \end{align}
+    式子 (\ref{eq:need-explain-1}) 利用了 公式 (\ref{eq:indefinite-integreal-equality-uneasy-to-recite-3}) ，
+    除了使用公式
+    \footnote{
+        更多积分公式，请参见小节 \ref{infinite-integral}
+    }
+    此处还可使用换元法
+    \footnote{
+        更多定积分相关知识请参见 小节 \ref{finite-integral}
+    }
+    进行求值。
+
+    本题要比前面的例子更普通一些，此外没什么特别的。
+    题目被收录是因为式子 (\ref{eq:need-explain-for-prone}) ，
+    我在第一次做这个题目的时候错误地把它写成了
+    \[
+        \lim_{n \to \infty} \sum_{i = 1}^{n} \frac{1}{n} 
+        \left(\frac{1}{\sqrt{1 + \left(\frac{2i}{n}\right)^2}}\right)
+    \]
+    进而，\textbf{误以为}\footnote{因为这样看起来采样点少了一半}
+    \[
+        L = 2 \int_0^1 \frac{\mathrm dt}{\sqrt{1+t^2}}
+    \]
+\end{example}
+
+\begin{example}
     \label{ex:squeeze-theorm-example-1}
     \begin{align*}
         &\splitfrac{
