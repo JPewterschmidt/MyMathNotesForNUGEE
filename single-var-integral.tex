@@ -1810,6 +1810,9 @@ Section \ref{use-squeeze-or-definition-of-integral}.
     \]
 \end{corollary}
 
+摆线的应用看起来也是比较喜欢考察的，
+摆线的类型请参见 \cite{stewartpre} 相关章节。
+
 \begin{corollary}[摆线质心]
     摆线质心$(\overline x, \overline y)$就是摆线上所有点的平均位置:
     \begin{align*}
@@ -1885,9 +1888,9 @@ Section \ref{use-squeeze-or-definition-of-integral}.
     带入公式得
     \begin{align*}
         \overline x &= \dfrac{
-                           \int_0^{2pi} x(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt 
+                           \int_0^{2\pi} x(t) \sqrt{x'^2(t) + y'^2(t)} \mathrm dt 
                        }{
-                           \int_0^{2pi} \sqrt{x'^2(t) + y'^2(t)} \mathrm dt
+                           \int_0^{2\pi} \sqrt{x'^2(t) + y'^2(t)} \mathrm dt
                        } \\
                     &= \frac{8a^2 \pi}{8a} = \pi a.
     \end{align*}
@@ -1969,7 +1972,7 @@ Section \ref{use-squeeze-or-definition-of-integral}.
 
     \begin{proof}[Proof of Proposition 1]
         \begin{align*}
-            &\because   \exists f(x) = \sin x \quad \mbox{s.t.} \quad \int_{-\infty}^{+\infty} f(x) \mathrm dx \mbox{divergent}\\
+            &\because   \exists f(x) = \sin x \quad \mbox{s.t.} \quad \int_{-\infty}^{+\infty} f(x) \mathrm dx \mbox{\,divergent}\\
             &\therefore \mbox{Proposition invalid.}
         \end{align*}
     \end{proof}
@@ -1979,7 +1982,7 @@ Section \ref{use-squeeze-or-definition-of-integral}.
             &\because   \exists f(x) = \sin x \\
             &{\,}\mbox{s.t.} 
                         \int_{-\infty}^{+\infty} f(x) \mathrm dx 
-                        \mbox{divergent} \\
+                        \mbox{\,divergent} \\
             &{\,}\bigwedge 
                         \lim_{R \to +\infty} \int_{-R}^{R} f(x) \mathrm dx = 0 \\
             &\therefore \mbox{Proposition invalid.}

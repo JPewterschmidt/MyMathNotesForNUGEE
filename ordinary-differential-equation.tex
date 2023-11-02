@@ -603,13 +603,32 @@ See also exmaple 8 \cite[page 148]{fcde}.
     \]
     现在的未知函数变为了 $x(y)$. 
 
-    将式子化为标准形式\footnote{公式\ref{eq:standard-form-of-linear-ODE}}后，
+    将式子化为标准形式\footnote{公式 \ref{eq:standard-form-of-linear-ODE}}后，
     利用公式 \ref{eq:solution-linear-first-order-DE} 求出
     \[
-        x = c e^{(1/2) y^2} - y^2 - 2
+        x = C e^{(1/2) y^2} - y^2 - 2
     \]
 
     最后结果就这样写即可，不用转化为 $y(x)$。
+
+    \begin{equation*}
+        \dfrac{\mathrm{d}x}{\mathrm{d}y} - yx = y^3
+    \end{equation*}
+    \begin{align*}
+         &\int {P(y)} \mathrm dy = \int {-y} \mathrm dy = -\frac{y^2}{2}\\
+        =&\int f(y) e^{\int P(y) \mathrm dy} \mathrm dy \\
+        =&\int y^3 e^{-\frac{y^2}{2}} \mathrm dy = -\int y^2 \mathrm d e^{-\frac{y^2}{2}} \\
+        =&-\left(y^2 e^{-y^2/2} - \int e^{-y^2/2} \mathrm dy^2\right)\\
+        =&-\left(y^2 e^{-y^2/2} - \int 2y e^{-y^2/2} \mathrm dy\right)\\
+        =&-\left(y^2 e^{-y^2/2} + \int 2 \mathrm de^{-y^2/2}\right)\\
+        =&-\left(y^2 e^{-y^2/2} + 2\int \mathrm de^{-y^2/2}\right)\\
+        =&-\left(y^2 e^{-y^2/2} + 2e^{-y^2/2}\right)\\
+        =&-e^{-\frac{y^2}{2}} (2 + y^2)\\
+        x=&e^{-\int P(y) \mathrm dy} \left[\int f(y) e^{\int P(y) \mathrm dy} \mathrm dy + C\right] \\
+        =&e^{y^2/2} \left[-e^{-y^2/2}\left(2+y^2\right) + C\right] \\
+        =& C e^{(1/2) y^2} - y^2 - 2
+    \end{align*}
+    分部积分请参见 \ref{part-integral}
 \end{example}
 
 \begin{example}
@@ -619,17 +638,21 @@ See also exmaple 8 \cite[page 148]{fcde}.
     该题目进行变量对调（微分）也没用，则还可以考虑\textbf{变量代换}。
 
     令
-    \begin{align*}
-        u &= x+ y \\
-        y' &= u' - 1 = \cos u
-    \end{align*}
+    \begin{gather*}
+        u  = x+ y \\
+        y' = u' - 1 = \cos u\\
+        \frac{\mathrm du}{\mathrm dx} = 1+ \cos u \\
+        \int \frac{\mathrm du}{1+\cos x} = \int \mathrm dx 
+    \end{gather*}
     则，原方程变化为 Separable DE
     \footnote{参见\ref{solutions-of-separable-equations}}.
 
     和上一个例子不同的是，本例最终结果要将 $u$ 还原为 $x+y$, 即
-    \[
-        \tan \dfrac{x+y}{2} = x + c
-    \]
+    \begin{align*}
+        &\int \frac{\mathrm du}{1+\cos u} =\int \frac{\mathrm du}{2 \cos^2 \frac{u}{2}} \quad \mbox{\small (推论 \ref{co:trig-order-raising-equations})}\\
+        =&\int \frac{1}{2} \sec^2 \frac{u}{2} \mathrm du =\tan \frac{u}{2} + C\\
+        \Rightarrow &\tan \dfrac{x+y}{2} = x + C
+    \end{align*}
 \end{example}
 
 综上两个例子，遇到需要变形才能进一步分类的微分方程求解问题，有下面两个主要方法：
@@ -646,11 +669,11 @@ See also exmaple 8 \cite[page 148]{fcde}.
 
 \begin{example}
     若 
-    \begin{align*}
-        y &= e^{2x} + (x+1) e^x \\
-          &= e^{2x} + x e^x + e^x \\
-          &= y_c + y_p
-    \end{align*}
+    \begin{align}
+        \notag y &= e^{2x} + (x+1) e^x \\
+        \label{eq:expanded-form-a-complex-example-1} &= e^{2x} + x e^x + e^x \\
+        \notag   &= y_c + y_p
+    \end{align}
     是方程 
     \[
         y'' + ay' + by = ce^{x}
@@ -667,7 +690,14 @@ See also exmaple 8 \cite[page 148]{fcde}.
     \]
     因此解中的 $\cramped{e^{2x}}$ 必为一个$y_c$ 
     那么特征方程必有必有一解为 $2$, 即$m_1 = 2$.
-    另一个特解$y_p$ 不能为 $\cramped{Axe^x}$，
+    另一个特解$y_p$ 不能为
+    \footnote{
+        式子 (\ref{eq:expanded-form-a-complex-example-1}) 
+        中的项 $\cramped{xe^x}$ ($A = 1$) 与之对应。
+        既然不能是项 $xe^x$，那么就只能是 项$e^x$ 了，
+        $\cramped{e^x = e^{m_2x} \Rightarrow m_2 = 1}$
+    }
+    $\cramped{Axe^x}$，
     这种情况
     \footnote{
         参见式子
@@ -679,6 +709,11 @@ See also exmaple 8 \cite[page 148]{fcde}.
     即 $m_1 = m_2 = 1$，
     而事实上$m_1 = 2$.
     综上可列出特征方程
+    \footnote{
+        下面方程中，等号左边的因子 $(m - 1)$ 
+        是基于对 $m_2 = 1$ 的推断。
+        这一推断请参见第一条脚注
+    }
     \begin{align*}
         (m-1)(m-2) &= 0\\
         m^2 - 3m + 2 &= 0
@@ -711,14 +746,77 @@ $y_p$.
 另外，找到方程对应齐次解后，将题目给出的非齐解带入方程求出
 \footnote{定义\ref{def:non-homo-linear-DE}}
 $g(x)$ 写答案即可。
-例子请参考
-\cite[page 145, pdf 156, example 3(7)]{we}。
+
+\begin{example}
+    已知 $y_1 = 3, y_2 = 3 + x^2, y_3 = 3 + e^x$
+    是某\uline{二阶线性非齐次}\footnote{注意了，没说是常系数}
+    方程的三个特解。求该方程及通解。
+
+    \cite[page 145, pdf 156, example 3(7)]{we}。
+
+    \begin{align*}
+        y_2 - y_1 &= x^2 \\
+        y_3 - y_1 &= e^x 
+    \end{align*}
+    为齐次方程的两个线性无关特解，则所求方程的通解为
+    \begin{align}
+        \label{eq:general-sln-of-a-complex-example-1} y  &= C_1 e^x + C_2 e^{2x} + xe^x  \\
+        \label{eq:general-sln-of-a-complex-example-2} y' &= 2C_1 x + C_2 e^x \\
+        \label{eq:general-sln-of-a-complex-example-3} y''&= 2C_1 + C_2 e^x 
+    \end{align}
+    
+    式 (\ref{eq:general-sln-of-a-complex-example-3}) 减 (\ref{eq:general-sln-of-a-complex-example-2}) 得
+    \begin{equation}
+        \label{eq:general-sln-of-a-complex-example-4}
+        y'' - y' = C_1(1-x)
+    \end{equation}
+    式 (\ref{eq:general-sln-of-a-complex-example-1}) 减 (\ref{eq:general-sln-of-a-complex-example-2}) 得
+    \begin{equation}
+        \label{eq:general-sln-of-a-complex-example-5}
+        y - y' = C_1(x^2 - 2x) + 3
+    \end{equation}
+    联立式子 (\ref{eq:general-sln-of-a-complex-example-4}) 和 (\ref{eq:general-sln-of-a-complex-example-5}) 可得
+    \[
+        (2x - x^2) y'' + (x^2 - 2) y' + 2(1-x)y = 6(1-x)
+    \]
+\end{example}
 
 \subsubsection{错题收录}
 
 有关降阶法其他内容请参见\ref{reduction-of-order}。
 
-\cite[question 77]{w660}.
+\begin{example}
+    设 $a > 0$ 是常数，连续函数 $f(x)$ 满足 
+    \[
+        \lim_{x \to +\infty} f(x) = b
+    \]
+    $y = y(x)$ 是微分方程
+    \[
+        y'' + ay' = f(x) \quad \left(x \in [0, +\infty)\right) 
+    \]
+    的解，则求 $\lim_{x \to +\infty} y'(x), \lim_{x \to +\infty} y''(x)$ 
+
+    \cite[question 77]{w660}.
+
+    令 $p = y'$ 则原方程化为
+    \[
+        p' + ap = f(x)
+    \]
+    则由公式 (\ref{eq:solution-linear-first-order-DE}) 可得
+    \[
+        p = e^{-ax} \left[\int_0^x e^{ax} f(x) \mathrm dx + C_2\right] = y' \\
+    \]
+    \begin{align*}
+        \lim_{x \to +\infty} y' &= 
+        \lim_{x \to +\infty} \frac{\int_0^x e^{ax} f(x) \mathrm dx + C_2}{e^{ax}} \\
+                                &= \lim_{x \to +\infty} \frac{e^{ax} f(x)}{ae^{ax}} 
+                                = \lim_{x \to +\infty} \frac{f(x)}{a} = \frac{b}{a}
+    \end{align*}
+    \begin{gather*}
+        y'' = f(x) - ay' \\
+        \lim_{x \to +\infty}  y'' = b - a \lim_{x \to +\infty} y' = b - b = 0
+    \end{gather*}
+\end{example}
 
 \begin{example}
     DE 
@@ -754,7 +852,7 @@ $g(x)$ 写答案即可。
     \]
     通过分离变量法得
     \[
-        \ln|p| + 2\ln|y| = \underbrace{\ln|C_1|}_{\mathclap{\mbox{仍为一常数}}}
+        \ln|p| + 2\ln|y| = \underbrace{\ln|C_1|}_{\mathclap{\mbox{\small 仍为一常数}}}
     \]
     即 $p = C_1/y^2$.
 
