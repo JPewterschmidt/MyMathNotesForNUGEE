@@ -13,6 +13,46 @@
 参见小节 $\ref{def-limit}$ 可知，仅给出函数某点$n$阶导数值并不能说明$n$阶导函数存在。
 故 L'Hospital 法则不能用。反面例题参见 Example \ref{counter-example-of-usage-of-L-Hospital}.
 
+\begin{example} 
+    若 $f(x)$ 和 $g(x)$ 在 $(-\infty, +\infty)$ 上皆可导，且
+    $f(x) < g(x)$ 则必有
+    \begin{enumerate}
+        \item[A] $\cramped{f(-x) > g(-x)}$ 
+        \item[B] $\cramped{f'(x) < g'(x)}$ 
+        \item[C] $\cramped{\lim_{x \to x_0}f'(x) < \lim_{x \to x_0}g'(x)}$ 
+        \item[D] $\cramped{\int_0^x f(t) \mathrm dt > \int_0^x g(t) \mathrm dt}$ 
+    \end{enumerate}
+
+    \uline{
+        $f(x), g(x)$ 在 $\mathbb R$ 上\textbf{可导} $\Rightarrow$ 
+        $f(x), g(x)$ 在 $\mathbb R$ 上\textbf{连续}
+    }
+
+    因此
+    \begin{gather*}
+        \lim_{x \to x_0} f(x) = f(x_0) \\
+        \lim_{x \to x_0} g(x) = g(x_0) 
+    \end{gather*}
+
+    \begin{align*}
+        &\because \quad f(x) < g(x) \\
+        &\therefore \quad f(x_0) < g(x_0) 
+    \end{align*}
+
+    即
+    \[
+        \lim_{x \to x_0} f(x) < \lim_{x \to x_0} g(x) 
+    \]
+    选 C.
+
+    D 选项成立的前提是 $x > 0$ 然而 
+    \[
+        I(x) = \int_0^x \underbrace{\left[f(t) - g(t)\right]}_{< 0} \mathrm dt
+    \]
+    因此 $x > 0$ 时，$I(x) < 0$；
+    因此 $x < 0$ 时，$I(x) > 0$.
+\end{example}
+
 \section{通用技术}
 \label{general-technics-single-var-differentiation}
 
@@ -79,12 +119,13 @@ $f^{(n)}$ 在 $x = a$ 存在，不代表 $f^{(n)}$ 在 $a$ 的某邻域一定有
 
 \subsection{函数奇偶性辅助解题}
 
-比如\footnote{对数运算法则请参考节\ref{logrithemic}.}
+比如
+\footnote{ 对数运算法则请参考节\ref{logrithemic}. }
 \[
-    f(x) = \ln(x+\sqrt{1+x^2})
+    f(x) = \ln \left(x+\sqrt{1+x^2}\right)
 \]
 求 $f''(x)$.
-这种题目直接使用符合函数求导法则不是很方便，
+这种题目直接使用复合函数求导法则不是很方便，
 在做题之前可先观察函数类型，可以发现本函数
 是\textbf{奇函数}，因此麦克劳林公式展开\footnote{参考小节\ref{tylor}}中，没有偶次导数项。
 因此二阶导数为 0.
@@ -251,13 +292,18 @@ The reason the second-order derivative at the origin point of an odd function is
 
 \section{反函数求导法}
 
-\begin{lemma}
+\begin{corollary}
     \begin{equation}
-        \phi (y) = \dfrac{\mathrm{d}x}{\mathrm{d}y} = \dfrac{1}{\frac{\mathrm{d}y}{\mathrm{d}x}}
-                   = \dfrac{1}{f'(x)}
+        \phi' (y) = \frac{\mathrm{d}x}{\mathrm{d}y} = \frac{1}{\frac{\mathrm{d}y}{\mathrm{d}x}}
+                  = \frac{1}{f'(x)}
     \end{equation}
+    \begin{align}
+        \notag \phi''(y) &= \frac{\mathrm d}{\mathrm dy}\left(\frac{\mathrm dx}{\mathrm dy}\right) = \frac{\mathrm d}{\mathrm dy} \left(\frac{1}{\frac{\mathrm dy}{\mathrm dx}}\right) \\
+        \notag           &= \frac{\mathrm d\left(\frac{1}{\frac{\mathrm dy}{\mathrm dx}}\right)}{\mathrm dx} \cdot \frac{\mathrm dx}{\mathrm dy} = -\frac{y''}{\left(y'\right)^2} \cdot \frac{1}{y'}\\
+        \phi''(y) &= - \frac{f''(x)}{\left(f'(x)\right)^3}
+    \end{align}
     其中$\phi(y)$ 是 $f(x)$ 的反函数。
-\end{lemma}
+\end{corollary}
 
 \section{高阶导数}
 

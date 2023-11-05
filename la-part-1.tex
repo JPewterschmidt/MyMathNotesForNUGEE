@@ -1,0 +1,119 @@
+\chapter{线性代数第一部分简明笔记}
+\label{determinant}
+
+\section{行列式}
+
+\subsection{和块状矩阵有关的}
+
+若 $A$ 和 $D$ 可逆, 则
+\[
+    \begin{vmatrix*}
+        A & B \\
+        0 & D
+    \end{vmatrix*}
+    =
+    \abs*{A} \abs*{D}
+\]
+
+若 $A$ 可逆
+\[
+    \begin{vmatrix*}
+        A & B \\
+        C & D
+    \end{vmatrix*}
+    = \abs*{A} \abs*{D - CA^{-1} B}
+\]
+
+若 $D$ 可逆
+\[
+    \begin{vmatrix*}
+        A & B \\
+        C & D
+    \end{vmatrix*}
+    = \abs*{D} \abs*{A - BD^{-1} C}
+\]
+
+\section{Rank}
+\label{rank}
+
+\begin{corollary}
+    下面是一些有关秩的性质： 
+
+    \begin{itemize}
+        \item $r(A) = r(A^T); \, r(A^TA) = r(A)$;
+        \item 当 $k \neq 0$, $r(kA) = r(A)$;
+        \item $r(A+B) \leq r(A) + r(B)$;
+        \item $r(AB) \leq \min(r(A), r(B))$;
+        \item 若$A$ 可逆，则 $r(AB) = r(BA) = r(B)$;
+        \item 若$A$ 列满秩，则 $r(AB) = r(B)$;
+        \item 若$A$ 是 $m \times n$ 矩阵，$B$ 是 $n \times s$ 矩阵，
+            $AB = O$，则 $r(A) + r(B) \leq n$;
+        \item \[
+                r\left(\begin{bmatrix}
+                        A & O \\
+                        O & B 
+                \end{bmatrix}\right) = r(A) + r(B)
+            \]
+        \item 若 $A \sim B$，则 $r(A) = r(B), r(A + kE) = r(B + kE)$.
+    \end{itemize}
+\end{corollary}
+
+\begin{example}
+    \[
+        A = \begin{bmatrix}
+            1 & 2 & 3 & 4 \\
+            2 & 3 & 4 & 5 \\
+            3 & 4 & 5 & 6 \\
+            4 & 5 & 6 & 7 
+        \end{bmatrix}, 
+        B = \begin{bmatrix}
+            0 & 1  & -1 &  2 \\
+            0 & -1 &  2 &  3 \\
+            0 & 0  & 1  & 4 \\
+            0 & 0  & 0  & 2
+        \end{bmatrix}
+    \]
+    求 $r(AB + 2A)$
+
+    \cite[question 314]{w660}.
+
+    \begin{gather*}
+        AB + 2A = A(B + 2E) \\ 
+        B + 2E = \begin{bmatrix}
+            2 & 1 & -1 & 2 \\ 
+            0 & 1 & 2  & 3 \\
+            0 & 0 & 3  & 4 \\
+            0 & 0 & 0  & 4 
+        \end{bmatrix} \quad (\mbox{\small invertible})
+    \end{gather*}
+
+    矩阵 $B + 2E$ 可逆，故
+    \[
+        r(AB + 2A) = r(A(B + 2E)) = r(A)
+    \]
+    经初等变换后，矩阵的 rank 不变，有
+    \begin{align*}
+        A &= \begin{bmatrix}
+            1 & 2 & 3 & 4 \\
+            2 & 3 & 4 & 5 \\
+            3 & 4 & 5 & 6 \\
+            4 & 5 & 6 & 7 
+        \end{bmatrix}
+        \rightarrow 
+        \begin{bmatrix}
+            1 & 2 & 3 & 4 \\
+            1 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 1 
+        \end{bmatrix} \\
+          &\rightarrow 
+        \begin{bmatrix}
+            1 & 2  & 3  & 4 \\
+            0 & -1 & -2 & -3 \\
+            0 & 0  & 0  & 0 \\
+            0 & 0  & 0  & 0
+        \end{bmatrix}
+    \end{align*}
+
+    所以 $r(AB + 2A) = 2$.
+\end{example}

@@ -638,6 +638,67 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
 上述三个公式是完全等价的。
 
 \subsection{存在性}
+\label{antiderivative-existence}
+
+一/二类间断点定义参见 Definition \ref{def:discontinunities-chinese-version}；
+有关间断点分类问题，请参见 小节 \ref{function-discontinunities-classfication-questions}.
+
+\begin{corollary}
+    \label{coro:a-corollary-about-antiderivative-existence}
+    若函数 $f(x)$ 在区间 $I$ 上有一类间断点或 $\infty$  型二类间断点，
+    \uline{则 $f(x)$ 在区间 $I$ 上\emph{不}存在原函数.}
+\end{corollary}
+
+请注意，原函数不存在不代表不可积
+（定积分\footnote{参见定积分定义 Definition \ref{defination-definite-integral}}）
+
+\begin{proof}[Proof of Corollary \ref{coro:a-corollary-about-antiderivative-existence}]
+    设 $F(x)$ 是 $f(x)$ 在区间 $I$ 上的原函数，
+    $x = x_0 \in I$ 是 $f(x)$ 的第一类间断点。
+
+    有
+    \begin{gather*}
+        \forall x \in I: F'(x) = f(x) \\
+        \because F(x) \mbox{在} I \mbox{上可导}
+        \therefore F(x) \mbox{在} I \mbox{连续}.
+    \end{gather*}
+    设
+    \[
+        I' = [x_0, x_0 + h] \, (h > 0)
+    \]
+    且 $h$ 足够小，总是能使得 $I' \subset I$, 
+    那么 $F(x)$ 在 $I'$ 上连续且可导，
+    于是依 Lagrange 中值定理，有 
+    \begin{gather*}
+        F(x_0 + h) - F(x_0) = h F'(\xi) = hf(\xi), \quad x_0 < \xi < x_0 + h \\ 
+        \Rightarrow \frac{F(x_0 + h) - F(x_0)}{h} = f(\xi) \\
+        \lim_{h \to 0^+} \frac{F(x_0 + h) - F(x_0)}{h} = \lim_{h \to 0^+} f(\xi) \\
+        \underbrace{F'_+(x_0)}_{f(x_0)} = \lim_{h \to 0^+} f(\xi)
+    \end{gather*}
+    可见上式 LHS 为 $F$ 在 $x_0$ 处的右导数。
+    至于 RHS
+    \begin{gather*}
+        \because \, \xi \in (x_0, x_0 + h) \\
+        \therefore \, \xi \to x^+_0 \quad \mbox{as} \quad h \to 0^+
+    \end{gather*}
+    那么，RHS 就是 $f(x)$ 在 $x = x_0$ 处的右极限
+    \footnote{因为 $x = x_0$ 是 $f(x)$ 的第一类间断点，右极限总是存在}。
+    那么，换句话说
+    \[
+        f(x_0) = \lim_{x \to x_0^+} f(x),
+    \]
+    同理可证
+    \[
+        f(x_0) = \lim_{x \to x_0^-} f(x),
+    \]
+    于是就有
+    \[
+        f(x_0) = \lim_{x \to x_0^+} f(x) = \lim_{x \to x_0^-} f(x).
+    \]
+    即 $f(x)$ 在 $x = x_0$ 处连续，出现了矛盾\footnote{反证法要素}。
+    综上，$f(x)$ 必无一类间断点。
+\end{proof}
+
 \begin{align}
     f(x) \mbox{\small 可积} &\quad         \Longrightarrow  \quad f(x) \mbox{\small 有界} \\
     f(x) \mbox{\small 有界} &\quad \cancel{\Longrightarrow} \quad f(x) \mbox{\small 可积} \notag
@@ -765,6 +826,17 @@ $x^*_i$ 可以写作 $\dfrac{i}{n}$,
         \int_a^b f(x) g'(x) \mathrm dx = \left. f(x)g(x) \right]_a^b - \int_a^b g(x)f'(x) \mathrm dx
     \]
 \end{definition}
+
+\begin{example}
+    \begin{align*}
+        &\int_0^4 e^{\sqrt{x}} \mathrm dx \xrightarrow[=]{x = t^2}\int_0^{2} 2t e^{t} \mathrm dt \\ 
+        =&2\int_0^2 te^t \mathrm dt = 2 \int_0^2 t \mathrm e^t = 2 
+        \left(
+            \left.te^t\right]^2_0 - \int_0^2 e^t \mathrm dt
+        \right)\\
+        =& 2e^2 - 2
+    \end{align*} 
+\end{example}
 
 \subsubsection{公式}
 
@@ -1811,7 +1883,7 @@ Section \ref{use-squeeze-or-definition-of-integral}.
 \end{corollary}
 
 摆线的应用看起来也是比较喜欢考察的，
-摆线的类型请参见 \cite{stewartpre} 相关章节。
+摆线的类型请参见 \ref{stewartpre} 相关章节。
 
 \begin{corollary}[摆线质心]
     摆线质心$(\overline x, \overline y)$就是摆线上所有点的平均位置:

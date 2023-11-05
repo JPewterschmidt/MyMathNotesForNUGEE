@@ -9,7 +9,7 @@
 
 \begin{definition}
     \begin{equation}
-        \mathbf{C}_{k}^{n} = \binom{n}{k} = \frac{n!}{k!(n-k)!}
+        \mathbf{C}_{n}^{k} = \binom{n}{k} = \frac{n!}{k!(n-k)!}
     \end{equation}
 \end{definition}
 
@@ -215,23 +215,44 @@ $\pmb{z}=(z_1,z_2,\dots,z_n)$，有
 \section{对数}\label{logrithemic}
 
 \begin{theorem}
-    \begin{gather*}
-        \log_a (mn) = \log_a m + \log_a n \\
-        \log_a \left(\dfrac{m}{n}\right) = \log_a m - \log_a n \\
-        \log_a \left(m^n\right) = n \log_a m  \\
-        \log_a \left(\sqrt[n]{m}\right) = \dfrac{1}{n} \log_a m
-    \end{gather*}
+    \begin{gather}
+        \label{thm-logrithmic-law-eq1} \log_a (mn) = \log_a m + \log_a n \\
+        \label{thm-logrithmic-law-eq2} \log_a \left(\dfrac{m}{n}\right) = \log_a m - \log_a n \\
+        \label{thm-logrithmic-law-eq3} \log_a \left(m^n\right) = n \log_a m  \\
+        \label{thm-logrithmic-law-eq4} \log_a \left(\sqrt[n]{m}\right) = \dfrac{1}{n} \log_a m
+    \end{gather}
 \end{theorem}
+
+利用上述性质的例题很多，可参见 Example \ref{ex:fucking-ez-limit-but-I-dont-know-how-to-evaluate}.
 
 在使用对数函数的时候，必要的时候不要忘记标注定义域。如
 \cite[page 76, pdf 87, example 2]{we}.
 
+\begin{example}
+    已知 $f(x) = e^{x^2}, f[\varphi(x)] = 1 - x$ 且 $\varphi(x) > 0$，
+    求 $\varphi(x)$ 及其定义域.
+
+    \begin{gather*}
+        f[\varphi(x)] = e^{\varphi^2(x)} = 1 - x \\
+        \varphi^2(x) = \ln (1-x) \\
+        \varphi(x) = \sqrt{\ln (1-x)}
+    \end{gather*}
+
+    为了使得 $\varphi(x)$ 有意义，须要
+    \begin{gather*}
+        \ln (1 - x) \geq 0 \\
+        x \leq 0
+    \end{gather*}
+\end{example}
+
 \section{Trigonometric} \label{trigonometric}
 
 \begin{corollary}
-    \begin{equation}
-        \arctan x + \arctan \dfrac{1}{x} = \dfrac{\pi}{2} \quad (x > 0)
-    \end{equation}
+    \begin{align*}
+        \arctan x + \arctan \dfrac{1}{x} &= \dfrac{\pi}{2} \quad (x > 0) \\
+        \arcsin x + \arccos x &= \dfrac{\pi}{2} \\
+        \sin (x) \cos (y) + \cos (x) \sin (y) &= \sin (x+y)
+    \end{align*}
 \end{corollary}
 
 \begin{corollary}
