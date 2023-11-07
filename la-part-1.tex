@@ -1,7 +1,14 @@
 \chapter{线性代数第一部分简明笔记}
-\label{determinant}
+
+\section{不同表示方法对照}
+
+\begin{itemize}
+    \item 基础解系 : free columns\cite[page 136]{strang}.
+    \item $(a, b, c)^T$ 为列向量 : $(a, b ,c)$ is a column vector.
+\end{itemize}
 
 \section{行列式}
+\label{determinant}
 
 \subsection{和块状矩阵有关的}
 
@@ -44,17 +51,17 @@
         \item 当 $k \neq 0$, $r(kA) = r(A)$;
         \item $r(A+B) \leq r(A) + r(B)$;
         \item $r(AB) \leq \min(r(A), r(B))$;
-        \item 若$A$ 可逆，则 $r(AB) = r(BA) = r(B)$;
-        \item 若$A$ 列满秩，则 $r(AB) = r(B)$;
-        \item 若$A$ 是 $m \times n$ 矩阵，$B$ 是 $n \times s$ 矩阵，
-            $AB = O$，则 $r(A) + r(B) \leq n$;
+        \item \textbf{若$A$ 可逆，则 $r(AB) = r(BA) = r(B)$;}
+        \item \textbf{若$A$ 列满秩，则 $r(AB) = r(B)$;}
+        \item \textbf{若$A$ 是 $m \times n$ 矩阵，$B$ 是 $n \times s$ 矩阵，
+            $AB = O$，则 $r(A) + r(B) \leq n$;}
         \item \[
                 r\left(\begin{bmatrix}
                         A & O \\
                         O & B 
                 \end{bmatrix}\right) = r(A) + r(B)
             \]
-        \item 若 $A \sim B$，则 $r(A) = r(B), r(A + kE) = r(B + kE)$.
+        \item \textbf{若 $A \sim B$，则 $r(A) = r(B), r(A + kE) = r(B + kE)$.}
     \end{itemize}
 \end{corollary}
 
@@ -117,3 +124,97 @@
 
     所以 $r(AB + 2A) = 2$.
 \end{example}
+
+\section{第一部分简述}
+
+系数矩阵 full rank 的时候，方程有唯一解。
+因为有三个 pivots， 所以方程总是能用 Gauss 消元法
+\footnote{
+    还有一个 Gauss-Jordan 法，这个方法也是先做 elimination，
+    当矩阵化为 Upper-triangular 的时候，高斯就停下了。继续把矩阵化 
+    Reduced-row-echlon form 是 Jordan 的贡献。
+    而国内课本不知为何并没有在介绍 RREF 的时候介绍一下 Jordan.
+}
+法求出。
+
+满足方程\footnote{等号右边为 $0$ 的称为齐次方程} 
+$\mathbf Ax = 0$ 的所有 $x$ 构成矩阵 $\mathbf A$ 的
+Null-space，
+对于非齐次方程，其通解的基本想法是 
+\[
+    \mathbf x = {\mathbf x}_{p} + \mathbf x_n
+\]
+换句话说就是 \textbf{通解 = \emph{一个}特解 + \emph{所有} Null-space 解}.
+Null-sapce 的数
+\footnote{
+    这取决于方程组的 free columns(这些自由列构成基础解系) 的个数
+}个 basis 的线性组合来表示 Null-space. 比如某题
+\cite[page 156]{strang}
+求出的通解：
+\[
+    x = 
+    \underbrace{
+        \begin{bmatrix}
+            7 \\ 0 \\ -3 \\ 0
+        \end{bmatrix} 
+    }_{\mathclap{\mbox{\small particular solution}}}
+    + 
+    \overbrace{
+        c_1 \begin{bmatrix}
+            -2 \\ 1 \\ 0 \\ 0
+        \end{bmatrix}
+        + c_2 \begin{bmatrix}
+            4 \\ 0 \\ -4 \\ 1
+        \end{bmatrix}
+    }^{\mathclap{\mbox{\small the combination of the basis of Null-space}}}
+\]
+通过通解可以了解到该方程组有两个 free columns，
+\emph{那么系数矩阵的 rank 就是}
+\[
+    r(A) = n - 2
+\]
+其中 $n$ 是该矩阵的行/列数。
+
+根据矩阵乘法的数种理解方式 \cite[Section 2.4]{strang} 可知。
+若方程组有解，那么等号右端在系数矩阵的 Column-sapce
+\footnote{列空间，由该矩阵的列的线性组合 span.}
+中。
+所以
+\begin{theorem}
+    一个方程组有解，当且仅当等号右边在该方程组系数矩阵的 Column sapce 中。
+\end{theorem}
+Column sapce 的维度，取决于其各 basis 的最大维度。
+在系数矩阵的视角上看这基本上就是矩阵的 rank.
+上文提到了在 full rank 的情况下方程组必然有解，
+反之则不一定。
+一种情况是有无穷解，一种情况是无解。
+有无穷解的情况正如上例所示，
+无穷可以体现在对 $c_1$ 和 $c_2$ 的选取有无穷多种方案，
+也可以体现在 Null sapce\footnote{本例中，Null space 是四维空间中的一个二维平面。} 作为一个 space 中有无穷个向量上。
+
+快速判断方程组无解，可以将 augmented matrix 化为 RREF
+\footnote{Reduced-row-echlon Form}，若原系数矩阵中化出一全零行，
+而 augmented 列对应位置却非零，那么很显然，
+0的任何线性组合之结果都不可能为非0.
+这时，方程组无解。
+
+在实践中由于各种原因（比如测量误差、数据拟合等问题和需求），
+方程组难以保证一定有解。
+这种情况可以使用将该矩阵\emph{投影}到\emph{最近}的，
+一个空间中。该\emph{投影}操作要务必保证原矩阵在满足实践需要的情况下其性质损失\emph{最少}。
+和投影相关的话题请参见
+\cite[Chapter 4.2]{strang}. 而 \cite[Chapter 4]{strang} 讲解的是正交。
+正交对于投影操作来说非常重要，正交为上文中的某些字眼比如
+\emph{最近，损失最小}提供了理论保证。
+
+除了刚才提到的 Null sapce 和 Column space，
+之外还有 Row sapce 和 Left null sapace.
+Elimination 操作会改变 Column space 但不会改变 Row space。
+因为 Elimination 操作是对各行的现行组合。如果两个矩阵的 Row space 相同，
+则称他们为等价。用矩阵语言表述:
+\[
+    \mathbf{PAE} = \mathbf{B}
+\]
+其中 $P$ 为 Permutation 矩阵，应用在 $A$ 左侧会变换 $A$ 的行次序，
+这也是一种线性组合。$E$ 为执行 Elimination 操作的矩阵。
+

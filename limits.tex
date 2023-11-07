@@ -303,6 +303,36 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
     \end{align*}
 \end{example}
 
+\begin{example}
+    \[
+        L = \lim_{x \to 0} \frac{e^{x^2} - e^{2 - 2 \cos x}}{e^{x^4} - 1}
+    \]
+
+    \cite[page 2, question 6]{ll}.
+
+    我在做这道题的时候犯了错误，
+    在项替换后等价的情况下仍然使用了无穷小替换。
+
+    \textbf{有错误解答:}
+
+    \begin{align*}
+        L = &\lim_{x \to 0} \frac{\left(e^{x^2} - 1\right) - \left(e^{2 - 2 \cos x} - 1\right)}{x^4} \\
+          \xrightarrow{\mbox{\small error}} &\lim_{x \to 0} \frac{x^2 - (2 - 2 \cos x)}{x^4} \quad \mbox{\small (分子两项等价)}\\
+          \xrightarrow{\mbox{\small error}} &\lim_{x \to 0} \frac{x^2 - 2(1 - \cos x)}{x^4} \\
+          \xrightarrow{\mbox{\small error}} &\lim_{x \to 0} \frac{x^2 - 2 \left(\frac{1}{2} x^2\right)}{x^4} = 0
+    \end{align*}
+
+    \textbf{正确解答：}
+    \begin{align*}
+        L &= \lim_{x \to 0} \frac{e^{x^2} - e^{2 - 2 \cos x}}{x^4}  \\
+          &= \lim_{x \to 0} e^{2 - 2 \cos x} \cdot \frac{e^{x^2 - 2 + 2 \cos x} - 1}{x^4}\\ 
+          &= \lim_{x \to 0} \frac{x^2 - 2 + 2 \cos x}{x^4} = \lim_{x \to 0} \frac{2x - 2 \sin x}{4x^3}\\ 
+          &= \frac{1}{2} \lim_{x \to 0} \frac{1 - \cos x}{3x^2} = \frac{1}{6} \lim_{x \to 0} \frac{\frac{1}{2} x^2}{x^2} = \frac{1}{12}
+    \end{align*}
+    
+    无穷小代换何时可用参见例题所在小节。
+\end{example}
+
 \subsubsection{定积分中的替换}
 \label{limit-rerepresenting-in-variable-limits-integral}
 设置 $f(x)$ 和 $g(x)$ 在某邻域连续，
@@ -363,6 +393,41 @@ $n$ 阶可导\textbf{不代表} $n$ 阶导函数存在，
     \]
     Once $a$ is a positive number. ??? %TODO
 \end{lemma}
+
+\begin{example}
+    当 $x \to 0$ 时，式子
+    \[
+        \frac{1}{x^2} \sin {1}{x}
+    \]
+    是
+    \begin{enumerate}
+        \item[A] 无穷大
+        \item[B] 无穷小
+        \item[C] 有界但非无穷小
+        \item[D] 无界但非无穷大
+    \end{enumerate}
+
+    \cite[page 1, question 5]{ll}.
+
+    当 $x \to 0$ 时，$\frac{1}{x^2} \to +\infty$, $\sin \frac{1}{x}$ 在 $-1, 1$ 之间震荡，
+    有重复函数值为0。所以可以排除选项 A,B.
+
+    当
+    \[
+        x_n = \frac{1}{2n \pi + \frac{\pi}{2}} \quad (n = 1, 2, 3, \cdots)
+    \]
+    则当 $x_n \to 0$ 时，
+    \[
+        f(x_n) = \left(2n + \frac{1}{2}\right)^2 \pi^2 \to \infty
+    \]
+    故 $\cramped{1/{x^2} \sin (1/{x})}$ \textbf{不是无穷小，也不是有界量}，
+    再令 
+    \[
+        y_n = \frac{1}{n \pi} \quad (n = 1, 2, 3, \cdots)
+    \]
+    则当 $y_n \to 0$ 时， $f(y_n) = 0$, 因此当 $x \to 0$ 时，
+    $\cramped{1/{x^2} \sin (1/{x})}$ 不是无穷大。
+\end{example}
 
 \section{极限之 Squeeze Theorem 还是 定积分定义？}
 \label{use-squeeze-or-definition-of-integral}
@@ -703,6 +768,25 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，
     进一步就可以轻松求出 $b$.
 \end{example}
 
+\begin{example}
+    设 $a > 0$，知
+    \[
+        L = \lim_{x \to +\infty} x^P \left(a^{\frac{1}{x}} - a^{\frac{1}{x+1}}\right)
+    \]
+    存在，求 $P$ 的取值范围
+
+    \cite[page 2, question 4]{ll}.
+
+    本题若不消去 $\cramped{x^P}$ 项，则可以有 $L = \infty$ （极限不存在的一种情形）。
+    因此应当将式子转化成可以消去 $x^P$ 的形式。
+
+    \begin{align*}
+        L &= \lim_{x \to +\infty} x^P a^{\frac{1}{x + 1}} \cdot \left(a^{\frac{1}{x(x+1)}} - 1\right) \\
+          &= \lim_{x \to +\infty} x^P a^{\frac{1}{x + 1}} \cdot \frac{\ln a}{x(x+1)}
+    \end{align*}
+    所以 $P = 2$.
+\end{example}
+
 \section{无穷小阶数比较}
 
 \begin{definition}
@@ -853,6 +937,41 @@ L'Hospital法则求极限。但题目只保证了 $x = 0$ 点处可导，
         \dfrac{\mathrm d\gamma}{\mathrm dx} = \dfrac{1}{2 \sqrt{x}} \sin x^{\frac{3}{2}} \sim \dfrac{1}{2}x & \mbox{\small x的1阶段无穷小}.
     \end{dcases*}\]
     所以，正确的排序是 $\alpha, \gamma, \beta$.
+\end{example}
+
+\begin{example}
+    设
+    \[
+        f(x) =  a+ bx + c x^2 + dx^3 - \tan x
+    \]
+    当 $x \to 0$ 时，$f(x)$ 是比 $x^3$ 更高阶的无穷小，
+    求 $a+b+c+d$.
+
+    \cite[page 2, qesution 7]{ll}.
+
+    $f(x)$ 是比 $x^3$ 更高阶的无穷小说明
+    \[
+        \lim_{x \to 0} \frac{a+ bx + c x^2 + dx^3 - \tan x}{x^3} = 0
+    \]
+    但在计算时，需要是的分子分母上下同阶，利用参数 $a, b, c, d$
+    使得分母阶数变大.
+
+    当 $x \to 0$ 时间，由麦克劳林展开可知
+    \[
+        \tan x = x + \frac{x^3}{3} + o(x^3)
+    \]
+    所以
+    \begin{align*}
+        \lim_{ x \to 0 } \frac{f(x)}{x^3} 
+        &= \lim_{x \to 0} \frac{\splitfrac{a + bx + cx^2 + dx^3}{ - \left[x + \frac{1}{3} x^3 + o(x^3) \right]}}{x^3} \\
+        &= \lim_{x \to 0} \frac{\splitfrac{a + (b - 1) x + cx^2}{ + \left(d - \frac{1}{3}\right)x^3 - o(x^3)}}{x^3} = 0
+    \end{align*}
+    请注意 $o(x^3)$ 就是比 $x^3$ 高阶的无穷小了，另有极限为0的要求，
+    分子保留这一项即可。即
+    \begin{gather*}
+        a = 0, b = 1, c = 0, d = \frac{1}{3} \\
+        a + b + c + d = \frac{4}{3}.
+    \end{gather*}
 \end{example}
 
 \section{连续定义}

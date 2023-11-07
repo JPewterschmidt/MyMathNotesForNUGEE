@@ -1,0 +1,142 @@
+\chapter{线性代数第二部分简明笔记} 
+
+The second part is about \textbf{change}.
+Time enters the picture --- continuous time in a differential
+equation $\mathbf{\mathrm du}/\mathrm dt = A \mathbf u$ or
+time steps in a difference equation $\mathbf u_{k + 1} = A\mathbf u_k$.
+Those functions are \textbf{NOT} solved by elimination.
+\cite[Chapter 6]{strang}.
+
+\section{Eigen-stuff}
+
+特征向量 $x$ 是一个方向和 $Ax$ 相同的向量
+\footnote{方向相同，但其模大小可能会变化(有伸缩)}
+，伸缩量就是 $\lambda$，也就是特征值。
+也就是说 
+\begin{gather*}
+    Ax = \lambda x \\
+    (A - \lambda I) x = 0
+\end{gather*}
+零向量不能是特征向量。也就是说有一个对于矩阵 $(A - \lambda I)$ 来说，
+存在非零线性组合结果为0，进而 $(A - \lambda I)$ 是奇异的。
+所以
+\[
+    \det [A - \lambda I] = 0
+\]
+可以通过上等式求出多个 $\lambda$.
+
+\textbf{Summary:}
+\begin{enumerate}
+    \item Compute the determinant of $A - \lambda I$
+    \item Find the roots of this polynomial, 
+    \item solve $(A - \lambda I) x = 0$ to find an eigenvector $x$.
+\end{enumerate}
+
+虽然特征向量不能为0，但是特征值可以为0，此时特征向量在 Null space 中。
+
+针对一些特殊矩阵，他们的特征值往往是有迹可循的。
+记忆这些内容对应试有一些好处，但是要结合这些特殊矩阵的性质来记忆。
+\begin{itemize}
+    \item When $A$ is \textbf{squared} the eigenvectors stay the same, the \textbf{eigenvalues are squared}.
+        This pattern keeps going, because the eigenvectors stay in their own directions and never get mixed.
+        Other vectors do change direction. But all others are combinations of the two eigenvectors.
+    \item \textbf{Singular matrix} has a eigenvalue $0$, 
+        but you still has to find the other one and eigenvectors 
+        by the determinant. And if $A$ is invertible, zero is not an eigenvalue.
+        We shift $A$ by a multiple of $I$ to \emph{make it singular}.
+    \item \textbf{Markov Matrix}: Each column of $P$ adds to 1, so $\lambda = 1$ is an eigenvalue.
+    \item \textbf{$P$ is singular}, so $\lambda = 0$ is an eignevalue. 
+    \item \textbf{$P$ is symmetric\footnote{TODO}}, so its eigenvectors $(1, 1)$ and $(1, -1)$ are prependicular.
+    \item The only eignevalues of \textbf{projection matrix} are $0$ and $1$. 
+        \begin{itemize}
+            \item The eigenvalue $\lambda = 0$ (which means $Px = 0x$) fill up the null space;
+            \item The eignevalue $\lambda = 1$ (which means $Px = x$)  fill up the column space.
+        \end{itemize}
+        The zero space is projected onto zero, the column space is projected onto itself.
+        \uline{The projection keeps the column space and destroys the nullspace.}
+    \item \uline{Elimination does not preserve the $\lambda$'s, }
+        The \textbf{triangular\footnote{包括上下三角矩阵} $U$ and diagonal $D$} 
+        have their eigenvalues sitting along the diagonal 
+        -- they are the pivots. But they're not the eigenvalues of $A$.
+    \item The product of the $n$ eignevalues \emph{equals} to the determinant. 
+    \item The sum of the $n$ eigenvalues \emph{equals} the sum of the $n$ diagonal entries.
+\end{itemize}
+后两条是比较有用的，但是这并不能代替你求 $\lambda$'s 的工作，
+可以用这样的方法来检验你的正确性。
+\[
+    \lambda_1 + 
+    \lambda_2 + 
+    \lambda_3 + 
+    \cdots + 
+    \lambda_n = 
+    \mbox{\textbf{trace}} = 
+    a_{11} + 
+    a_{22} + 
+    a_{33} + 
+    \cdots
+    a_{nn} 
+\]
+
+例题参见 \cite[page 295]{strang}.
+
+\section{Diagonalizing a Matrix}
+
+对角化的好处是十分明显的，可以很大程度上简化计算。
+\begin{gather*}
+    X^{-1} AX = \Lambda \\
+    A = X\Lambda X^{-1}
+\end{gather*}
+
+如此有
+\[
+    A^2 =X\Lambda X^{-1}X\Lambda X^{-1} = X\Lambda^2X^{-1}
+\]
+The matrix $X$ has an inverse, because its columns (the eigenvectors of $A$)
+were assumed to be linearity independent. 
+\emph{Without $n$ independent eigenvectors, we can't diagonalize.}
+
+\textbf{Remarks of $\Lambda$:}
+\begin{itemize}
+    \item Suppose the eigenvalues $\lambda_1, \lambda_2, \lambda_3, \cdots, \lambda_n$ are all different.
+        Then it is automatic that the eigenvectors $x_1, x_2, x_3, \cdots, x_n$ are independent.
+        This eigenvector matrix $X$ will be \emph{invertible},
+        \textbf{\uline{Any matrix that has no repeated eigenvalues can be diagonalized!}}
+    \item \textbf{
+        We can multiply eigenvectors by any nonzero constants
+        \footnote{
+            考研数学在卷面书写的时候似乎要体现这一点，比如将答案写成 
+            $\cramped{k(a, b, c)^T, \quad k \neq 0.}$
+        }.
+    }
+    \item The eigenvectors in $X$ come in the same order as the eigenvalues in $\Lambda$.
+    \item (repeated wanring for repeated eigenvectors) 
+        Some matrices have too few eigenvectors. 
+        \emph{Those matrices connot be diagonalized}\cite[page 305]{strang}.
+        But remember that there is no connection 
+        between \emph{invertibility} and \emph{diagonalizability}
+        \footnote{
+            For example, the identity has all $\lambda = 1$, but it's Diagonalizabe.
+        }:\begin{itemize}
+            \item \textbf{Invertibility} is concernd 
+                with the eigenvalues ($\lambda = 0$ or $\lambda \neq 0$).
+            \item \textbf{Diagonalizability} is concernd 
+                with the eigenvectors (too few or enough for $X$).
+        \end{itemize}
+\end{itemize}
+
+\section{Symmetric Matrices}
+
+\begin{itemize}
+    \item A symmetric matrix $S$ has $n$ \textbf{real eigenvalues} $\lambda_i$ 
+        and $n$ \textbf{orthonormal eigenvectors} $q_1, \cdots, q_n$.
+    \item Every real symmetric
+        \footnote{$Q^{-1} = Q^T$ 是正交阵的特性}
+        $S$ can be diagonalized:
+        \[
+            S = Q\Lambda Q^{-1} = Q\Lambda Q^T
+        \]
+    \item The number of positive eigenvalues of $S$ equals the number of positive \textbf{pivots}.
+    \item Antisymmetric matrices 
+        $A = -A^T$ have \emph{imaginary} $\lambda$'s 
+        and \emph{orthonormal (complex)} $q$'s.
+\end{itemize}
